@@ -30,6 +30,7 @@ export default {
 		extensions: [".js", ".jsx", ".ts", ".tsx"], //CONFIGURES HOW WEBPACK RESOLVES MODULE PATHS WHEN IMPORTING
 	},
 	devServer: {
+		port: 8000,
 		historyApiFallback: true, //Provides support for SPAs by loading index.html on 404 errors
 		open: true, //Automatically opens a browser tab when starting Webpack Dev Server
 	},
