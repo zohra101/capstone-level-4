@@ -22,7 +22,7 @@ export function HandleRefresh(props) {
 		if (redirectPath) { //if there's a path
 			navigateTo(redirectPath);  //navigate to it
 			localStorage.setItem("redirect", ""); 
-			setTimeout(() => setDidMount(true), 1000); //Delay the rendering of children if 
+			setTimeout(() => setDidMount(true), 2000); //Delay the rendering of children if 
 		} else setDidMount(true);
 	}
 }
