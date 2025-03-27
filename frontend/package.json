@@ -7,7 +7,7 @@
 	"scripts": {
 		"start": "npm run close-port && npx webpack server",
 		"test": "npx jest ./src/modules/",
-		"build": "npx webpack --mode=production --watch",
+		"build": "npx webpack --mode=production",
 		"open-tab": "npx open-cli http://localhost:9000",
 		"deploy": "git push",
 		"close-port": "npx kill-port 8000",
