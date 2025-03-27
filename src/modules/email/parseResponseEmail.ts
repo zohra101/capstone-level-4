@@ -3,7 +3,7 @@
  // const scheduleSubmitMessage = "<br>" + "<h5>Your consultation request has been submitted. Confirmation will be sent to" + email + ".</h5>" + "<br>";
 import { output } from "../../utils/output";
 
-function parseResponseEmail(resolveValue) {
+export function parseResponseEmail(resolveValue) {
     const response = JSON.parse(resolveValue);
     const message = response.message;
     output(message);

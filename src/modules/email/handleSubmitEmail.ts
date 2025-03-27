@@ -1,8 +1,10 @@
- //Form processing messages
-//  const emailSubmitMessage = "<br>" + "<h5>Your message has been sent from" + email + ".</h5>" + "<br>";
- // const scheduleSubmitMessage = "<br>" + "<h5>Your consultation request has been submitted. Confirmation will be sent to" + email + ".</h5>" + "<br>";
+//Form processing messages
+//const emailSubmitMessage = "<br>" + "<h5>Your message has been sent from" + email + ".</h5>" + "<br>";
+//const scheduleSubmitMessage = "<br>" + "<h5>Your consultation request has been submitted. Confirmation will be sent to" + email + ".</h5>" + "<br>";
 
  import { output } from "../../utils/output";
+ import { parseResponseEmail } from "../email/parseResponseEmail";
+ import { resolveServerResponseEmail } from "../email/resolveServerResponseEmail";
 
 //Submit handler
 export function handleSubmitEmail(event) {
