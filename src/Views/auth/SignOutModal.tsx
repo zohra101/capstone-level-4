@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FormEvent } from "react";
 
 export function SignOutModal(props) {
 	const onSignOut = props.onSignOut;
@@ -17,7 +17,7 @@ export function SignOutModal(props) {
 				onSubmit={handleSubmit}
 				className="modal fade"
 				id="signOutModal"
-				tabIndex="-1"
+				// tabIndex="-1"
 				aria-labelledby="signOutModalLabel"
 				aria-hidden="true">
 				<div className="modal-dialog modal-style">
@@ -55,7 +55,7 @@ export function SignOutModal(props) {
 		</>
 	);
 
-	function handleSubmit(event = new Event()) {
+	function handleSubmit(event: FormEvent) {
 		event.preventDefault();
 		const inputs = event.target;
 		const closeButton = inputs[1];

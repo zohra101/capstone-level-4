@@ -4,21 +4,26 @@
 
 import { parseResponseConsultation } from "./parseResponseConsultation";
 import { resolveServerResponseConsultation } from "./resolveServerResponseConsultation";
+import { output } from "../../utils/output";
 
 export function handleSubmitConsultation(event) {
 	event.preventDefault();
 	const inputs = event.target;
 	const emailInput = inputs[3]; //Targets the array location
 	const email = emailInput.value; //Gets the value of the array location
-	window.spinner.innerHTML = "<div class='spinner-border text-primary'></div>"; //Loads the spinner
-	output2(
+
+	const spinner = document.getElementById("spinner");
+
+	spinner.innerHTML = "<div class='spinner-border text-primary'></div>"; //Loads the spinner
+
+	output(
 		"<br>" + "<h5>Submitting scheduling request for " + email + "...</h5><br>"
 	); //Displays the "please wait" message
 	const promise = new Promise(resolveServerResponseConsultation); //Initiates a new promise
 	//Then handles the fulfilled state of a promise by executing the callback function argument when the promise resolves. Chaining then methods creates a sequence of async operations where the output of the previous then becomes the input of the next.
 	promise.then(parseResponseConsultation).then(function hideSpinner(resolveValue2) {//Attaches callParseResponse as the argument/callback function to be called when callServerResponse is fulfilled. When callParseResponse is fulfilled, hideSpinner is the new promise. 
 
-		window.spinner.innerHTML = ""; //Removes the spinner from the HTML tag
+		spinner.innerHTML = ""; //Removes the spinner from the HTML tag
 		return resolveValue2; //Returns the argument of the second, hideSpinner promise so that the app knows the promise is fullfilled. 
 	});
 } 

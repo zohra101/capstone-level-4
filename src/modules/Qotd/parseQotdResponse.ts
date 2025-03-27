@@ -1,5 +1,5 @@
 //Parse the response and display the qotd on the index page
-import { output } from "../../utils/output.js";
+import { output } from "../../utils/output";
 
 export function parseQotdResponse(resolveValue) {
 	let quote = "";

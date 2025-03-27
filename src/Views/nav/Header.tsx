@@ -1,6 +1,6 @@
 import React from "react";
-import { NavbarCollapsible } from "./NavbarCollapsible.js";
-import { ImageMap } from "./ImageMap.js";
+import { NavbarCollapsible } from "../nav/NavbarCollapsible";
+import { ImageMap } from "../nav/ImageMap";
 
 export function Header() {
 	return (

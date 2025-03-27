@@ -1,4 +1,3 @@
-import { describe, it, expect } from "@jest/globals";
 import { authenticationAws } from "./authenticationAws";
 
 //AWS Login Testing

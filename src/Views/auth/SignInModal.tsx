@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { SignInContent } from "../../Views/auth/SignInContent.js";
-import { handleSignInAttempt } from "../../controllers/handleSignInAttempt.js";
+import { SignInContent } from "../../Views/auth/SignInContent";
+import { handleSignInAttempt } from "../../controllers/handleSignInAttempt";
 
 export function SignInModal(props) {
 	const onSignIn = props.onSignIn;
@@ -19,7 +19,7 @@ export function SignInModal(props) {
 				onSubmit={handleSubmit}
 				className="modal fade"
 				id="signInModal"
-				tabIndex="-1"
+				// tabIndex="-1"
 				aria-labelledby="signInModalLabel"
 				aria-hidden="true">
 				<div className="modal-dialog ">

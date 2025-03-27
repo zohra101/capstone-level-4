@@ -1,6 +1,6 @@
 //Fetch the response from the server and extract it
 import React, { useState, useEffect } from "react";
-import { extractQotdResponse } from "../../modules/Qotd/extractQotdResponse.js";
+import { extractQotdResponse } from "../../modules/Qotd/extractQotdResponse";
 
 const proxy = "https://corsproxy.io/?url=";
 const baseUrl = "https://favqs.com/api";

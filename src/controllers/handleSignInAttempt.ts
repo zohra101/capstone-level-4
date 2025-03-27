@@ -1,6 +1,6 @@
-import { authenticationAws } from "../modules/authentication/authenticationAws.js";
+import { authenticationAws } from "../modules/authentication/authenticationAws";
 
-export async function handleSignInAttempt(event = new Event(), setErrorMessage, onSignIn) {
+export async function handleSignInAttempt(event: Event, setErrorMessage, onSignIn) {
 	event.preventDefault();
 
 	const inputs = event.target;

@@ -1,5 +1,5 @@
 //Extract the server resoponse and parse it
-import { parseQotdResponse } from "./parseQotdResponse.js";
+import { parseQotdResponse } from "./parseQotdResponse";
 
 export function extractQotdResponse(resolveValue) {
 	const promise = resolveValue.text();

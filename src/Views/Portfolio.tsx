@@ -20,7 +20,7 @@ export function Portfolio() {
 		<main id="mainTag">
 			<div className="container ms-2 center">
 				<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1">
-					<div classNanme="col">
+					<div className="col">
 						<div className="alert alert-secondary alert-dismissible w-75 center mb-5">
 							<strong>Coming soon!</strong> You'll be able to click on the
 							images to view larger samples with more details about the
@@ -33,7 +33,7 @@ export function Portfolio() {
 					</div>
 				</div>
 				<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1">
-					<div classNanme="col"></div>
+					<div className="col"></div>
 					<h2>Projects</h2>
 					<p>
 						Here's a sampling of current and past projects to which I've
@@ -49,7 +49,7 @@ export function Portfolio() {
 					<br />
 				</div>
 				<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 center">
-					<div classNanme="col">
+					<div className="col">
 						<div
 							id="portfolioCarousel"
 							className="carousel carousel-dark slide m-4 "
@@ -256,7 +256,7 @@ export function Portfolio() {
 					</div>
 				</div>
 				<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1">
-					<div classNanme="col">
+					<div className="col">
 						<p>
 							For samples not represented here, please{" "}
 							<a href="contact.html#sendMessage">submit a request</a> by

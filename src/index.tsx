@@ -2,16 +2,18 @@ import { createRoot } from "react-dom/client";
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router";
 import "../src/index.scss";
-import { Home } from "../src/Views/home/Home.js";
-import { About } from "../src/Views/About.js";
-import { AlexResume } from "../src/Views/AlexResume.js";
-import { ScheduleFreeConsultation } from "../src//Views/ScheduleFreeConsultation.js";
-import { Contact } from "../src//Views/Contact.js";
-import { Portfolio } from "../src/Views/Portfolio.js";
-import { getRootPath } from "../src/utils/getRootPath.js";
-import { Header } from "../src/Views/nav/Header.js";
-import { Footer } from "../src/Views/nav/Footer.js";
-import { HandleRefresh } from "../src/Views/nav/HandleRefresh.js";
+import { Home } from "../src/Views/home/Home";
+import { About } from "../src/Views/About";
+import { AlexResume } from "../src/Views/AlexResume";
+import { Portfolio } from "../src/Views/Portfolio";
+import { getRootPath } from "../src/utils/getRootPath";
+import { Header } from "../src/Views/nav/Header";
+import { Footer } from "../src/Views/nav/Footer";
+import { HandleRefresh } from "../src/Views/nav/HandleRefresh";
+import { Consultation } from "./Views/Consultation";
+import { Message } from "./Views/Message";
+
+
 
 const bodyTag = document.getElementById("bodyTag");
 const root = createRoot(bodyTag);
@@ -36,11 +38,11 @@ root.render(
 				/>
 				<Route
 					path={`${rootPath}/contact`}
-					element={<Contact />}
+					element={<Message />}
 				/>
 				<Route
 					path={`${rootPath}/schedulefreeconsultation`}
-					element={<ScheduleFreeConsultation />}
+					element={<Consultation />}
 				/>
 				<Route
 					path={`${rootPath}/about`}
