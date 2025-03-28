@@ -4,7 +4,7 @@
 
 import { output } from "../../utils/output";
 
-export function parseResponseConsultation(resolveValue2) {
+export function parseResponseConsultation(resolveValue2: string) {
     const response = JSON.parse(resolveValue2);
     const message = response.message;
     output(message);

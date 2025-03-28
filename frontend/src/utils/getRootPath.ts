@@ -4,7 +4,7 @@ export function getRootPath() {
 
 	console.log(`getRootPath domain: ${domain}`);
 
-	if (domain === "zohra101.github.io") rootPath = "/capstone-level-3";
+	if (domain === "zohra101.github.io") rootPath = "/capstone-level-4";
 
 	console.log(`getRootpath: ${rootPath}`);
 	return rootPath;

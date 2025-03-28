@@ -1,6 +1,6 @@
 import React, { FormEvent } from "react";
 
-export function SignOutModal(props) {
+export function SignOutModal(props: any) {
 	const onSignOut = props.onSignOut;
 
 	return (

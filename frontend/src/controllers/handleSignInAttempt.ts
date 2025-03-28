@@ -1,6 +1,6 @@
 import { authenticationAws } from "../modules/authentication/authenticationAws";
 
-export async function handleSignInAttempt(event: Event, setErrorMessage, onSignIn) {
+export async function handleSignInAttempt(event: Event, setErrorMessage: any, onSignIn: any) {
 	event.preventDefault();
 
 	const inputs = event.target as HTMLFormElement;
