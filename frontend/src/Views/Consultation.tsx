@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
-<<<<<<<< HEAD:frontend/src/Views/Consultation.tsx
 import { handleSubmitConsultation } from "../modules/consultation/handleSubmitConsultation";
 import "../../src/index.scss";
-========
-import { handleSubmitConsultation } from "../modules/consultation/handleSubmitConsultation.js";
-import "../index.scss";
->>>>>>>> ts-config:frontend/src/Views/ScheduleFreeConsultation.js
+
 
 export function Consultation() {
 	const [didMount, setDidMount] = useState(false);

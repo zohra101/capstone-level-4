@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
-<<<<<<<< HEAD:frontend/src/Views/Message.tsx
 import { handleSubmitEmail } from "../modules/email/handleSubmitEmail";
 import "../../src/index.scss";
-========
-import { handleSubmitEmail } from "../modules/email/handleSubmitEmail.js";
-import "../index.scss";
->>>>>>>> ts-config:frontend/src/Views/Contact.js
+
 
 export function Message() {
 	const [didMount, setDidMount] = useState(false);

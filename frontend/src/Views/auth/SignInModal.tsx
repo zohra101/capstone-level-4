@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
-<<<<<<<< HEAD:frontend/src/Views/auth/SignInModal.tsx
 import { SignInContent } from "../../Views/auth/SignInContent";
 import { handleSignInAttempt } from "../../controllers/handleSignInAttempt";
-========
-import { SignInContent } from "./SignInContent.js";
-import { handleSignInAttempt } from "../../controllers/handleSignInAttempt.js";
->>>>>>>> ts-config:frontend/src/Views/auth/SignInModal.js
+
 
 export function SignInModal(props) {
 	const onSignIn = props.onSignIn;

@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
-<<<<<<<< HEAD:frontend/src/Views/auth/SignInArea.tsx
 import { SignInModal } from "../auth/SignInModal";
 import { SignOutModal } from "../auth/SignOutModal";
-========
-import { SignInModal } from "./SignInModal.js";
-import { SignOutModal } from "./SignOutModal.js";
->>>>>>>> ts-config:frontend/src/Views/auth/SignInArea.js
 
 export function SignInArea() {
 	const [button, setButton] = useState(<></>);

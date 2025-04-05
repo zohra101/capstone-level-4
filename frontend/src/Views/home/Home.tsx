@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
-<<<<<<<< HEAD:frontend/src/Views/home/Home.tsx
 import { HandleQuoteOfTheDay } from "./HandleQuoteOfTheDay";
 import { ServicesListGroup } from "./ServicesListGroup";
 import "../../../src/index.scss";
-========
-import { HandleQuoteOfTheDay } from "./HandleQuoteOfTheDay.js";
-import { ServicesListGroup } from "./ServicesListGroup.js";
-import "../../index.scss";
->>>>>>>> ts-config:frontend/src/Views/home/Home.js
 
 export function Home() {
 	const [didMount, setDidMount] = useState(false);
