@@ -1,5 +1,6 @@
 import React from "react";
 import copyright from "../../../assets/icons/copyright_cGainsboro_nobg.png";
+import { TestBackend } from "../TestBackend";
 
 export function Footer() {
 	return (
@@ -14,6 +15,9 @@ export function Footer() {
 						src={copyright}
 					/>{" "}
 					Aleksandra Marjanovic
+				</div>
+				<div>
+					<TestBackend/>
 				</div>
 			</footer>
 	);
