@@ -1,5 +1,11 @@
-import { ApiResponse } from "./favqApiResponseTypes";
+import { FavqApiResponse } from "./favqApiResponseTypes";
+import axios from "axios";
 
-export function getApiResponse(): ApiResponse {
-
+export async function getFavqApiResponse(FavqApiResponse: string) {
+	const response = await axios.get("https://favqs.com/api/qotd");
+	const result = {
+		quote: response.data.quote.body,
+		author: response.data.quote.author,
+	};
+	return result;
 }
