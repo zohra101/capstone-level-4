@@ -2,7 +2,7 @@
 	"scripts": {
 		"start": "npm run close-port && npm run start-server",
 		"build": "npm run open-tab && npm run start-build",
-		"test": "npx jest",
+		"test": "npx jest ./src/modules/getQuote.test.ts",
 		"deploy": "git push",
 		"open-tab": "npx open-cli http://localhost:8000",
 		"close-port": "npx kill-port 9000",
@@ -20,6 +20,7 @@
 		"@types/cors": "^2.8.17",
 		"@types/express": "^5.0.0",
 		"@types/jest": "^29.5.14",
+		"axios": "^1.8.4",
 		"babel-loader": "^10.0.0",
 		"jest": "^29.7.0",
 		"kill-port": "^2.0.1",
