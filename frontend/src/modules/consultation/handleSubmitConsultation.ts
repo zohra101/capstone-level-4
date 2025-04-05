@@ -6,7 +6,7 @@ import { parseResponseConsultation } from "./parseResponseConsultation";
 import { resolveServerResponseConsultation } from "./resolveServerResponseConsultation";
 import { output } from "../../utils/output";
 
-export function handleSubmitConsultation(event) {
+export function handleSubmitConsultation(event: Event) {
 	event.preventDefault();
 	const inputs = event.target;
 	const emailInput = inputs[3]; //Targets the array location

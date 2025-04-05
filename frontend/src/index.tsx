@@ -14,7 +14,6 @@ import { Consultation } from "./Views/Consultation";
 import { Message } from "./Views/Message";
 
 
-
 const bodyTag = document.getElementById("bodyTag");
 const root = createRoot(bodyTag);
 const rootPath = getRootPath();

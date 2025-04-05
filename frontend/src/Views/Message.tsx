@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { handleSubmitEmail } from "../modules/email/handleSubmitEmail";
 import "../../src/index.scss";
 
+
 export function Message() {
 	const [didMount, setDidMount] = useState(false);
 
@@ -50,9 +51,7 @@ export function Message() {
 									</fieldset>
 								</div>
 							</div>
-							<div className="row row-cols-2 p-2">
-							
-							</div>
+							<div className="row row-cols-2 p-2"></div>
 							<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 								<div className="col">
 									<span style={{ fontWeight: "bold" }}>

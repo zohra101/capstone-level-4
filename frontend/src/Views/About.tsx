@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import alexHoli from "../../assets/images/alex.png";
-import "../../src/index.scss";
+import "../index.scss";
 
 export function About() {
 	const [didMount, setDidMount] = useState(false);
@@ -13,7 +13,7 @@ export function About() {
 		<main className="p-1">
 			<div className="container">
 				<div className="row">
-					<div className="col-12 border">
+					<div className="col-12">
 						<h3
 							id="aboutSite"
 							className="emphasis newSection"
@@ -21,7 +21,7 @@ export function About() {
 							About this website
 						</h3>
 					</div>
-					<div className="col-12 border">
+					<div className="col-12 ">
 						<p>
 							I created this website using CSS, HTML, and JavaScript, storing my
 							code in GitHub and using VS Code for coding and debugging. For
@@ -35,7 +35,7 @@ export function About() {
 							version of the resume using Adobe InDesign.
 						</p>
 					</div>
-					<div className="col-12 border">
+					<div className="col-12">
 						<h3 id="aboutMe">About me</h3>
 					</div>
 					<div className="col-3 border">
@@ -46,7 +46,7 @@ export function About() {
 							className="ms-1"
 						/>
 					</div>
-					<div className="col-9 border">
+					<div className="col-9">
 						<p>
 							During high school (in New Jersey), my dad wanted to buy me a
 							really big present. "Do you want a computer like your cousins? Or

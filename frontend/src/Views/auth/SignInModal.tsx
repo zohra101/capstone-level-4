@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { SignInContent } from "../../Views/auth/SignInContent";
 import { handleSignInAttempt } from "../../controllers/handleSignInAttempt";
 
+
 export function SignInModal(props) {
 	const onSignIn = props.onSignIn;
 	const [errorMessage, setErrorMessage] = useState("");
@@ -12,7 +13,8 @@ export function SignInModal(props) {
 				type="submit"
 				className="btn btn-light"
 				data-bs-toggle="modal"
-				data-bs-target="#signInModal">
+				data-bs-target="#signInModal"
+			>
 				Sign In
 			</button>
 			<form
@@ -21,20 +23,23 @@ export function SignInModal(props) {
 				id="signInModal"
 				// tabIndex="-1"
 				aria-labelledby="signInModalLabel"
-				aria-hidden="true">
+				aria-hidden="true"
+			>
 				<div className="modal-dialog ">
 					<div className="modal-content modal-style">
 						<div className="modal-header">
 							<h1
 								className="modal-title fs-5"
-								id="signInModalLabel">
-								Sign In 
+								id="signInModalLabel"
+							>
+								Sign In
 							</h1>
 							<button
 								type="button"
 								className="btn-close"
 								data-bs-dismiss="modal"
-								aria-label="Close"></button>
+								aria-label="Close"
+							></button>
 						</div>
 						<div className="modal-body m-2">
 							<SignInContent errorMessage={errorMessage} />
@@ -44,13 +49,15 @@ export function SignInModal(props) {
 								id="signInCloseButton"
 								type="button"
 								className="btn btn-secondary"
-								data-bs-dismiss="modal">
+								data-bs-dismiss="modal"
+							>
 								Close
 							</button>
 							<button
 								id="signInSubmitButton"
 								type="submit"
-								className="btn btn-primary">
+								className="btn btn-primary"
+							>
 								Sign In
 							</button>
 						</div>

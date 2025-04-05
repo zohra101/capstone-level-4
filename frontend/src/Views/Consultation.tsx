@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { handleSubmitConsultation } from "../modules/consultation/handleSubmitConsultation";
 import "../../src/index.scss";
 
+
 export function Consultation() {
 	const [didMount, setDidMount] = useState(false);
 

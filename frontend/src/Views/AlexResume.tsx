@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../Views/AlexResume.scss";
+import "./AlexResume.scss";
 
 export function AlexResume() {
 	const [didMount, setDidMount] = useState(false);
@@ -146,7 +146,7 @@ export function AlexResume() {
 					</div>
 				</div>
 				<div className="row row-cols-2 row-cols-md-2 row-cols-lg-2">
-						<div className="col"></div>
+					<div className="col"></div>
 					<h2>PROFESSIONAL EXPERIENCE</h2>
 					<h3>Owner/Technical Writer</h3>
 					<h4> Nivedana Consulting/Freelancer (Remote) | Nov 2014 – Present</h4>

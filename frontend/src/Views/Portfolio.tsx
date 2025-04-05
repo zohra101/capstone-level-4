@@ -7,7 +7,7 @@ import storyboards from "../../assets/images/storyboards.png";
 import uxWriting from "../../assets/images/ux_writing.png";
 import wireframe from "../../assets/images/wireframe.png";
 import workflowDiagram from "../../assets/images/workflow_diagram.png";
-import "../../src/index.scss";
+import "../index.scss";
 
 export function Portfolio() {
 	const [didMount, setDidMount] = useState(false);

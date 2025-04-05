@@ -84,8 +84,10 @@ export function Home() {
 						</p>
 					</div>
 				</div>
-				<div id="homeServices" 
-				className="row row-cols-2 row-cols-md-1 row-cols-lg-1">
+				<div
+					id="homeServices"
+					className="row row-cols-2 row-cols-md-1 row-cols-lg-1"
+				>
 					<div className="col">
 						<h3>Services</h3>
 						<p>

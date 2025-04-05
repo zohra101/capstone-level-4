@@ -7,7 +7,7 @@
  import { resolveServerResponseEmail } from "../email/resolveServerResponseEmail";
 
 //Submit handler
-export function handleSubmitEmail(event) {
+export function handleSubmitEmail(event: Event) {
 	event.preventDefault();
 	const inputs = event.target;
 	const emailInput = inputs[3]; //Targets the array location

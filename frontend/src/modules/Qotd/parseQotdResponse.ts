@@ -1,7 +1,9 @@
 //Parse the response and display the qotd on the index page
+
 import { output } from "../../utils/output";
 
-export function parseQotdResponse(resolveValue) {
+export function parseQotdResponse(resolveValue: any) {
+
 	let quote = "";
 	let author = "";
 
@@ -14,7 +16,7 @@ export function parseQotdResponse(resolveValue) {
 	author = quoteData.author; //Access the property that contains the author text
 	console.log(`Author: ${author}`);
 
-	console.log("Quote of the Day was parsed.");
+	console.log("Quote of the Day was parsed.")
 
 	output(quote, "qotdQuoteTag");
 	output(author, "qotdAuthorTag");
