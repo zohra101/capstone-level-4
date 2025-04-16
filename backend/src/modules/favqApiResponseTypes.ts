@@ -4,8 +4,3 @@ export type FavqApiResponse = {
  author: string;
 };
 
-//Assert the datatype
-
-
-//Assert the function return type
-
