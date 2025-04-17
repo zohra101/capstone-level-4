@@ -1,13 +1,16 @@
 //Fetch the response from the server and extract it
 import React, { useState, useEffect } from "react";
-import { extractQotdResponse } from "../../modules/Qotd/extractQotdResponse";
+// import { extractQotdResponse } from "../../modules/Qotd/extractQotdResponse";
+import axios from "axios";
 
-const proxy = "https://corsproxy.io/?url=";
-const baseUrl = "https://favqs.com/api";
-const endPoint = "/qotd";
+// const proxy = "https://corsproxy.io/?url=";
+// const baseUrl = "https://favqs.com/api";
+// const endPoint = "/qotd";
 
 export function HandleQuoteOfTheDay() {
 	const [didMount, setDidMount] = useState(false);
+	const [quote, setQuote] = useState("");
+	const [author, setAUthor] = useState("");
 
 	useEffect(componentDidMount, []);
 	useEffect(componentDidUpdate, [didMount]);
@@ -25,21 +28,35 @@ export function HandleQuoteOfTheDay() {
 					<blockquote
 						id="qotdQuoteTag"
 						className="blockquote mb-3"
-					></blockquote>
+					>
+						{quote}
+					</blockquote>
 					<footer
 						id="qotdAuthorTag"
 						className="blockquote-footer mt-2 list-group-item-text1"
-					></footer>
+					>
+						{author}
+					</footer>
 				</div>
 			</div>
 		</div>
 	);
 
+	async function getQuote() {
+		const response = await axios.get("http://localhost:9000/favqApiResponse");
+		const quote = response.data.quote;
+		const author = response.data.author;
+		setQuote(`"${quote}"`);
+		setAUthor(`${author}`);
+	}
+
 	function componentDidMount() {
-		const url = proxy + baseUrl + endPoint;
-		const promise = fetch(url);
-		promise.then(extractQotdResponse);
+		// const url = proxy + baseUrl + endPoint;
+		// const promise = fetch(url);
+		// promise.then(extractQotdResponse);
+
 		setDidMount(true);
+		getQuote();
 		console.log("The HandleQuoteOfTheDay component mounted.");
 	}
 
@@ -48,8 +65,6 @@ export function HandleQuoteOfTheDay() {
 	}
 
 	function componentDidUnmount() {
-		return function displayMessage() {
-			console.log("The  HandleQuoteOfTheDay component unmounted.");
-		};
+		console.log("The  HandleQuoteOfTheDay component unmounted.");
 	}
 }
