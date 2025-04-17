@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import { root } from "./routes/root";
 import { backend } from "./routes/backend";
+import { favqApiResponse } from "./routes/favqApiResponse";
 
 const hostname = "localhost"; //Local domainnpm
 const port = 9000; //Common backend ports are 3000, 8080, 9000
@@ -11,6 +12,7 @@ const app = express(); //Instantiate an express.js object
 app.use(cors());
 app.get("/", root); //The handler runs when the path is visited in the URL
 app.get("/backend", backend); //The handler runs when the path is visited in the URL
+app.get("/favqApiResponse", favqApiResponse); //The handler runs when the path is visited in the URL
 app.listen(port, hostname, handleListen); //Listen on the specified port and hostname
 
 
