@@ -301,8 +301,6 @@ function arrayFlatten(array, depth) {
 
 /***/ }),
 
-<<<<<<< HEAD
-=======
 /***/ "./node_modules/.pnpm/asynckit@0.4.0/node_modules/asynckit/index.js":
 /*!**************************************************************************!*\
   !*** ./node_modules/.pnpm/asynckit@0.4.0/node_modules/asynckit/index.js ***!
@@ -6657,7 +6655,6 @@ var asap = typeof queueMicrotask !== 'undefined' ? queueMicrotask.bind(_global) 
 
 /***/ }),
 
->>>>>>> api-comms
 /***/ "./node_modules/.pnpm/body-parser@1.20.3/node_modules/body-parser/index.js":
 /*!*********************************************************************************!*\
   !*** ./node_modules/.pnpm/body-parser@1.20.3/node_modules/body-parser/index.js ***!
@@ -8051,8 +8048,6 @@ module.exports = function callBoundIntrinsic(name, allowMissing) {
 
 /***/ }),
 
-<<<<<<< HEAD
-=======
 /***/ "./node_modules/.pnpm/combined-stream@1.0.8/node_modules/combined-stream/lib/combined_stream.js":
 /*!******************************************************************************************************!*\
   !*** ./node_modules/.pnpm/combined-stream@1.0.8/node_modules/combined-stream/lib/combined_stream.js ***!
@@ -8227,7 +8222,6 @@ CombinedStream.prototype._emitError = function (err) {
 
 /***/ }),
 
->>>>>>> api-comms
 /***/ "./node_modules/.pnpm/content-disposition@0.5.4/node_modules/content-disposition/index.js":
 /*!************************************************************************************************!*\
   !*** ./node_modules/.pnpm/content-disposition@0.5.4/node_modules/content-disposition/index.js ***!
@@ -10076,8 +10070,6 @@ exports.enable(load());
 
 /***/ }),
 
-<<<<<<< HEAD
-=======
 /***/ "./node_modules/.pnpm/delayed-stream@1.0.0/node_modules/delayed-stream/lib/delayed_stream.js":
 /*!***************************************************************************************************!*\
   !*** ./node_modules/.pnpm/delayed-stream@1.0.0/node_modules/delayed-stream/lib/delayed_stream.js ***!
@@ -10171,7 +10163,6 @@ DelayedStream.prototype._checkIfMaxDataSizeExceeded = function () {
 
 /***/ }),
 
->>>>>>> api-comms
 /***/ "./node_modules/.pnpm/depd@2.0.0/node_modules/depd/index.js":
 /*!******************************************************************!*\
   !*** ./node_modules/.pnpm/depd@2.0.0/node_modules/depd/index.js ***!
@@ -11251,8 +11242,6 @@ module.exports = Object;
 
 /***/ }),
 
-<<<<<<< HEAD
-=======
 /***/ "./node_modules/.pnpm/es-set-tostringtag@2.1.0/node_modules/es-set-tostringtag/index.js":
 /*!**********************************************************************************************!*\
   !*** ./node_modules/.pnpm/es-set-tostringtag@2.1.0/node_modules/es-set-tostringtag/index.js ***!
@@ -11292,7 +11281,6 @@ module.exports = function setToStringTag(object, value) {
 
 /***/ }),
 
->>>>>>> api-comms
 /***/ "./node_modules/.pnpm/escape-html@1.0.3/node_modules/escape-html/index.js":
 /*!********************************************************************************!*\
   !*** ./node_modules/.pnpm/escape-html@1.0.3/node_modules/escape-html/index.js ***!
@@ -15815,8 +15803,6 @@ function setHeaders(res, headers) {
 
 /***/ }),
 
-<<<<<<< HEAD
-=======
 /***/ "./node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/debug.js":
 /*!*******************************************************************************************!*\
   !*** ./node_modules/.pnpm/follow-redirects@1.15.9/node_modules/follow-redirects/debug.js ***!
@@ -16974,7 +16960,6 @@ module.exports = function (dst, src) {
 
 /***/ }),
 
->>>>>>> api-comms
 /***/ "./node_modules/.pnpm/forwarded@0.2.0/node_modules/forwarded/index.js":
 /*!****************************************************************************!*\
   !*** ./node_modules/.pnpm/forwarded@0.2.0/node_modules/forwarded/index.js ***!
@@ -17856,8 +17841,6 @@ module.exports = function hasSymbols() {
 
 /***/ }),
 
-<<<<<<< HEAD
-=======
 /***/ "./node_modules/.pnpm/has-tostringtag@1.0.2/node_modules/has-tostringtag/shams.js":
 /*!****************************************************************************************!*\
   !*** ./node_modules/.pnpm/has-tostringtag@1.0.2/node_modules/has-tostringtag/shams.js ***!
@@ -17876,7 +17859,6 @@ module.exports = function hasToStringTagShams() {
 
 /***/ }),
 
->>>>>>> api-comms
 /***/ "./node_modules/.pnpm/hasown@2.0.2/node_modules/hasown/index.js":
 /*!**********************************************************************!*\
   !*** ./node_modules/.pnpm/hasown@2.0.2/node_modules/hasown/index.js ***!
@@ -24919,8 +24901,6 @@ function trustSingle(subnet) {
 
 /***/ }),
 
-<<<<<<< HEAD
-=======
 /***/ "./node_modules/.pnpm/proxy-from-env@1.1.0/node_modules/proxy-from-env/index.js":
 /*!**************************************************************************************!*\
   !*** ./node_modules/.pnpm/proxy-from-env@1.1.0/node_modules/proxy-from-env/index.js ***!
@@ -25025,7 +25005,6 @@ exports.getProxyForUrl = getProxyForUrl;
 
 /***/ }),
 
->>>>>>> api-comms
 /***/ "./node_modules/.pnpm/qs@6.13.0/node_modules/qs/lib/formats.js":
 /*!*********************************************************************!*\
   !*** ./node_modules/.pnpm/qs@6.13.0/node_modules/qs/lib/formats.js ***!
@@ -28775,24 +28754,15 @@ function vary(res, field) {
 
 /***/ }),
 
-<<<<<<< HEAD
-/***/ "./src/routes/backend.ts":
-/*!*******************************!*\
-  !*** ./src/routes/backend.ts ***!
-  \*******************************/
-=======
 /***/ "./src/modules/getFavqApiResponse.ts":
 /*!*******************************************!*\
   !*** ./src/modules/getFavqApiResponse.ts ***!
   \*******************************************/
->>>>>>> api-comms
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-<<<<<<< HEAD
-=======
 /* harmony export */   getFavqApiResponse: () => (/* binding */ getFavqApiResponse)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/.pnpm/axios@1.8.4/node_modules/axios/lib/axios.js");
@@ -28839,7 +28809,6 @@ function _getFavqApiResponse() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
->>>>>>> api-comms
 /* harmony export */   backend: () => (/* binding */ backend)
 /* harmony export */ });
 //function handler() {}; //Declare the handler as an empty function
@@ -29200,11 +29169,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(cors__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _routes_root__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes/root */ "./src/routes/root.ts");
 /* harmony import */ var _routes_backend__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./routes/backend */ "./src/routes/backend.ts");
-<<<<<<< HEAD
-=======
 /* harmony import */ var _routes_favqApiResponse__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./routes/favqApiResponse */ "./src/routes/favqApiResponse.ts");
 
->>>>>>> api-comms
 
 
 
@@ -29217,10 +29183,7 @@ var app = express__WEBPACK_IMPORTED_MODULE_0___default()(); //Instantiate an exp
 app.use(cors__WEBPACK_IMPORTED_MODULE_1___default()());
 app.get("/", _routes_root__WEBPACK_IMPORTED_MODULE_2__.root); //The handler runs when the path is visited in the URL
 app.get("/backend", _routes_backend__WEBPACK_IMPORTED_MODULE_3__.backend); //The handler runs when the path is visited in the URL
-<<<<<<< HEAD
-=======
 app.get("/favqApiResponse", _routes_favqApiResponse__WEBPACK_IMPORTED_MODULE_4__.favqApiResponse); //The handler runs when the path is visited in the URL
->>>>>>> api-comms
 app.listen(port, hostname, handleListen); //Listen on the specified port and hostname
 
 function handleListen() {

@@ -20,4 +20,4 @@ function handleListen() {
     console.log(`Listening on http;//${hostname}:${port}...`);
     console.log('Open a terminal and run "npm run build".');
     console.log('To debug, start this server in JavaScript Debug terminal.');
-}
+}]
