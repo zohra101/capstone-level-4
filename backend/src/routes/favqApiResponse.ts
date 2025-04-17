@@ -5,5 +5,4 @@ import { getFavqApiResponse } from "../modules/getFavqApiResponse";
 export async function favqApiResponse(request: Request, response: Response) {
 	const result = await getFavqApiResponse();
 	response.send(result);
-
 }
