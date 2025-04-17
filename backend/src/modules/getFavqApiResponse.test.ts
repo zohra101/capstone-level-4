@@ -1,6 +1,6 @@
 import { getFavqApiResponse } from "./getFavqApiResponse";
 
-describe("getFavqApiResponse", allTests);
+describe(getFavqApiResponse, allTests);
 
 function allTests() {
 	it("receives a response from FavQs API", async () => {
