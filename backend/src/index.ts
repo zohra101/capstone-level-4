@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import { root } from "./routes/root";
-import { backend } from "./routes/backend";
+import { backend } from "./routes/authenticateDynamoDB";
 import { favqApiResponse } from "./routes/favqApiResponse";
 
 const hostname = "localhost"; //Local domainnpm
