@@ -2,10 +2,12 @@
 	"scripts": {
 		"start": "npm run close-port && npm run start-server",
 		"build": "npm run open-tab && npm run start-build",
-		"test": "npx jest ./src/modules/getQuote.test.ts",
+		"test": "npx jest",
 		"deploy": "git push",
-		"open-tab": "npx open-cli http://localhost:9000",
+		"--------": "-------------------",
+		"build-production": "npx webpack --mode=production",
 		"close-port": "npx kill-port 9000",
+		"open-tab": "npx open-cli http://localhost:9000",
 		"start-server": "npx nodemon ./dist/main.js",
 		"start-build": "npx webpack --watch"
 	},
