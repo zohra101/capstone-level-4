@@ -31,5 +31,5 @@ const apiKey = {
         return false; //Handle user not found
     }
 	const isAuthenticated = (password === matchingLogin.password);
-	return isAuthenticated;
+	return (`DynamoDB authenticated: ${isAuthenticated}`);
 }
