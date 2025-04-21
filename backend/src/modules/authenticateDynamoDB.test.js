@@ -12,25 +12,11 @@ function allTests() {
 
 	it("receives a response from DynamoDB", async () => {
 		//ARRANGE
-		const apiKey = {
-			region: region,
-			credentials: {
-				accessKeyId: accessKeyId,
-				secretAccessKey: secretAccessKey,
-			},
-		};
+		const email = "starfire8152@gmail.com";
+		const password = "Cust1234##";
 
 		//ACT
-		const client = new DynamoDB(apiKey);
-		const niceClient = DynamoDBDocument.from(client);
-
-		const request = {
-			TableName: "logins",
-			Key: { email: "abc@logins.com" },
-		};
-
-		const response = await niceClient.get(request);
-		const result = response.Item;
+		const loginData = await readAccount(email, password);
 
 		//ASSERT
 		expect(result).toBeDefined();
@@ -38,27 +24,12 @@ function allTests() {
 
 	it("authenticates with DynamoDB", async () => {
 		//ARRANGE
-		const apiKey = {
-			region: region,
-			credentials: {
-				accessKeyId: accessKeyId,
-				secretAccessKey: secretAccessKey,
-			},
-		};
+		const email = "starfire8152@gmail.com";
+		const password = "Cust1234##";
+
 
 		//ACT
-		const client = new DynamoDB(apiKey);
-		const niceClient = DynamoDBDocument.from(client);
-
-		const request = {
-			TableName: "logins",
-			Key: { email: "abc@logins.com" },
-		};
-
-		const response = await niceClient.get(request);
-		const matchingLogin = response.Item;
-		const password = matchingLogin.password;
-	
+		const loginData = await readAccount(email, password);
 
 		if (!matchingLogin) {
 			//Handles undefined error from password field
@@ -66,8 +37,7 @@ function allTests() {
 			return false; //Handle user not found
 		}
 
-		
-		const isAuthenticated = (password === matchingLogin.password);
+		const isAuthenticated = password === matchingLogin.password;
 
 		//ASSERT
 		expect(isAuthenticated).toBe(true);
