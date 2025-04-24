@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getFavqApiResponse } from "../modules/getFavqApiResponse";
+import { getFavqApiResponse } from "../modules/favq/getFavqApiResponse";
 
 //function handler() {}; //Declare the handler as an empty function
 export async function favqApiResponse(request: Request, response: Response) {

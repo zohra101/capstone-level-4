@@ -8,7 +8,7 @@
 		"build-production": "npx webpack --mode=production",
 		"close-port": "npx kill-port 9000",
 		"open-tab": "npx open-cli http://localhost:9000",
-		"start-server": "npx nodemon ./dist/main.js",
+		"start-server": "npx nodemon ./dist/index.js",
 		"start-build": "npx webpack --watch",
 		"upload-zip": "aws lambda update-function-code --function-name sandbox-level-4 --zip-file fileb://dist/index.js.zip"
 	},
