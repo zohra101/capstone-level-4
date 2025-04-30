@@ -7,6 +7,7 @@ import { authDynamoDB } from "./routes/authDynamoDB";
 import serverless from "serverless-http";
 import dotenv from "dotenv";
 import { readDynamoDBClient } from "./routes/readDynamoDBClient";
+import { createAccount } from "./routes/createAccount";
 
 dotenv.config();
 console.log("Dotenv configured");
@@ -23,6 +24,7 @@ app.get("/backend", backend); //The handler runs when the path is visited in the
 app.get("/favqApiResponse", favqApiResponse); //The handler runs when the path is visited in the URL
 app.get("/authDynamoDB", authDynamoDB); //The handler runs when the path is visited in the URL
 app.get("/readDynamoDBClient", readDynamoDBClient); //The handler runs when the path is visited in the URL
+app.get("/createAccount", createAccount); //The handler runs when the path is visited in the URL
 app.listen(port, hostname, handleListen); //Listen on the specified port and hostname
 
 console.log("Current mode:", process.env.mode); // Force logging the mode

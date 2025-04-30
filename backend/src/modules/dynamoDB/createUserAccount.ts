@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 
 dotenv.config(); //Attaches the env variables in .env to the process object
 
-export async function createAccount(userAccount: UserAccount) {
+export async function createUserAccount(userAccount: UserAccount) {
 	const apiKey = {
 		region: process.env.region,
 		credentials: {

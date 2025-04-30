@@ -1,7 +1,7 @@
 import { response } from "express";
-import { createAccount } from "./createAccount";
+import { createUserAccount } from "./createUserAccount";
 
-describe(createAccount, allTests);
+describe(createUserAccount, allTests);
 
 function allTests() {
 	it("creates an account with valid input data", async () => {
@@ -17,10 +17,10 @@ function allTests() {
 		};
 
 		//ACT
-		createAccount(userAccount);
+		createUserAccount(userAccount);
 
 		//ASSERT
-		expect(response.statusCode).toBe(200)
+		expect(response.statusCode).toBe(200);
 	});
 
 	it("throws an error for an already existing email", async () => {
@@ -36,7 +36,7 @@ function allTests() {
 		};
 
 		//ACT
-		createAccount(userAccount);
+		createUserAccount(userAccount);
 
 		//ASSERT
 		expect(response.statusCode).toBe(400);
@@ -55,7 +55,7 @@ function allTests() {
 		};
 
 		//ACT
-		createAccount(userAccount);
+		createUserAccount(userAccount);
 
 		//ASSERT
 		expect(response.statusCode).toBe(400);
@@ -74,7 +74,7 @@ function allTests() {
 		};
 
 		//ACT
-		createAccount(userAccount);
+		createUserAccount(userAccount);
 
 		//ASSERT
 		expect(response.statusCode).toBe(400);
@@ -93,7 +93,7 @@ function allTests() {
 		};
 
 		//ACT
-		createAccount(userAccount);
+		createUserAccount(userAccount);
 
 		//ASSERT
 		expect(response.statusCode).toBe(400);
@@ -112,10 +112,10 @@ function allTests() {
 		};
 
 		//ACT
-		createAccount(userAccount);
+		createUserAccount(userAccount);
 
 		//ASSERT
-			expect(response.statusCode).toBe(400);
+		expect(response.statusCode).toBe(400);
 	});
 
 	it("throws an error when the username is missing", async () => {
@@ -131,7 +131,7 @@ function allTests() {
 		};
 
 		//ACT
-		createAccount(userAccount);
+		createUserAccount(userAccount);
 
 		//ASSERT
 		expect(response.statusCode).toBe(400);
@@ -171,5 +171,5 @@ function allTests() {
 		//ARRANGE
 		//ACT
 		//ASSERT
-	});	
+	});
 }
