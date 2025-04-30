@@ -1,7 +1,9 @@
 type UserAccount = {
 	userId: number;
-	username: string;
 	email: string;
+	password: string;
+	username: string;
+	phone: number;
 	createdAt: Date;
 	isActive?: boolean;
 };
