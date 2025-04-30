@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import { readUserAccount } from "../modules/dynamoDB/readUserAccount";
 
+//This did not commit no idea why
+
 //function handler() {}; //Declare the handler as an empty function
 export async function readAccount(request: Request, response: Response) {
 	//Extract user account data from the request body

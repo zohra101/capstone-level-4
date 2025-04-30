@@ -27,6 +27,7 @@ app.get("/authDynamoDB", authDynamoDB); //The handler runs when the path is visi
 app.get("/readDynamoDBClient", readDynamoDBClient); //The handler runs when the path is visited in the URL
 app.get("/createAccount", createAccount); //The handler runs when the path is visited in the URL
 app.get("/readAccount", readAccount); //The handler runs when the path is visited in the URL
+//This did not commit no idea why
 app.listen(port, hostname, handleListen); //Listen on the specified port and hostname
 
 console.log("Current mode:", process.env.mode); // Force logging the mode
