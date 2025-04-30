@@ -1,9 +1,9 @@
-import { readAccount } from "./readAccount";
+import { readUserAccount } from "./readUserAccount";
 import dotenv from "dotenv";
 
 dotenv.config(); //Attaches the env variables in .env to the process object
 
-describe(readAccount, allTests);
+describe(readUserAccount, allTests);
 
 function allTests() {
 	it("returns an email, password, name, and phone when given an existing email", async () => {
@@ -12,7 +12,7 @@ function allTests() {
 		const password = "Cust1234";
 
 		//ACT
-		const loginData = await readAccount(email, password);
+		const loginData = await readUserAccount(email, password);
 
 		//ASSERT
 		expect(loginData).toBeDefined();
@@ -28,7 +28,7 @@ function allTests() {
 		const password = "Cust1234";
 
 		//ACT
-		const loginData = await readAccount(email, password);
+		const loginData = await readUserAccount(email, password);
 
 		//ASSERT
 		expect(loginData).toBeDefined();
@@ -41,7 +41,7 @@ function allTests() {
 		const password = "Cust1234";
 
 		//ACT
-		const loginData = await readAccount(email, password);
+		const loginData = await readUserAccount(email, password);
 
 		//ASSERT
 		expect(loginData).toBeUndefined();
@@ -52,7 +52,7 @@ function allTests() {
 		const email = {};
 		const password = "Cust1234";
 		//ACT
-		const loginData = await readAccount(email as any, password);
+		const loginData = await readUserAccount(email as any, password);
 
 		//ASSERT
 		expect(loginData).toBeUndefined();
@@ -64,7 +64,7 @@ function allTests() {
 		const password = undefined;
 
 		//ACT
-		const loginData = await readAccount(email, password);
+		const loginData = await readUserAccount(email, password);
 
 		//ASSERT
 		expect(loginData).toBeUndefined();

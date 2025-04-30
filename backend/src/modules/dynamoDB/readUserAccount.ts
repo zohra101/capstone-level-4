@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 
 dotenv.config(); //Attaches the env variables in .env to the process object
 
-export async function readAccount(targetEmail: string, targetPassword: string): Promise<UserAccount | undefined> {
+export async function readUserAccount(targetEmail: string, targetPassword: string): Promise<UserAccount | undefined> {
 	if (typeof targetEmail === "object") return undefined;
 	if (targetEmail === undefined || targetPassword === undefined) return undefined;
 
