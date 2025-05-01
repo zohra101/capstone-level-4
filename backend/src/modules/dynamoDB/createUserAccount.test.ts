@@ -12,7 +12,7 @@ function allTests() {
 			password: "Cust1234",
 			username: "testUser1",
 			phone: 111111111,
-			createdAt: new Date(),
+			createdAt: 20250430,
 			isActive: true,
 		};
 
@@ -31,7 +31,7 @@ function allTests() {
 			password: "Cust1234",
 			username: "Customer Two",
 			phone: 8888888888,
-			createdAt: new Date(),
+			createdAt: 20250430,
 			isActive: true,
 		};
 
@@ -50,7 +50,7 @@ function allTests() {
 			password: "Cust1234",
 			username: "testUser2",
 			phone: 2222222222,
-			createdAt: new Date(),
+			createdAt: 20250430,
 			isActive: true,
 		};
 
@@ -69,7 +69,7 @@ function allTests() {
 			password: "Cust1234",
 			username: "testUser3",
 			phone: 3333333333,
-			createdAt: new Date(),
+			createdAt: 20250430,
 			isActive: true,
 		};
 
@@ -88,7 +88,7 @@ function allTests() {
 			password: "",
 			username: "testUser4",
 			phone: 4444444444,
-			createdAt: new Date(),
+			createdAt: 20250430,
 			isActive: true,
 		};
 
@@ -107,7 +107,7 @@ function allTests() {
 			password: "Cust1234",
 			username: "Customer Three",
 			phone: 999999999,
-			createdAt: new Date(),
+			createdAt: 20250430,
 			isActive: true,
 		};
 
@@ -126,7 +126,7 @@ function allTests() {
 			password: "Cust1234",
 			username: "",
 			phone: 5555555555,
-			createdAt: new Date(),
+			createdAt: 20250430,
 			isActive: true,
 		};
 

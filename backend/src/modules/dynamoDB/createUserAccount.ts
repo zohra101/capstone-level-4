@@ -24,7 +24,7 @@ export async function createUserAccount(userAccount: UserAccount) {
 			password: userAccount.password,
 			username: userAccount.username,
 			phone: userAccount.phone,
-			createdAt: userAccount.createdAt.toISOString(), // Ensure the date is in string format
+			createdAt: userAccount.createdAt,
 			isActive: userAccount.isActive ?? true, // Default to true if not provided
 		},
 	};
