@@ -4,6 +4,6 @@ type UserAccount = {
 	password: string;
 	username: string;
 	phone: number;
-	createdAt: Date;
+	createdAt: number;
 	isActive?: boolean;
 };
