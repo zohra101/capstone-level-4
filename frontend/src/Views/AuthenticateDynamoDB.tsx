@@ -12,13 +12,11 @@ export function AuthenticateDynamoDB() {
 	);
 
 	function componentDidMount() {
-		getResponse();
+		// getResponse();
 	}
 
 	async function getResponse() {
-		const response = await axios.get(
-			"http://localhost:9000/isDynamoDBAuthenticated"
-		);
+		const response = await axios.get("http://localhost:9000/authDynamoDB");
 		const stringified = JSON.stringify(response);
 		setServerresponse(`This is the server response: ${stringified}.`);
 	}

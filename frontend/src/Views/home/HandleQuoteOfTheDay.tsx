@@ -44,8 +44,9 @@ export function HandleQuoteOfTheDay() {
 
 	async function getQuote() {
 		const response = await axios.get("http://localhost:9000/favqApiResponse");
-		const quote = response.data.quote;
-		const author = response.data.author;
+		// const quote = response.data.quote;
+		// const author = response.data.author;
+		const { quote, author } = response.data;
 		setQuote(`"${quote}"`);
 		setAUthor(`${author}`);
 	}
