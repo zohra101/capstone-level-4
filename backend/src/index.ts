@@ -26,7 +26,7 @@ app.get("/backend", backend); //The handler runs when the path is visited in the
 app.get("/favqApiResponse", favqApiResponse); //The handler runs when the path is visited in the URL
 app.get("/authDynamoDB", authDynamoDB); //The handler runs when the path is visited in the URL
 app.get("/readDynamoDBClient", readDynamoDBClient); //The handler runs when the path is visited in the URL
-app.get("/createAccount", createAccount); //The handler runs when the path is visited in the URL
+app.get("/", createAccount); //The handler runs when the path is visited in the URL
 app.get("/readAccount", readAccount); //The handler runs when the path is visited in the URL
 app.get("/updateAccount", updateAccount); //The handler runs when the path is visited in the URL
 //This did not commit no idea why

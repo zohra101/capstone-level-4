@@ -24,5 +24,5 @@ export default {
 			type: "commonjs", //Prevents tree shaking of unused bundle exports AKA indicatesthat the bundle is a library
 		},
 	},
-	plugins: [new Zip()],
+	plugins: [new Zip({ include: /^index.js$/ })],
 } as Configuration;

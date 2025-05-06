@@ -7,12 +7,10 @@ function allTests() {
 	it("creates an account with valid input data", async () => {
 		//ARRANGE
 		const userAccount: UserAccount = {
-			userId: 1000,
 			email: "testUser1@emails.com",
 			password: "Cust1234",
 			username: "testUser1",
 			phone: 111111111,
-			createdAt: 20250430,
 			isActive: true,
 		};
 
@@ -26,12 +24,10 @@ function allTests() {
 	it("throws an error for an already existing email", async () => {
 		//ARRANGE
 		const userAccount: UserAccount = {
-			userId: 888,
 			email: "starfire8152@gmail.com",
 			password: "Cust1234",
 			username: "Customer Two",
 			phone: 8888888888,
-			createdAt: 20250430,
 			isActive: true,
 		};
 
@@ -45,12 +41,10 @@ function allTests() {
 	it("throws an error when the email is missing", async () => {
 		//ARRANGE
 		const userAccount: UserAccount = {
-			userId: 1000,
 			email: "",
 			password: "Cust1234",
 			username: "testUser2",
 			phone: 2222222222,
-			createdAt: 20250430,
 			isActive: true,
 		};
 
@@ -64,12 +58,10 @@ function allTests() {
 	it("throws an error when the email format is invalid", async () => {
 		//ARRANGE
 		const userAccount: UserAccount = {
-			userId: 1000,
 			email: "testUser3emails.com",
 			password: "Cust1234",
 			username: "testUser3",
 			phone: 3333333333,
-			createdAt: 20250430,
 			isActive: true,
 		};
 
@@ -83,12 +75,10 @@ function allTests() {
 	it("throws an error when the password is missing", async () => {
 		//ARRANGE
 		const userAccount: UserAccount = {
-			userId: 1001,
 			email: "testUser4@emails.com",
 			password: "",
 			username: "testUser4",
 			phone: 4444444444,
-			createdAt: 20250430,
 			isActive: true,
 		};
 
@@ -102,12 +92,10 @@ function allTests() {
 	it("throws an error for an already existing username", async () => {
 		//ARRANGE
 		const userAccount: UserAccount = {
-			userId: 999,
 			email: "starfire8152@gmail.com",
 			password: "Cust1234",
 			username: "Customer Three",
 			phone: 999999999,
-			createdAt: 20250430,
 			isActive: true,
 		};
 
@@ -121,12 +109,10 @@ function allTests() {
 	it("throws an error when the username is missing", async () => {
 		//ARRANGE
 		const userAccount: UserAccount = {
-			userId: 1003,
 			email: "testUser5@emails.com",
 			password: "Cust1234",
 			username: "",
 			phone: 5555555555,
-			createdAt: 20250430,
 			isActive: true,
 		};
 
