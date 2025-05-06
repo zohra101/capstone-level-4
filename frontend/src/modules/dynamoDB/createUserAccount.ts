@@ -1,34 +1,29 @@
-import { DynamoDB } from "@aws-sdk/client-dynamodb";
-import { DynamoDBDocument, PutCommandInput } from "@aws-sdk/lib-dynamodb";
-import dotenv from "dotenv";
+import { PutCommandInput } from "@aws-sdk/lib-dynamodb";
+import axios from "axios";
 
-dotenv.config(); //Attaches the env variables in .env to the process object
+const backendURL = "http://localhost:9000";
 
-export async function createUserAccount(userAccount: UserAccount) {
-	const apiKey = {
-		region: process.env.region,
-		credentials: {
-			accessKeyId: process.env.accessKeyId,
-			secretAccessKey: process.env.secretAccessKey,
-		},
-	};
+export async function createUserAccount(): Promise<{ status: string }> {
 
-	const client = new DynamoDB(apiKey);
-	const niceClient = DynamoDBDocument.from(client);
+	const userAccount =  {
+		email: "testUser10@emails.com",
+		password: "Cust1234",
+		username:  "testUser10",
+		phone: 111111111,
+		isActive: true
+		};
 
-	const request: PutCommandInput = {
-		TableName: "logins",
-		Item: {
-			userId: userAccount.userId,
-			email: userAccount.email,
-			password: userAccount.password,
-			username: userAccount.username,
-			phone: userAccount.phone,
-			createdAt: userAccount.createdAt,
-			isActive: userAccount.isActive ?? true, // Default to true if not provided
-		},
-	};
+	const response = await axios.put(`${backendURL}/createAccount/${userAccount}`);
+	const statusCode = response.data.statusCode;
+	const exceptionName = response.data.exceptionName;
 
-	const response = await niceClient.put(request);
-	return response;
+	if (statusCode === 200) 
+	return {status: "Your account was created successfully."};
+
+	if (statusCode === 400 && exceptionName === "ValidationException")
+		return { status: "A required field is missing. Please check you entries for blank fields." };
+
 }
+
+
+
