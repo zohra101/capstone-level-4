@@ -1,5 +1,4 @@
 import axios from "axios";
-import dotenv from "dotenv";
 
 const backendURL = "http://localhost:9000";
 
@@ -23,24 +22,4 @@ export async function createUserAccount(): Promise<{ status: string }> {
 	if (statusCode === 400 && exceptionName === "ValidationException")
 		return { status: "A required field is missing. Please check you entries for blank fields." };
 
-}
-
-
-
-export async function createUserAccount(userAccount: UserAccount) {
-
-	const request = {
-		Item: {
-			userId: userAccount.userId,
-			email: userAccount.email,
-			password: userAccount.password,
-			username: userAccount.username,
-			phone: userAccount.phone,
-			createdAt: userAccount.createdAt,
-			isActive: userAccount.isActive ?? true, // Default to true if not provided
-		},
-	};
-
-	const response = await axios.put(request);
-	return response;
 }
