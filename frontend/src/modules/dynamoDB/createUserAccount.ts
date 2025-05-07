@@ -1,23 +1,11 @@
-import { DynamoDB } from "@aws-sdk/client-dynamodb";
-import { DynamoDBDocument, PutCommandInput } from "@aws-sdk/lib-dynamodb";
+import axios from "axios";
 import dotenv from "dotenv";
 
 dotenv.config(); //Attaches the env variables in .env to the process object
 
 export async function createUserAccount(userAccount: UserAccount) {
-	const apiKey = {
-		region: process.env.region,
-		credentials: {
-			accessKeyId: process.env.accessKeyId,
-			secretAccessKey: process.env.secretAccessKey,
-		},
-	};
 
-	const client = new DynamoDB(apiKey);
-	const niceClient = DynamoDBDocument.from(client);
-
-	const request: PutCommandInput = {
-		TableName: "logins",
+	const request = {
 		Item: {
 			userId: userAccount.userId,
 			email: userAccount.email,
@@ -29,6 +17,6 @@ export async function createUserAccount(userAccount: UserAccount) {
 		},
 	};
 
-	const response = await niceClient.put(request);
+	const response = await axios.put(request);
 	return response;
 }
