@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../../src/index.scss";
 import { handleSubmitEmail } from "../../modules/email/handleSubmitEmail";
 
-export function Message() {
+export function CreateAccount() {
 	const [didMount, setDidMount] = useState(false);
 
 	useEffect(componentDidMount, []);
@@ -25,7 +25,7 @@ export function Message() {
 					<div className="col">
 						<form
 							id="outputTag"
-							onSubmit={handleSubmitEmail}
+							// onSubmit={handleSubmitEmail}
 						>
 							<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 								<div className="col">
