@@ -45,21 +45,6 @@ export function UpdateAccount() {
 								<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 									<div className="col">
 										<span style={{ fontWeight: "bold" }}>
-											<label htmlFor="userName">Username</label>
-											<br />
-										</span>
-										<input
-											required
-											type="userName"
-											id="userName"
-											className="inputs"
-											placeholder="YourUserName"
-										/>
-									</div>
-								</div>
-								<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
-									<div className="col">
-										<span style={{ fontWeight: "bold" }}>
 											<label htmlFor="usersName">Name</label>
 											<br />
 										</span>
