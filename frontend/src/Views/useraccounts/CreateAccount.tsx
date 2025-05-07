@@ -30,7 +30,7 @@ export function CreateAccount() {
 							<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 								<div className="col">
 									<span style={{ fontWeight: "bold" }}>
-										<label htmlFor="userEmail">User Email</label>
+										<label htmlFor="userEmail">Email</label>
 										<br />
 									</span>
 									<input
@@ -45,7 +45,7 @@ export function CreateAccount() {
 							<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 								<div className="col">
 									<span style={{ fontWeight: "bold" }}>
-										<label htmlFor="userName">User Email</label>
+										<label htmlFor="userName">Username</label>
 										<br />
 									</span>
 									<input
@@ -60,7 +60,22 @@ export function CreateAccount() {
 							<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 								<div className="col">
 									<span style={{ fontWeight: "bold" }}>
-										<label htmlFor="userPassword">User Passaword</label>
+										<label htmlFor="usersName">Name</label>
+										<br />
+									</span>
+									<input
+										required
+										type="userName"
+										id="usersName"
+										className="inputs"
+										placeholder="YourName"
+									/>
+								</div>
+							</div>
+							<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
+								<div className="col">
+									<span style={{ fontWeight: "bold" }}>
+										<label htmlFor="userPassword">Passaword</label>
 										<br />
 									</span>
 									<input
@@ -75,7 +90,7 @@ export function CreateAccount() {
 							<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 								<div className="col">
 									<span style={{ fontWeight: "bold" }}>
-										<label htmlFor="userPhone">User Phone</label>
+										<label htmlFor="userPhone">Phone</label>
 										<br />
 									</span>
 									<input

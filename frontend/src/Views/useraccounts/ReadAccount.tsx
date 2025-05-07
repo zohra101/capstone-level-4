@@ -23,7 +23,7 @@ export function UpdateAccount() {
 					</div>
 					<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 center">
 						<div className="col">
-							<form
+							<div
 								id="outputTag"
 								// onSubmit={handleSubmitEmail}
 							>
@@ -45,7 +45,7 @@ export function UpdateAccount() {
 								<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 									<div className="col">
 										<span style={{ fontWeight: "bold" }}>
-											<label htmlFor="userName">Username</label>
+											<label htmlFor="userName">UserName</label>
 											<br />
 										</span>
 										<input
@@ -75,21 +75,6 @@ export function UpdateAccount() {
 								<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 									<div className="col">
 										<span style={{ fontWeight: "bold" }}>
-											<label htmlFor="userPassword">Passaword</label>
-											<br />
-										</span>
-										<input
-											required
-											type="password"
-											id="userPassword"
-											className="inputs"
-											placeholder="Strong25@pass#"
-										/>
-									</div>
-								</div>
-								<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
-									<div className="col">
-										<span style={{ fontWeight: "bold" }}>
 											<label htmlFor="userPhone">Phone</label>
 											<br />
 										</span>
@@ -108,7 +93,7 @@ export function UpdateAccount() {
 										<button className="btn btn-dark animation">Submit</button>
 									</div>
 								</div>
-							</form>
+							</div>
 						</div>
 					</div>
 					<div id="spinner"></div>
