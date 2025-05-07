@@ -1,5 +1,5 @@
-import { PutCommandInput } from "@aws-sdk/lib-dynamodb";
 import axios from "axios";
+import dotenv from "dotenv";
 
 const backendURL = "http://localhost:9000";
 
@@ -27,3 +27,20 @@ export async function createUserAccount(): Promise<{ status: string }> {
 
 
 
+export async function createUserAccount(userAccount: UserAccount) {
+
+	const request = {
+		Item: {
+			userId: userAccount.userId,
+			email: userAccount.email,
+			password: userAccount.password,
+			username: userAccount.username,
+			phone: userAccount.phone,
+			createdAt: userAccount.createdAt,
+			isActive: userAccount.isActive ?? true, // Default to true if not provided
+		},
+	};
+
+	const response = await axios.put(request);
+	return response;
+}
