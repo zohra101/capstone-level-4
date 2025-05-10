@@ -37,7 +37,7 @@ function allTests() {
 
 		//ASSERT
 		expect(response.status).toBe(
-			"An account already exists for this account."
+			"An account already exists for this email address."
 		);
 	});
 

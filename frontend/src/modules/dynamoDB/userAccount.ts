@@ -1,7 +1,7 @@
 type UserAccount = {
 	email: string;
 	password: string;
-	username: string;
-	phone: number;
-	isActive?: boolean;
+	username?: string;
+	name?: string;
+	phone?: number;
 };

@@ -1,7 +1,7 @@
 //Fetch the response from the server and extract it
 import React, { useState, useEffect } from "react";
 // import { extractQotdResponse } from "../../modules/Qotd/extractQotdResponse";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 // const proxy = "https://corsproxy.io/?url=";
 // const baseUrl = "https://favqs.com/api";
@@ -43,9 +43,17 @@ export function HandleQuoteOfTheDay() {
 	);
 
 	async function getQuote() {
-		const response = await axios.get("http://localhost:9000/favqApiResponse");
-		// const quote = response.data.quote;
-		// const author = response.data.author;
+		const domain = window.location.hostname;
+		const isDeployed = domain === "zohra101.github.io";
+		//|| doman === "enter cloudfront domain"
+
+		let response: AxiosResponse;
+		
+		if (isDeployed) await axios.get(
+			"https://pva375oymcqo2jvjv73hn5zere0rastx.lambda-url.us-east-2.on.aws/favqApiResponse"
+		);
+		else response = await axios.get("http://localhost:9000/favqApiResponse");
+		
 		const { quote, author } = response.data;
 		setQuote(`"${quote}"`);
 		setAUthor(`${author}`);

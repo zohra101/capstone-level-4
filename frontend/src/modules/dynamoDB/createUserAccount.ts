@@ -2,24 +2,33 @@ import axios from "axios";
 
 const backendURL = "http://localhost:9000";
 
-export async function createUserAccount(): Promise<{ status: string }> {
+export async function createUserAccount(
+	userAccount: UserAccount): Promise<{ status: string }> {
+	console.log("createUserAccount called with:", userAccount);
+	console.log("Email to validate:", userAccount.email);
 
-	const userAccount =  {
-		email: "testUser10@emails.com",
-		password: "Cust1234",
-		username:  "testUser10",
-		phone: 111111111,
-		isActive: true
-		};
+	const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userAccount.email);
+	console.log("Is email valid?", isEmailValid);
 
-	const response = await axios.put(`${backendURL}/createAccount/${userAccount}`);
+	if (!isEmailValid) {
+		console.log("Email is invalid, returning error status.");
+		return { status: "Please enter a valid email address." };
+	}
+
+	console.log("Email is valid, proceeding with axios.put");
+
+	const response = await aixos.put(
+		`${backendURL}/createAccount/${JSON.stringify(userAccount)}`);
+
 	const statusCode = response.data.statusCode;
 	const exceptionName = response.data.exceptionName;
 
-	if (statusCode === 200) 
-	return {status: "Your account was created successfully."};
+	if (statusCode === 200)
+		return { status: "Your account was created successfully."};
 
 	if (statusCode === 400 && exceptionName === "ValidationException")
-		return { status: "A required field is missing. Please check you entries for blank fields." };
-
+		return {
+			status:
+				"A required field is missing. Please check you entries for blank fields.",
+		};
 }
