@@ -9,7 +9,7 @@
 		"test": "npx jest ./src/modules/",
 		"build": "npx webpack --mode=production",
 		"open-tab": "npx open-cli http://localhost:9000",
-		"deploy": "git push",
+		"deploy": "npm run build && git add . &&  git commit -m \"commited new build\" && git push",
 		"close-port": "npx kill-port 8000",
 		"start-server": "npx nodemon ./dist/main.js"
 	},
