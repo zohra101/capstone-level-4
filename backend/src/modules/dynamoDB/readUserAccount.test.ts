@@ -4,12 +4,15 @@ import { readUserAccount } from "./readUserAccount";
 describe("readUserAccount", allTests);
 
 function allTests() {
-	it("the object has the properties password, name, usrname, phone, and isActive when given an existing email", async () => {
+	it("the object has the properties password, name, usrname, phone, and isActive when given an existing valid email and valid password", async () => {
 		//ARRANGE
-		const targetEmail: string = "abc@logins.com"
+		const userAccount: UserAccount = {
+			email: "starfire8152@gmail.com",
+			password: "Cust1234",
+		};
 
 		//ACT
-		const response = await readUserAccount(targetEmail);
+		const response = await readUserAccount(userAccount);
 
 
 		//ASSERT
@@ -22,10 +25,13 @@ function allTests() {
 
 	it("returns a message when the email is not in the table", async () => {
 		//ARRANGE
-		const targetEmail: string = "noemail@logins.com";
+		const userAccount: UserAccount = {
+			email: "noemail@logins.com",
+			password: undefined,
+		};
 
 		//ACT
-		const response = await readUserAccount(targetEmail);
+		const response = await readUserAccount(userAccount);
 
 		//ASSERT
 		expect(response).toBe("No account was found for the provided email address.");
@@ -34,10 +40,14 @@ function allTests() {
 	
 	it("returns a message when the password is not in the table", async () => {
 		//ARRANGE
-		const targetEmail: string = "def@logins.com";
+		const userAccount: UserAccount = {
+			email: "def@logins.com",
+			password: undefined,
+		};
+
 
 		//ACT
-		const response = await readUserAccount(targetEmail);
+		const response = await readUserAccount(userAccount);
 
 		//ASSERT
 		expect(response).toBe(
@@ -47,10 +57,13 @@ function allTests() {
 
 	it("returns a message when the name is not in the table", async () => {
 		//ARRANGE
-		const targetEmail: string = "testUser24@emails.com";
+		const userAccount: UserAccount = {
+			email: "testUser24@emails.com",
+			password: "Cust1234",
+		};
 
 		//ACT
-		const response = await readUserAccount(targetEmail);
+		const response = await readUserAccount(userAccount);
 
 		//ASSERT
 		expect(response).toBe(
@@ -60,10 +73,13 @@ function allTests() {
 
 	it("returns a message when the username is not in the table", async () => {
 		//ARRANGE
-		const targetEmail: string = "alex.marjanovic.ba.tw@gmail.com";
+		const userAccount: UserAccount = {
+			email: "alex.marjanovic.ba.tw@gmail.com",
+			password: "Main1234@"
+		};
 
 		//ACT
-		const response = await readUserAccount(targetEmail);
+		const response = await readUserAccount(userAccount);
 
 		//ASSERT
 		expect(response).toBe("No username was found for the provided email address.");

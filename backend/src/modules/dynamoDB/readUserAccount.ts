@@ -8,43 +8,43 @@ import { returnDynamoDBClient } from "./returnDynamoDBClient";
 import { GetCommandInput } from "@aws-sdk/lib-dynamodb";
 import { UserAccount } from "./UserAccount";
 
-export async function readUserAccount(targetEmail: string): Promise<UserAccount | string | undefined> {
+export async function readUserAccount(userAccount: UserAccount): Promise<UserAccount | string | undefined> {
 	const request: GetCommandInput = {
 		TableName: "logins",
-		Key: { email: targetEmail },
+		Key: { email: userAccount.email },
 	};
 
 	const newClient = returnDynamoDBClient();
 	const response = await newClient.get(request);
-	const userAccount = response.Item as UserAccount | undefined;
+	const readResult = response.Item as UserAccount | undefined;
 
-	if (!userAccount) {
+	if (!readResult) {
 		return "No account was found for the provided email address.";
 	}
 
 	if (
-		userAccount.password === "" ||
-		userAccount.password === null ||
-		userAccount.password === undefined
+		readResult.password === "" ||
+		readResult.password === null ||
+		readResult.password === undefined
 	) {
 		return "No password was found for the provided email address.";
 	}
 
 	if (
-		userAccount.name === "" ||
-		userAccount.name === null ||
-		userAccount.name === undefined
+		readResult.name === "" ||
+		readResult.name === null ||
+		readResult.name === undefined
 	) {
 		return "No name was found for the provided email address.";
 	}
 
 	if (
-		userAccount.username === "" ||
-		userAccount.username === null ||
-		userAccount.username === undefined
+		readResult.username === "" ||
+		readResult.username === null ||
+		readResult.username === undefined
 	) {
 		return "No username was found for the provided email address.";
 	}
 
-	return userAccount;
+	return readResult;
 }
