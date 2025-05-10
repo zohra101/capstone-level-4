@@ -1,17 +1,17 @@
 import { Request, Response } from "express";
 import { readUserAccount } from "../modules/dynamoDB/readUserAccount";
+import { UserAccount } from "../modules/dynamoDB/UserAccount";
 
-//This did not commit no idea why
 
 //function handler() {}; //Declare the handler as an empty function
 export async function readAccount(request: Request, response: Response) {
-	//Extract user account data from the request body
-	const email = request.query.email as string;
-	const password = request.query.password as string;
-
 	// Call readUserAccount with the user data
-	const result: UserAccount = await readUserAccount(email, password);
+	const userAccount: UserAccount = request.query as unknown as UserAccount;
 
-	//Send response back to the client
+	const targetEmail = request.query.email as string; 
+	// const targetPassword = request.query.password as string;
+
+	const result = await readUserAccount(targetEmail);
+	
 	response.send(result);
 }

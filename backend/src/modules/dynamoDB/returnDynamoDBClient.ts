@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 
 dotenv.config(); //Attaches the env variables in .env to the process object
 
-export async function returnDynamoDBClient(email: string, password: string) {
+export function returnDynamoDBClient(): DynamoDBDocument {
 	const apiKey = {
 		region: process.env.region,
 		credentials: {
@@ -16,21 +16,5 @@ export async function returnDynamoDBClient(email: string, password: string) {
 	const client = new DynamoDB(apiKey);
 	const niceClient = DynamoDBDocument.from(client);
 
-	const request = {
-		TableName: "logins",
-		Key: {
-			email: email,
-		},
-	};
-
-	const response = await niceClient.get(request);
-	const loginData = response.Item;
-
-	if (!loginData.password) {
-		//Handles undefined error from password field
-		console.log("User not found.");
-		return false; //Handle user not found
-	}
-
-	return loginData;
+	return niceClient;
 }

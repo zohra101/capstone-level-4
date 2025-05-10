@@ -1,34 +1,77 @@
-import { DynamoDB } from "@aws-sdk/client-dynamodb";
-import { DynamoDBDocument, PutCommandInput } from "@aws-sdk/lib-dynamodb";
 import dotenv from "dotenv";
+import path from "path";
 
-dotenv.config(); //Attaches the env variables in .env to the process object
+const envPath = path.resolve(__dirname, "../../.env");
+dotenv.config({ path: envPath });
 
-export async function createUserAccount(userAccount: UserAccount) {
-	const apiKey = {
-		region: process.env.region,
-		credentials: {
-			accessKeyId: process.env.accessKeyId,
-			secretAccessKey: process.env.secretAccessKey,
-		},
+import { returnDynamoDBClient } from "./returnDynamoDBClient";
+import { GetCommandInput, PutCommandInput } from "@aws-sdk/lib-dynamodb";
+import { GetCommand } from "@aws-sdk/lib-dynamodb";
+import { UserAccount } from "./UserAccount";
+
+// console.log("Test Environment - Region:", process.env.region);
+// console.log("Test Environment - Access Key ID:", process.env.accessKeyId);
+// console.log(
+// 	"Test Environment - Secret Access Key:",
+// 	process.env.secretAccessKey
+// );
+
+export async function createUserAccount(
+	userAccount: UserAccount
+): Promise<string> {
+	console.log("createUserAccount called with:", userAccount);
+	console.log("Email to validate:", userAccount.email);
+
+	const isEmailNull = userAccount.email === null;
+	if (isEmailNull) {
+		console.log("Email is blank, returning error status.");
+		return "An email address is required to create an account. Please enter a valid email address.";
+		}	
+
+	const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userAccount.email);
+	if (!isEmailValid) {
+		console.log("Email is invalid, returning error status.");
+		return "The provided email is not in a valid email format. Please enter a valid email address.";
+		}	
+
+	const isPasswordNull = userAccount.password === null;
+	if (isPasswordNull) {
+		console.log("Password is blank, returning error status.");
+		return "A password is required to create an account. Please enter a valid email address.";
+	}	
+
+
+	const newClient = returnDynamoDBClient();
+
+	const requestRead: GetCommandInput = {
+		//Check if email already exists in DynamoDB
+		TableName: "logins",
+		Key: { email: userAccount.email },
 	};
 
-	const client = new DynamoDB(apiKey);
-	const niceClient = DynamoDBDocument.from(client);
+	//Return message that email already exists
+	const readResult = await newClient.get(requestRead);
+	if (readResult.Item)
+		return "An account already exists for this email address.";
 
-	const request: PutCommandInput = {
+	const requestCreate: PutCommandInput = {
 		TableName: "logins",
 		Item: {
-			userId: userAccount.userId,
 			email: userAccount.email,
 			password: userAccount.password,
 			username: userAccount.username,
+			name: userAccount.name,
 			phone: userAccount.phone,
-			createdAt: userAccount.createdAt,
-			isActive: userAccount.isActive ?? true, // Default to true if not provided
+
 		},
 	};
 
-	const response = await niceClient.put(request);
-	return response;
+
+	const response = await newClient.put(requestCreate);
+	const isAccountCreated = response.$metadata.httpStatusCode === 200;
+
+	let message: string;
+
+	if (isAccountCreated) message = "Your account was created successfully.";
+	return message;
 }

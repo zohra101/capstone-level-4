@@ -1,161 +1,96 @@
-import { response } from "express";
+import { UserAccount } from "./UserAccount";
 import { createUserAccount } from "./createUserAccount";
 
-describe(createUserAccount, allTests);
+describe("createUserAccount", allTests);
 
 function allTests() {
 	it("creates an account with valid input data", async () => {
 		//ARRANGE
 		const userAccount: UserAccount = {
-			email: "testUser1@emails.com",
+			email: "testUser25@emails.com",
 			password: "Cust1234",
-			username: "testUser1",
+			username: "testUser25",
+			name: "Customer 25",
 			phone: 111111111,
-			isActive: true,
 		};
 
 		//ACT
-		createUserAccount(userAccount);
+		const response = await createUserAccount(userAccount);
 
 		//ASSERT
-		expect(response.statusCode).toBe(200);
+		expect(response).toBe("Your account was created successfully.");
 	});
 
-	it("throws an error for an already existing email", async () => {
+	it("returns a message for an already existing email", async () => {
+		//DyhnamoDB is returning 200 even though the email exists in the logins table. Is there way to prevent duplicate values in the DynamoDB settings?
 		//ARRANGE
 		const userAccount: UserAccount = {
 			email: "starfire8152@gmail.com",
 			password: "Cust1234",
-			username: "Customer Two",
+			username: "custTwo",
+			name: "Customer Two",
 			phone: 8888888888,
-			isActive: true,
 		};
 
 		//ACT
-		createUserAccount(userAccount);
+		const response = await createUserAccount(userAccount);
 
 		//ASSERT
-		expect(response.statusCode).toBe(400);
+		expect(response).toBe("An account already exists for this email address.");
 	});
 
 	it("throws an error when the email is missing", async () => {
 		//ARRANGE
 		const userAccount: UserAccount = {
-			email: "",
+			email: null,
 			password: "Cust1234",
-			username: "testUser2",
+			username: "custTwo",
+			name: "Customer Two",
 			phone: 2222222222,
-			isActive: true,
 		};
 
 		//ACT
-		createUserAccount(userAccount);
+		const response = await createUserAccount(userAccount);
 
 		//ASSERT
-		expect(response.statusCode).toBe(400);
+		expect(response).toBe("An email address is required to create an account. Please enter a valid email address.");
 	});
 
 	it("throws an error when the email format is invalid", async () => {
+		//This test does not work with DynamoDB. DynamoDB stores the value as is. The createUserAccount function needs to catch the error.
 		//ARRANGE
 		const userAccount: UserAccount = {
 			email: "testUser3emails.com",
 			password: "Cust1234",
 			username: "testUser3",
+			name: "Customer Two",
 			phone: 3333333333,
-			isActive: true,
 		};
 
 		//ACT
-		createUserAccount(userAccount);
+		const response = await createUserAccount(userAccount);
+		console.log("Response from createUserAccount:", response);
 
 		//ASSERT
-		expect(response.statusCode).toBe(400);
+		expect(response).toBe("The provided email is not in a valid email format. Please enter a valid email address.")
 	});
 
 	it("throws an error when the password is missing", async () => {
 		//ARRANGE
 		const userAccount: UserAccount = {
 			email: "testUser4@emails.com",
-			password: "",
+			password: null,
 			username: "testUser4",
+			name: "Customer Two",
 			phone: 4444444444,
-			isActive: true,
 		};
 
 		//ACT
-		createUserAccount(userAccount);
+		const response = await createUserAccount(userAccount);
 
 		//ASSERT
-		expect(response.statusCode).toBe(400);
-	});
+		expect(response).toBe(
+			"A password is required to create an account. Please enter a valid email address."
+		);});
 
-	it("throws an error for an already existing username", async () => {
-		//ARRANGE
-		const userAccount: UserAccount = {
-			email: "starfire8152@gmail.com",
-			password: "Cust1234",
-			username: "Customer Three",
-			phone: 999999999,
-			isActive: true,
-		};
-
-		//ACT
-		createUserAccount(userAccount);
-
-		//ASSERT
-		expect(response.statusCode).toBe(400);
-	});
-
-	it("throws an error when the username is missing", async () => {
-		//ARRANGE
-		const userAccount: UserAccount = {
-			email: "testUser5@emails.com",
-			password: "Cust1234",
-			username: "",
-			phone: 5555555555,
-			isActive: true,
-		};
-
-		//ACT
-		createUserAccount(userAccount);
-
-		//ASSERT
-		expect(response.statusCode).toBe(400);
-	});
-
-	it.skip("generates a unique userId for each new account", async () => {
-		//ARRANGE
-		//ACT
-		//ASSERT
-	});
-
-	it.skip("hashes the password before storing", async () => {
-		//ARRANGE
-		//ACT
-		//ASSERT
-	});
-
-	it.skip("sets createdAt to the current date and time", async () => {
-		//ARRANGE
-		//ACT
-		//ASSERT
-	});
-
-	it.skip("sets isActive to true by default when not provided", async () => {
-		//ARRANGE
-		//ACT
-		//ASSERT
-	});
-
-	it.skip("sets isActive to false when explicitly provided as false", async () => {
-		//ARRANGE
-		//ACT
-		//ASSERT
-	});
-
-	it.skip("trims whitespace from the username and email", async () => {
-		//ARRANGE
-		//ACT
-		//ASSERT
-	});
-}
+	};
