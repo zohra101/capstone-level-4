@@ -49,7 +49,7 @@ export function HandleQuoteOfTheDay() {
 
 		let response: AxiosResponse;
 		
-		if (isDeployed) await axios.get(
+		if (isDeployed) response = await axios.get(
 			"https://pva375oymcqo2jvjv73hn5zere0rastx.lambda-url.us-east-2.on.aws/favqApiResponse"
 		);
 		else response = await axios.get("http://localhost:9000/favqApiResponse");
