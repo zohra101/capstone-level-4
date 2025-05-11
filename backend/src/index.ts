@@ -36,11 +36,10 @@ console.log("Current mode:", process.env.mode); // Force logging the mode
 
 const isRunningLocally = process.env.mode === "development";
 
-if (isRunningLocally) {
+if (isRunningLocally) 
 	app.listen(port, hostname, handleListen); //Listen on the specified port and hostname
-} else {
-	console.log("Server not starting locally because mode is:", process.env.mode);
-}
+ else console.log("Server not starting locally because mode is:", process.env.mode);
+
 
 function handleListen() {
     console.log(`Listening on http;//${hostname}:${port}...`);
