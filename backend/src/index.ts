@@ -10,6 +10,7 @@ import { readDynamoDBClient } from "./routes/readDynamoDBClient";
 import { createAccount } from "./routes/createAccount";
 import { readAccount } from "./routes/readAccount";
 import { updateAccount } from "./routes/updateAccount";
+import { delAccount } from "./routes/delAccount";
 
 dotenv.config();
 console.log("Dotenv configured");
@@ -29,6 +30,7 @@ app.get("/readDynamoDBClient", readDynamoDBClient); //The handler runs when the 
 app.get("/createAccount", createAccount); //The handler runs when the path is visited in the URL
 app.get("/readAccount", readAccount); //The handler runs when the path is visited in the URL
 app.get("/updateAccount", updateAccount); //The handler runs when the path is visited in the URL
+app.get("/delAccount", delAccount); //The handler runs when the path is visited in the URL
 //This did not commit no idea why
 app.listen(port, hostname, handleListen); //Listen on the specified port and hostname
 
