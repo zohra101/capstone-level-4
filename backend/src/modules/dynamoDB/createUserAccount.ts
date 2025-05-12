@@ -7,7 +7,7 @@ dotenv.config({ path: envPath });
 import { returnDynamoDBClient } from "./returnDynamoDBClient";
 import { GetCommandInput, PutCommandInput } from "@aws-sdk/lib-dynamodb";
 import { GetCommand } from "@aws-sdk/lib-dynamodb";
-import { UserAccount } from "./UserAccount";
+import { UserAccount } from "./userAccount";
 
 // console.log("Test Environment - Region:", process.env.region);
 // console.log("Test Environment - Access Key ID:", process.env.accessKeyId);
@@ -26,20 +26,19 @@ export async function createUserAccount(
 	if (isEmailNull) {
 		console.log("Email is blank, returning error status.");
 		return "An email address is required to create an account. Please enter a valid email address.";
-		}	
+	}
 
 	const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userAccount.email);
 	if (!isEmailValid) {
 		console.log("Email is invalid, returning error status.");
 		return "The provided email is not in a valid email format. Please enter a valid email address.";
-		}	
+	}
 
 	const isPasswordNull = userAccount.password === null;
 	if (isPasswordNull) {
 		console.log("Password is blank, returning error status.");
 		return "A password is required to create an account. Please enter a valid email address.";
-	}	
-
+	}
 
 	const newClient = returnDynamoDBClient();
 
@@ -62,10 +61,8 @@ export async function createUserAccount(
 			username: userAccount.username,
 			name: userAccount.name,
 			phone: userAccount.phone,
-
 		},
 	};
-
 
 	const response = await newClient.put(requestCreate);
 	const isAccountCreated = response.$metadata.httpStatusCode === 200;

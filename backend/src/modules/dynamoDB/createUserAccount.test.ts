@@ -1,4 +1,4 @@
-import { UserAccount } from "./UserAccount";
+import { UserAccount } from "./userAccount";
 import { createUserAccount } from "./createUserAccount";
 
 describe("createUserAccount", allTests);
@@ -53,7 +53,9 @@ function allTests() {
 		const response = await createUserAccount(userAccount);
 
 		//ASSERT
-		expect(response).toBe("An email address is required to create an account. Please enter a valid email address.");
+		expect(response).toBe(
+			"An email address is required to create an account. Please enter a valid email address."
+		);
 	});
 
 	it("throws an error when the email format is invalid", async () => {
@@ -72,7 +74,9 @@ function allTests() {
 		console.log("Response from createUserAccount:", response);
 
 		//ASSERT
-		expect(response).toBe("The provided email is not in a valid email format. Please enter a valid email address.")
+		expect(response).toBe(
+			"The provided email is not in a valid email format. Please enter a valid email address."
+		);
 	});
 
 	it("throws an error when the password is missing", async () => {
@@ -91,6 +95,6 @@ function allTests() {
 		//ASSERT
 		expect(response).toBe(
 			"A password is required to create an account. Please enter a valid email address."
-		);});
-
-	};
+		);
+	});
+}
