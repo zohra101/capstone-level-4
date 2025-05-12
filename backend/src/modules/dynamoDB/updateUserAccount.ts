@@ -29,7 +29,7 @@ export async function updateUserAccount(userAccount: UserAccount): Promise<UserA
 	};
 	const readResult = await newClient.get(requestRead);
 
-	//Return message that email already exists
+	//Return message that account does not exist
 	const doesEmailExist = readResult.Item;
 	if (!doesEmailExist)
 		return "No record was found for this email address. An account must be created before it can be updated.";
