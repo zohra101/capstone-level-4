@@ -1,72 +1,96 @@
 import { readUserAccount } from "./readUserAccount";
-import dotenv from "dotenv";
+import { UserAccount } from "./UserAccount";
 
-dotenv.config(); //Attaches the env variables in .env to the process object
+//The function should communicate with the backend.
+//The backend retrieves an account from DynamoDB
+//The frontend returns the response from the backend. 
+//Ok to return a modified result. 
+//Write at least 5 tests. 
+//Code the function according to the test specifications. 
+//Assert the function return type.
+//Assert the datatype of the function parameter(s).
 
-describe(readUserAccount, allTests);
+
+describe("readUserAccount", allTests);
 
 function allTests() {
-	it("returns an email, password, name, and phone when given an existing email", async () => {
+	it("the object has the properties password, name, username, and phone, when given an existing valid email and valid password", async () => {
 		//ARRANGE
-		const email = "starfire8152@gmail.com";
-		const password = "Cust1234";
+		const userAccount: UserAccount = {
+			email: "starfire8152@gmail.com",
+			password: "Cust1234",
+		};
 
 		//ACT
-		const loginData = await readUserAccount(email, password);
+		const response = await readUserAccount(userAccount);
 
 		//ASSERT
-		expect(loginData).toBeDefined();
-		expect(loginData.email).toBe(email);
-		expect(loginData.password).toBe(password);
-		expect(loginData).toHaveProperty("name");
-		expect(loginData).toHaveProperty("phone");
+		expect(response).toHaveProperty("email");
+		expect(response).toHaveProperty("password");
+		expect(response).toHaveProperty("name");
+		expect(response).toHaveProperty("username");
+		expect(response).toHaveProperty("phone");
 	});
 
-	it(" the email in the result is the same as the given email", async () => {
+	it("returns a message when the email is not in the table", async () => {
 		//ARRANGE
-		const email = "starfire8152@gmail.com";
-		const password = "Cust1234";
+		const userAccount: UserAccount = {
+			email: "noemail@logins.com",
+			password: undefined,
+		};
 
 		//ACT
-		const loginData = await readUserAccount(email, password);
+		const response = await readUserAccount(userAccount);
 
 		//ASSERT
-		expect(loginData).toBeDefined();
-		expect(loginData.email).toBe(email);
+		expect(response).toBe(
+			"No account was found for the provided email address."
+		);
 	});
 
-	it("doesn’t return a result when the email is not in the list", async () => {
+	it("returns a message when the password is not in the table", async () => {
 		//ARRANGE
-		const email = "notlisted@emails.com";
-		const password = "Cust1234";
+		const userAccount: UserAccount = {
+			email: "def@logins.com",
+			password: undefined,
+		};
 
 		//ACT
-		const loginData = await readUserAccount(email, password);
+		const response = await readUserAccount(userAccount);
 
 		//ASSERT
-		expect(loginData).toBeUndefined();
+		expect(response).toBe(
+			"No password was found for the provided email address."
+		);
 	});
 
-	it("doesn’t return a result when the email is an object", async () => {
+	it("returns a message when the name is not in the table", async () => {
 		//ARRANGE
-		const email = {};
-		const password = "Cust1234";
+		const userAccount: UserAccount = {
+			email: "testUser24@emails.com",
+			password: "Cust1234",
+		};
+
 		//ACT
-		const loginData = await readUserAccount(email as any, password);
+		const response = await readUserAccount(userAccount);
 
 		//ASSERT
-		expect(loginData).toBeUndefined();
+		expect(response).toBe("No name was found for the provided email address.");
 	});
 
-	it.only("doesn't return a result when email and password are undefined", async () => {
+	it("returns a message when the username is not in the table", async () => {
 		//ARRANGE
-		const email = undefined;
-		const password = undefined;
+		const userAccount: UserAccount = {
+			email: "alex.marjanovic.ba.tw@gmail.com",
+			password: "Main1234@",
+		};
 
 		//ACT
-		const loginData = await readUserAccount(email, password);
+		const response = await readUserAccount(userAccount);
 
 		//ASSERT
-		expect(loginData).toBeUndefined();
+		expect(response).toBe(
+			"No username was found for the provided email address."
+		);
 	});
 }
