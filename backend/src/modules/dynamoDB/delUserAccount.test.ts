@@ -1,72 +1,80 @@
-import { response } from "express";
+
 import { delUserAccount } from "./delUserAccount";
+import { UserAccount } from "./UserAccount";
 
 describe(delUserAccount, allTests);
 
 function allTests() {
     it("successfully deletes a user account by email address", async () => {
 			//ARRANGE
-			const targetEmail = {
-				email: "deleteMe@emails.com",
+			const deletedAccount: UserAccount = {
+				email: "deleteMe1@emails.com",
+				password: "Test1234",
 			};
 
 			//ACT
-			delUserAccount(targetEmail);
+			const response = await delUserAccount(deletedAccount);
 
 			//ASSERT
-			expect(response.statusCode).toBe(200);
+			expect(response).toBe("The account was deleted successfully.");
 		});
 
-	it("successfully deletes an active user account by userID", async () => {
+	it("returns error when deleting an account that doesn't exist", async () => {
 		//ARRANGE
-		const accountToDelete = {
-			userId: 1001,
-			isActive: true,
+		const deletedAccount: UserAccount = {
+			email: "deleteMe2@emails.com.com",
+			password: "Test1234",
 		};
 
 		//ACT
-		delUserAccount(accountToDelete);
+		const response = await delUserAccount(deletedAccount);
 
 		//ASSERT
-		expect(response.statusCode).toBe(200);
+		expect(response).toBe("The account you are trying to delete does not exist.");
 	});
 
-	it("returns 404 when deleting a user that doesn't exist", async () => {
-		//ARRANGE
-		const accountToDelete = {
-			userId: 9999,
-			isActive: true,
+
+	it("returns an error if the email format is invalid", async () => {
+		// ARRANGE
+		const deletedAccount: UserAccount = {
+			email: "notvaldiemail",
+			password: "Test1234",
 		};
 
-		//ACT
-		delUserAccount(accountToDelete);
+		// ACT
+		const response = await delUserAccount(deletedAccount);
 
-		//ASSERT
-		expect(response.statusCode).toBe(404);
+		// ASSERT
+		expect(response).toBe("Please provide a valid email address.");
 	});
 
-	it("returns 400 if input is null", async () => {
-		//ARRANGE
-		const accountToDelete = null;
+	it("returns an error if the provided user account object is empty", async () => {
+		// ARRANGE
+		const deletedAccount: UserAccount = {};
 
-		//ACT
-		delUserAccount(accountToDelete);
+		// ACT
+		const response = await delUserAccount(deletedAccount);
 
-		//ASSERT
-		expect(response.statusCode).toBe(400);
+		// ASSERT
+		expect(response).toBe(
+			"Please enter the email address of the account you wish to delete."
+		);
 	});
 
-	it("returns 409 if account is already inactive", async () => {
-		//ARRANGE
-		const accountToDelete = {
-			userId: 1005,
-			isActive: false,
+	it("returns an error if the provided user account object has a null email", async () => {
+		// ARRANGE
+		const deletedAccount: UserAccount = {
+			email: null,
+			password: "Test1234",
 		};
 
-		//ACT
-		delUserAccount(accountToDelete);
+		// ACT
+		const response = await delUserAccount(deletedAccount);
 
-		//ASSERT
-		expect(response.statusCode).toBe(409);
+		// ASSERT
+		expect(response).toBe(
+			"Please enter the email address of the account you wish to delete."
+		);
 	});
+
 }
