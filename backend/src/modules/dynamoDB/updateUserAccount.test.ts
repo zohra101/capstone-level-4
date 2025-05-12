@@ -1,5 +1,5 @@
 import { updateUserAccount } from "./updateUserAccount";
-import { UserAccount } from "./UserAccount";
+import { UserAccount } from "./userAccount";
 
 describe(updateUserAccount, allTests);
 
@@ -34,7 +34,9 @@ function allTests() {
 		const response = await updateUserAccount(updatedAccount);
 
 		//ASSERT
-		expect(response).toBe("No record was found for this email address. An account must be created before it can be updated.");
+		expect(response).toBe(
+			"No record was found for this email address. An account must be created before it can be updated."
+		);
 	});
 
 	it("throws an error if password is incorrect", async () => {
@@ -49,7 +51,9 @@ function allTests() {
 		const response = await updateUserAccount(updatedAccount);
 
 		//ASSERT
-		expect(response).toBe("The password provided is not valid for this account.");
+		expect(response).toBe(
+			"The password provided is not valid for this account."
+		);
 	});
 
 	it("throws an error if user tries to update username", async () => {
@@ -64,7 +68,9 @@ function allTests() {
 		const response = await updateUserAccount(updatedAccount);
 
 		//ASSERT
-		expect(response).toBe("Usernames cannot be changed. The username field should not be populated.");
+		expect(response).toBe(
+			"Usernames cannot be changed. The username field should not be populated."
+		);
 	});
 
 	it("throws an error for invalid email format", async () => {

@@ -1,23 +1,22 @@
-
 import { delUserAccount } from "./delUserAccount";
-import { UserAccount } from "./UserAccount";
+import { UserAccount } from "./userAccount";
 
 describe(delUserAccount, allTests);
 
 function allTests() {
-    it("successfully deletes a user account by email address", async () => {
-			//ARRANGE
-			const deletedAccount: UserAccount = {
-				email: "deleteMe1@emails.com",
-				password: "Test1234",
-			};
+	it("successfully deletes a user account by email address", async () => {
+		//ARRANGE
+		const deletedAccount: UserAccount = {
+			email: "deleteMe1@emails.com",
+			password: "Test1234",
+		};
 
-			//ACT
-			const response = await delUserAccount(deletedAccount);
+		//ACT
+		const response = await delUserAccount(deletedAccount);
 
-			//ASSERT
-			expect(response).toBe("The account was deleted successfully.");
-		});
+		//ASSERT
+		expect(response).toBe("The account was deleted successfully.");
+	});
 
 	it("returns error when deleting an account that doesn't exist", async () => {
 		//ARRANGE
@@ -30,9 +29,10 @@ function allTests() {
 		const response = await delUserAccount(deletedAccount);
 
 		//ASSERT
-		expect(response).toBe("The account you are trying to delete does not exist.");
+		expect(response).toBe(
+			"The account you are trying to delete does not exist."
+		);
 	});
-
 
 	it("returns an error if the email format is invalid", async () => {
 		// ARRANGE
@@ -76,5 +76,4 @@ function allTests() {
 			"Please enter the email address of the account you wish to delete."
 		);
 	});
-
 }

@@ -6,9 +6,11 @@ dotenv.config({ path: envPath });
 
 import { returnDynamoDBClient } from "./returnDynamoDBClient";
 import { GetCommandInput } from "@aws-sdk/lib-dynamodb";
-import { UserAccount } from "./UserAccount";
+import { UserAccount } from "./userAccount";
 
-export async function readUserAccount(userAccount: UserAccount): Promise<UserAccount | string | undefined> {
+export async function readUserAccount(
+	userAccount: UserAccount
+): Promise<UserAccount | string | undefined> {
 	const request: GetCommandInput = {
 		TableName: "logins",
 		Key: { email: userAccount.email },

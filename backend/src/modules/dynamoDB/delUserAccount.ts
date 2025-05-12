@@ -4,9 +4,9 @@ import path from "path";
 const envPath = path.resolve(__dirname, "../../.env");
 dotenv.config({ path: envPath });
 
-import { GetCommandInput, DeleteCommandInput} from "@aws-sdk/lib-dynamodb";
+import { GetCommandInput, DeleteCommandInput } from "@aws-sdk/lib-dynamodb";
 import { returnDynamoDBClient } from "./returnDynamoDBClient";
-import { UserAccount } from "./UserAccount";
+import { UserAccount } from "./userAccount";
 
 dotenv.config(); //Attaches the env variables in .env to the process object
 

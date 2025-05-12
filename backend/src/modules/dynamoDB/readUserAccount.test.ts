@@ -1,4 +1,4 @@
-import { UserAccount } from "./UserAccount";
+import { UserAccount } from "./userAccount";
 import { readUserAccount } from "./readUserAccount";
 
 describe("readUserAccount", allTests);
@@ -13,7 +13,6 @@ function allTests() {
 
 		//ACT
 		const response = await readUserAccount(userAccount);
-
 
 		//ASSERT
 		expect(response).toHaveProperty("password");
@@ -34,17 +33,17 @@ function allTests() {
 		const response = await readUserAccount(userAccount);
 
 		//ASSERT
-		expect(response).toBe("No account was found for the provided email address.");
+		expect(response).toBe(
+			"No account was found for the provided email address."
+		);
 	});
 
-	
 	it("returns a message when the password is not in the table", async () => {
 		//ARRANGE
 		const userAccount: UserAccount = {
 			email: "def@logins.com",
 			password: undefined,
 		};
-
 
 		//ACT
 		const response = await readUserAccount(userAccount);
@@ -66,22 +65,22 @@ function allTests() {
 		const response = await readUserAccount(userAccount);
 
 		//ASSERT
-		expect(response).toBe(
-			"No name was found for the provided email address."
-		);
+		expect(response).toBe("No name was found for the provided email address.");
 	});
 
 	it("returns a message when the username is not in the table", async () => {
 		//ARRANGE
 		const userAccount: UserAccount = {
 			email: "alex.marjanovic.ba.tw@gmail.com",
-			password: "Main1234@"
+			password: "Main1234@",
 		};
 
 		//ACT
 		const response = await readUserAccount(userAccount);
 
 		//ASSERT
-		expect(response).toBe("No username was found for the provided email address.");
+		expect(response).toBe(
+			"No username was found for the provided email address."
+		);
 	});
 }
