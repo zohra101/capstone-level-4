@@ -5,12 +5,12 @@ import { returnDynamoDBClient } from "./returnDynamoDBClient";
 import { GetCommandInput, PutCommandInput } from "@aws-sdk/lib-dynamodb";
 import { UserAccount } from "./UserAccount";
 
-console.log("Test Environment - Region:", process.env.region);
-console.log("Test Environment - Access Key ID:", process.env.accessKeyId);
-console.log(
-	"Test Environment - Secret Access Key:",
-	process.env.secretAccessKey
-);
+// console.log("Test Environment - Region:", process.env.region);
+// console.log("Test Environment - Access Key ID:", process.env.accessKeyId);
+// console.log(
+// 	"Test Environment - Secret Access Key:",
+// 	process.env.secretAccessKey
+// );
 
 export async function createUserAccount(
 	userAccount: UserAccount
@@ -18,8 +18,9 @@ export async function createUserAccount(
 	console.log("createUserAccount called with:", userAccount);
 	console.log("Email to validate:", userAccount.email);
 
-	const isEmailNull = userAccount.email === null;
-	if (isEmailNull) {
+	const isEmailNullOrEmpty =
+		userAccount.email === null || userAccount.email === "";
+	if (isEmailNullOrEmpty) {
 		console.log("Email is blank, returning error status.");
 		return "An email address is required to create an account. Please enter a valid email address.";
 	}

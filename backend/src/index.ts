@@ -27,10 +27,16 @@ app.get("/", root); //The handler runs when the path is visited in the URL
 app.get("/favqApiResponse", favqApiResponse); //The handler runs when the path is visited in the URL
 // app.get("/authDynamoDB", authDynamoDB); //The handler runs when the path is visited in the URL
 // app.get("/readDynamoDBClient", readDynamoDBClient); //The handler runs when the path is visited in the URL
+
 app.get("/createAccount", createAccount); //The handler runs when the path is visited in the URL
 app.get("/readAccount", readAccount); //The handler runs when the path is visited in the URL
 app.get("/updateAccount", updateAccount); //The handler runs when the path is visited in the URL
 app.get("/delAccount", delAccount); //The handler runs when the path is visited in the URL
+
+app.put("/createAccount", createAccount); //The handler runs when the path is visited in the URL
+app.put("/readAccount", readAccount); //The handler runs when the path is visited in the URL
+app.put("/updateAccount", updateAccount); //The handler runs when the path is visited in the URL
+app.put("/delAccount", delAccount); //The handler runs when the path is visited in the URL
 
 console.log("Current mode:", process.env.mode); // Force logging the mode
 

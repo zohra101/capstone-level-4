@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import { returnDynamoDBClient } from "./returnDynamoDBClient";
 import { GetCommandInput } from "@aws-sdk/lib-dynamodb";
-import { UserAccount } from "./userAccount";
+import { UserAccount } from "./UserAccount";
 // import path from "path";
 
 // const envPath = path.resolve(__dirname, "../../.env");
