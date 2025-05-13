@@ -1,7 +1,8 @@
 import { response } from "express";
 import { updateUserAccount } from "./updateUserAccount";
+import { UserAccount } from "./UserAccount";
 
-describe(updateUserAccount, allTests);
+describe("updateUserAccount", allTests);
 
 function allTests() {
 	it("updates an account with valid input data", async () => {
@@ -10,13 +11,12 @@ function allTests() {
 			email: "updatedUser@emails.com",
 			password: "NewPass123",
 			username: "Was ABC",
+			name: null,
 			phone: 6666666666,
-	
-			isActive: true,
 		};
 
 		//ACT
-		updateUserAccount(updatedAccount);
+		updateUserAccount();
 
 		//ASSERT
 		expect(response.statusCode).toBe(200);
@@ -29,11 +29,10 @@ function allTests() {
 			password: "Pass999",
 			username: "ghostUser",
 			phone: 9999999999,
-			isActive: true,
 		};
 
 		//ACT
-		updateUserAccount(updatedAccount);
+		updateUserAccount();
 
 		//ASSERT
 		expect(response.statusCode).toBe(404);
@@ -46,11 +45,10 @@ function allTests() {
 			password: "Update123",
 			username: "anotherUser",
 			phone: 7777777777,
-			isActive: true,
 		};
 
 		//ACT
-		updateUserAccount(updatedAccount);
+		updateUserAccount();
 
 		//ASSERT
 		expect(response.statusCode).toBe(400);
@@ -63,11 +61,10 @@ function allTests() {
 			password: "Test1234",
 			username: "",
 			phone: 6666666666,
-			isActive: true,
 		};
 
 		//ACT
-		updateUserAccount(updatedAccount);
+		updateUserAccount();
 
 		//ASSERT
 		expect(response.statusCode).toBe(400);
@@ -80,11 +77,10 @@ function allTests() {
 			password: "Test1234",
 			username: "validUser",
 			phone: 5555555555,
-			isActive: true,
 		};
 
 		//ACT
-		updateUserAccount(updatedAccount);
+		updateUserAccount();
 
 		//ASSERT
 		expect(response.statusCode).toBe(400);

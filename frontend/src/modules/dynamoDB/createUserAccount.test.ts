@@ -1,22 +1,20 @@
 import { createUserAccount } from "./createUserAccount";
+import { UserAccount } from "./UserAccount";
 
-const backendURL = "http://localhost:9000";
-
-describe(createUserAccount, allTests);
+describe("createUserAccount", allTests);
 
 function allTests() {
 	it("creates an account with valid input data", async () => {
 		//ARRANGE
 		const userAccount: UserAccount = {
-			email: "testUser10@emails.com",
+			email: "testUser101@emails.com",
 			password: "Cust1234",
-			username: "testUser10",
+			username: "testUser101",
 			phone: 111111111,
-			isActive: true,
 		};
 
 		//ACT
-		const response = await createUserAccount();
+		const response = await createUserAccount(userAccount);
 
 		//ASSERT
 		expect(response.status).toBe("Your account was created successfully.");
@@ -29,11 +27,10 @@ function allTests() {
 			password: "Cust1234",
 			username: "Customer Two",
 			phone: 8888888888,
-			isActive: true,
 		};
 
 		//ACT
-		const response = await createUserAccount();
+		const response = await createUserAccount(userAccount);
 
 		//ASSERT
 		expect(response.status).toBe(
@@ -44,15 +41,14 @@ function allTests() {
 	it("throws an error when the email is missing", async () => {
 		//ARRANGE
 		const userAccount: UserAccount = {
-			email: "",
+			email: null,
 			password: "Cust1234",
 			username: "testUser2",
 			phone: 2222222222,
-			isActive: true,
 		};
 
 		//ACT
-		const response = await createUserAccount();
+		const response = await createUserAccount(userAccount);
 
 		//ASSERT
 		expect(response.status).toBe(
@@ -67,11 +63,10 @@ function allTests() {
 			password: "Cust1234",
 			username: "testUser3",
 			phone: 3333333333,
-			isActive: true,
 		};
 
 		//ACT
-		const response = await createUserAccount();
+		const response = await createUserAccount(userAccount);
 
 		//ASSERT
 		expect(response.status).toBe(
@@ -86,11 +81,10 @@ function allTests() {
 			password: "",
 			username: "testUser4",
 			phone: 4444444444,
-			isActive: true,
 		};
 
 		//ACT
-		const response = await createUserAccount();
+		const response = await createUserAccount(userAccount);
 
 		//ASSERT
 		expect(response.status).toBe(
@@ -105,11 +99,10 @@ function allTests() {
 			password: "Cust1234",
 			username: "Customer Three",
 			phone: 999999999,
-			isActive: true,
 		};
 
 		//ACT
-		const response = await createUserAccount();
+		const response = await createUserAccount(userAccount);
 
 		//ASSERT
 		expect(response.status).toBe("The provided user name already exists.");
@@ -122,11 +115,10 @@ function allTests() {
 			password: "Cust1234",
 			username: "",
 			phone: 5555555555,
-			isActive: true,
 		};
 
 		//ACT
-		const response = await createUserAccount();
+		const response = await createUserAccount(userAccount);
 
 		//ASSERT
 		expect(response.status).toBe(
