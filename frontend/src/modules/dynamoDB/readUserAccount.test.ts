@@ -14,7 +14,7 @@ import { UserAccount } from "./UserAccount";
 describe("readUserAccount", allTests);
 
 function allTests() {
-	it.skip("the object has the properties password, name, username, and phone, when given an existing valid email and valid password", async () => {
+	it("the object has the properties password, name, username, and phone, when given an existing valid email and valid password", async () => {
 		//ARRANGE
 		const userAccount: UserAccount = {
 			email: "starfire8152@gmail.com",
@@ -48,7 +48,7 @@ function allTests() {
 		);
 	});
 
-	it.skip("returns a message when the password is not in the table", async () => {
+	it("returns a message when the password is not in the table", async () => {
 		//ARRANGE
 		const userAccount: UserAccount = {
 			email: "def@logins.com",
@@ -64,7 +64,7 @@ function allTests() {
 		);
 	});
 
-	it.skip("returns a message when the name is not in the table", async () => {
+	it("returns a message when the name is not in the table", async () => {
 		//ARRANGE
 		const userAccount: UserAccount = {
 			email: "testUser24@emails.com",
@@ -78,7 +78,7 @@ function allTests() {
 		expect(response).toBe("No name was found for the provided email address.");
 	});
 
-	it.skip("returns a message when the username is not in the table", async () => {
+	it("returns a message when the username is not in the table", async () => {
 		//ARRANGE
 		const userAccount: UserAccount = {
 			email: "alex.marjanovic.ba.tw@gmail.com",

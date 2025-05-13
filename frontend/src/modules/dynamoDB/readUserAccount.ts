@@ -9,9 +9,6 @@ export async function readUserAccount(userAccount: UserAccount) {
     const url = `${backendURL}${backendRoute}?email=${email}&password=${password}`;
 
 	const response = await axios.get(url);
-	// return response.data;
-
-	if (!response.data.userAccount.email) 
-	return "No account was found for the provided email address.";
+	return response.data;
 }
 
