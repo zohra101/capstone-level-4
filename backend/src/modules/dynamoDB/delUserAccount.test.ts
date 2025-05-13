@@ -1,8 +1,8 @@
 import { createUserAccount } from "./createUserAccount";
 import { delUserAccount } from "./delUserAccount";
-import { UserAccount } from "./userAccount";
+import { UserAccount } from "./UserAccount";
 
-describe(delUserAccount, allTests);
+describe("delUserAccount", allTests);
 
 function allTests() {
 	it("successfully deletes a user account by email address", async () => {

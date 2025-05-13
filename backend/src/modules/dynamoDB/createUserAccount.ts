@@ -1,22 +1,16 @@
 import dotenv from "dotenv";
-// import path from "path";
-
-// const envPath = path.resolve(__dirname, "../../.env");
-// dotenv.config({ path: envPath });
-
 dotenv.config();
 
 import { returnDynamoDBClient } from "./returnDynamoDBClient";
 import { GetCommandInput, PutCommandInput } from "@aws-sdk/lib-dynamodb";
-import { GetCommand } from "@aws-sdk/lib-dynamodb";
-import { UserAccount } from "./userAccount";
+import { UserAccount } from "./UserAccount";
 
-// console.log("Test Environment - Region:", process.env.region);
-// console.log("Test Environment - Access Key ID:", process.env.accessKeyId);
-// console.log(
-// 	"Test Environment - Secret Access Key:",
-// 	process.env.secretAccessKey
-// );
+console.log("Test Environment - Region:", process.env.region);
+console.log("Test Environment - Access Key ID:", process.env.accessKeyId);
+console.log(
+	"Test Environment - Secret Access Key:",
+	process.env.secretAccessKey
+);
 
 export async function createUserAccount(
 	userAccount: UserAccount
