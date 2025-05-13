@@ -1,4 +1,4 @@
-import { UserAccount } from "./userAccount";
+import { UserAccount } from "./UserAccount";
 import { createUserAccount } from "./createUserAccount";
 import { delUserAccount } from "./delUserAccount";
 
@@ -96,7 +96,7 @@ function allTests() {
 
 		//ASSERT
 		expect(response).toBe(
-			"A password is required to create an account. Please enter a valid email address."
+			"A password is required to create an account. Please enter a valid password."
 		);
 	});
 }
