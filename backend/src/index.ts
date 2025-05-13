@@ -1,12 +1,12 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import cors from "cors";
 import { root } from "./routes/root";
-import { backend  } from "./routes/backend";
+// import { backend  } from "../archive/backend";
 import { favqApiResponse } from "./routes/favqApiResponse";
-import { authDynamoDB } from "./routes/authDynamoDB";
+// import { authDynamoDB } from "./routes/authDynamoDB";
 import serverless from "serverless-http";
 import dotenv from "dotenv";
-import { readDynamoDBClient } from "./routes/readDynamoDBClient";
+// import { readDynamoDBClient } from "./routes/readDynamoDBClient";
 import { createAccount } from "./routes/createAccount";
 import { readAccount } from "./routes/readAccount";
 import { updateAccount } from "./routes/updateAccount";
@@ -18,21 +18,19 @@ console.log("Current mode:", process.env.mode);
 
 const hostname = "localhost"; //Local domainnpm
 const port = 9000; //Common backend ports are 3000, 8080, 9000
-const path = "/"; //The path from where the server info will be rendered in the browser
+// const path = "/"; //The path from where the server info will be rendered in the browser
 
 const app = express(); //Instantiate an express.js object
 app.use(cors());
 app.get("/", root); //The handler runs when the path is visited in the URL
-app.get("/backend", backend); //The handler runs when the path is visited in the URL
+// app.get("/backend", backend); //The handler runs when the path is visited in the URL
 app.get("/favqApiResponse", favqApiResponse); //The handler runs when the path is visited in the URL
-app.get("/authDynamoDB", authDynamoDB); //The handler runs when the path is visited in the URL
-app.get("/readDynamoDBClient", readDynamoDBClient); //The handler runs when the path is visited in the URL
+// app.get("/authDynamoDB", authDynamoDB); //The handler runs when the path is visited in the URL
+// app.get("/readDynamoDBClient", readDynamoDBClient); //The handler runs when the path is visited in the URL
 app.get("/createAccount", createAccount); //The handler runs when the path is visited in the URL
 app.get("/readAccount", readAccount); //The handler runs when the path is visited in the URL
 app.get("/updateAccount", updateAccount); //The handler runs when the path is visited in the URL
 app.get("/delAccount", delAccount); //The handler runs when the path is visited in the URL
-//This did not commit no idea why
-app.listen(port, hostname, handleListen); //Listen on the specified port and hostname
 
 console.log("Current mode:", process.env.mode); // Force logging the mode
 
@@ -44,6 +42,7 @@ if (isRunningLocally)
 
 
 function handleListen() {
+
     console.log(`Listening on http;//${hostname}:${port}...`);
     console.log('Open a terminal and run "npm run build".');
     console.log('To debug, start this server in JavaScript Debug terminal.');

@@ -1,3 +1,4 @@
+import { createUserAccount } from "./createUserAccount";
 import { delUserAccount } from "./delUserAccount";
 import { UserAccount } from "./userAccount";
 
@@ -16,7 +17,10 @@ function allTests() {
 
 		//ASSERT
 		expect(response).toBe("The account was deleted successfully.");
+		await createUserAccount(deletedAccount);
 	});
+
+
 
 	it("returns error when deleting an account that doesn't exist", async () => {
 		//ARRANGE
@@ -50,7 +54,7 @@ function allTests() {
 
 	it("returns an error if the provided user account object is empty", async () => {
 		// ARRANGE
-		const deletedAccount: UserAccount = {};
+		const deletedAccount: any = {};
 
 		// ACT
 		const response = await delUserAccount(deletedAccount);

@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import {  } from "../modules/dynamoDB/createUserAccount";
 import { updateUserAccount } from "../modules/dynamoDB/updateUserAccount";
 
 //function handler() {}; //Declare the handler as an empty function

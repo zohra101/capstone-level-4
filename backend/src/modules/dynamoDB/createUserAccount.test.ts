@@ -1,5 +1,6 @@
 import { UserAccount } from "./userAccount";
 import { createUserAccount } from "./createUserAccount";
+import { delUserAccount } from "./delUserAccount";
 
 describe("createUserAccount", allTests);
 
@@ -19,6 +20,7 @@ function allTests() {
 
 		//ASSERT
 		expect(response).toBe("Your account was created successfully.");
+		await delUserAccount(userAccount);
 	});
 
 	it("returns a message for an already existing email", async () => {

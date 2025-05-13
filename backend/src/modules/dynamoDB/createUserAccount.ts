@@ -1,8 +1,10 @@
 import dotenv from "dotenv";
-import path from "path";
+// import path from "path";
 
-const envPath = path.resolve(__dirname, "../../.env");
-dotenv.config({ path: envPath });
+// const envPath = path.resolve(__dirname, "../../.env");
+// dotenv.config({ path: envPath });
+
+dotenv.config();
 
 import { returnDynamoDBClient } from "./returnDynamoDBClient";
 import { GetCommandInput, PutCommandInput } from "@aws-sdk/lib-dynamodb";

@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
-import { authenticateDynamoDB } from "../modules/dynamoDB/authenticateDynamoDB";
-
+import { authenticateDynamoDB } from "../../archive/authenticateDynamoDB";
 
 //function handler() {}; //Declare the handler as an empty function
 export async function authDynamoDB(request: Request, response: Response) {

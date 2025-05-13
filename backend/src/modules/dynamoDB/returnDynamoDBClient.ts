@@ -1,8 +1,5 @@
 import { DynamoDB } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocument } from "@aws-sdk/lib-dynamodb";
-import dotenv from "dotenv";
-
-dotenv.config(); //Attaches the env variables in .env to the process object
 
 export function returnDynamoDBClient(): DynamoDBDocument {
 	const apiKey = {
@@ -13,8 +10,17 @@ export function returnDynamoDBClient(): DynamoDBDocument {
 		},
 	};
 
-	const client = new DynamoDB(apiKey);
-	const niceClient = DynamoDBDocument.from(client);
+	console.log(apiKey)
 
-	return niceClient;
+	const client = new DynamoDB(apiKey);
+	let newClient = DynamoDBDocument.from(client);
+
+	try {
+		newClient = DynamoDBDocument.from(client);
+	} catch (error) {
+		console.error("Error creating DynamoDBDocument:", error);
+		throw error; // Re-throw to see the crash details
+	}
+
+	return newClient;
 }
