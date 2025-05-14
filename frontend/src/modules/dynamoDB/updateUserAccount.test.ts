@@ -1,4 +1,3 @@
-import { response } from "express";
 import { updateUserAccount } from "./updateUserAccount";
 import { UserAccount } from "./UserAccount";
 
@@ -8,66 +7,70 @@ function allTests() {
 	it("updates an account with valid input data", async () => {
 		//ARRANGE
 		const updatedAccount: UserAccount = {
-			email: "updatedUser@emails.com",
-			password: "NewPass123",
-			username: "Was ABC",
-			name: null,
-			phone: 6666666666,
+			email: "starfire8152@gmail.com",
+			password: "Cust1234",
+			name: "Updated Name",
+			phone: 555555555,
 		};
 
 		//ACT
-		updateUserAccount();
+		const response = await updateUserAccount(updatedAccount);
 
 		//ASSERT
-		expect(response.statusCode).toBe(200);
+		expect(response).toBe("Your account updated successfully.");
 	});
 
-	it("throws an error for updating non-existing userId", async () => {
+	it("throws an error for updating non-existing email address", async () => {
 		//ARRANGE
 		const updatedAccount: UserAccount = {
 			email: "nonexistent@emails.com",
 			password: "Pass999",
 			username: "ghostUser",
-			phone: 9999999999,
+			name: "Update Name",
+			phone: 3333333333,
 		};
 
 		//ACT
-		updateUserAccount();
+		const response = await updateUserAccount(updatedAccount);
 
 		//ASSERT
-		expect(response.statusCode).toBe(404);
+		expect(response).toBe(
+			"No record was found for this email address. An account must be created before it can be updated."
+		);
 	});
 
-	it("throws an error for duplicate email", async () => {
+	it("throws an error if password is incorrect", async () => {
 		//ARRANGE
 		const updatedAccount: UserAccount = {
 			email: "starfire8152@gmail.com", // already exists
-			password: "Update123",
-			username: "anotherUser",
+			password: "WrongPass123",
 			phone: 7777777777,
 		};
 
 		//ACT
-		updateUserAccount();
+		const response = await updateUserAccount(updatedAccount);
 
 		//ASSERT
-		expect(response.statusCode).toBe(400);
+		expect(response).toBe(
+			"The password provided is not valid for this account."
+		);
 	});
 
-	it("throws an error for missing username", async () => {
+	it("throws an error if user tries to update username", async () => {
 		//ARRANGE
 		const updatedAccount: UserAccount = {
-			email: "testUserUpdate@emails.com",
-			password: "Test1234",
-			username: "",
-			phone: 6666666666,
+			email: "starfire8152@gmail.com",
+			password: "Cust1234",
+			username: "Update User Name",
 		};
 
 		//ACT
-		updateUserAccount();
+		const response = await updateUserAccount(updatedAccount);
 
 		//ASSERT
-		expect(response.statusCode).toBe(400);
+		expect(response).toBe(
+			"Usernames cannot be changed. The username field should not be populated."
+		);
 	});
 
 	it("throws an error for invalid email format", async () => {
@@ -75,14 +78,14 @@ function allTests() {
 		const updatedAccount: UserAccount = {
 			email: "bademailformat.com",
 			password: "Test1234",
-			username: "validUser",
-			phone: 5555555555,
 		};
 
 		//ACT
-		updateUserAccount();
+		const response = await updateUserAccount(updatedAccount);
 
 		//ASSERT
-		expect(response.statusCode).toBe(400);
+		expect(response).toBe(
+			"The provided email is not in a valid email format. Please enter a valid email address."
+		);
 	});
 }
