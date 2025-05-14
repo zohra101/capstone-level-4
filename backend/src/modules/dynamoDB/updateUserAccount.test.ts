@@ -1,5 +1,5 @@
 import { updateUserAccount } from "./updateUserAccount";
-import { UserAccount } from "./userAccount";
+import { UserAccount } from "./UserAccount";
 
 describe(updateUserAccount, allTests);
 
