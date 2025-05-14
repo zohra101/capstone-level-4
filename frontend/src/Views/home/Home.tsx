@@ -21,7 +21,6 @@ export function Home() {
 			</h1>
 			<h3></h3>
 			<HandleQuoteOfTheDay />
-			<CreateAccount/>
 			<div className="container m-3">
 				<div
 					id="homeIntro"

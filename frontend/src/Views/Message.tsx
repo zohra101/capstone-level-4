@@ -26,7 +26,7 @@ export function Message() {
 					<div className="col">
 						<form
 							id="outputTag"
-							onSubmit={handleSubmitEmail}
+							// onSubmit={handleSubmitEmail}
 						>
 							<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 								<div className="col">

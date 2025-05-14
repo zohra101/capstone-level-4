@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { SignInContent } from "../../Views/auth/SignInContent";
 import { handleSignInAttempt } from "../../controllers/handleSignInAttempt";
 
-
 export function SignInModal(props) {
 	const onSignIn = props.onSignIn;
 	const [errorMessage, setErrorMessage] = useState("");

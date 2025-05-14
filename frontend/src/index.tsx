@@ -12,6 +12,7 @@ import { Footer } from "../src/Views/nav/Footer";
 import { HandleRefresh } from "../src/Views/nav/HandleRefresh";
 import { Consultation } from "./Views/Consultation";
 import { Message } from "./Views/Message";
+import { Account } from "./Views/Account";
 
 
 const bodyTag = document.getElementById("bodyTag");
@@ -42,6 +43,10 @@ root.render(
 				<Route
 					path={`${rootPath}/schedulefreeconsultation`}
 					element={<Consultation />}
+				/>
+				<Route
+					path={`${rootPath}/account`}
+					element={<Account />}
 				/>
 				<Route
 					path={`${rootPath}/about`}

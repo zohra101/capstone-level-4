@@ -10,7 +10,8 @@ export function NavbarCollapsible() {
 	return (
 		<nav
 			className="navbar nav-tabs navbar-expand-sm"
-			style={{ backgroundColor: "rgb(2, 32, 54)" }}>
+			style={{ backgroundColor: "rgb(2, 32, 54)" }}
+		>
 			<div className="container-fluid">
 				<NavLink
 					className="navbar-brand"
@@ -18,13 +19,15 @@ export function NavbarCollapsible() {
 						backgroundColor: "rgb(2, 32, 54)",
 						color: "rgb(220, 220, 170)",
 					}}
-					to="#">
+					to="#"
+				>
 					Alex Marjanovic
 				</NavLink>
 				<div className="me-1">
 					<a
 						className="ms-2 bg-dark"
-						href="https://www.linkedin.com/in/alexmarjanovic">
+						href="https://www.linkedin.com/in/alexmarjanovic"
+					>
 						<img
 							id="linkedInIcon"
 							alt="LinkedIn"
@@ -50,49 +53,65 @@ export function NavbarCollapsible() {
 					data-bs-target="#navbarNavAltMarkup"
 					aria-controls="navbarNavAltMarkup"
 					aria-expanded="false"
-					aria-label="Toggle navigation">
+					aria-label="Toggle navigation"
+				>
 					<span
 						className="navbar-toggler-icon"
-						style={{ backgroundColor: "rgb(109, 154, 189)" }}></span>
+						style={{ backgroundColor: "rgb(109, 154, 189)" }}
+					></span>
 				</button>
 				<div
 					className="collapse navbar-collapse"
-					id="navbarNavAltMarkup">
+					id="navbarNavAltMarkup"
+				>
 					<div className="navbar-nav">
-						<NavLink end
+						<NavLink
+							end
 							className="nav-link nav-text"
 							aria-current="page"
-							to={`${rootPath}/`}>
+							to={`${rootPath}/`}
+						>
 							Home
 						</NavLink>
 						<NavLink
 							className="nav-link nav-text"
-							to={`${rootPath}/portfolio`}>
+							to={`${rootPath}/portfolio`}
+						>
 							Portfolio
 						</NavLink>
 						<NavLink
 							className="nav-link nav-text"
-							to={`${rootPath}/alexresume`}>
+							to={`${rootPath}/alexresume`}
+						>
 							Resume
 						</NavLink>
 						<NavLink
 							className="nav-link nav-text"
-							to={`${rootPath}/contact`}>
+							to={`${rootPath}/contact`}
+						>
 							Contact
 						</NavLink>
 						<NavLink
 							className="nav-link nav-text"
-							to={`${rootPath}/schedulefreeconsultation`}>
+							to={`${rootPath}/schedulefreeconsultation`}
+						>
 							Free Consultation
 						</NavLink>
 						<NavLink
 							className="nav-link nav-text"
-							to={`${rootPath}/about`}>
+							to={`${rootPath}/account`}
+						>
+							Account
+						</NavLink>
+						<NavLink
+							className="nav-link nav-text"
+							to={`${rootPath}/about`}
+						>
 							About
 						</NavLink>
 					</div>
 				</div>
-				<SignInArea/>
+				<SignInArea />
 			</div>
 		</nav>
 	);
