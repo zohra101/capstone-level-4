@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { HandleQuoteOfTheDay } from "./HandleQuoteOfTheDay";
 import { ServicesListGroup } from "./ServicesListGroup";
 import "../../../src/index.scss";
+import { CreateAccount } from "../useraccounts/CreateAccount";
 
 export function Home() {
 	const [didMount, setDidMount] = useState(false);
@@ -20,6 +21,7 @@ export function Home() {
 			</h1>
 			<h3></h3>
 			<HandleQuoteOfTheDay />
+			<CreateAccount/>
 			<div className="container m-3">
 				<div
 					id="homeIntro"

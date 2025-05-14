@@ -17,12 +17,12 @@ export function Footer() {
 				/>{" "}
 				Aleksandra Marjanovic
 			</div>
-			<div>
+			{/* <div>
 				<TestBackend />
 			</div>
 			<div>
 				<AuthenticateDynamoDB/>
-			</div>
+			</div> */}
 		</footer>
 	);
 }
