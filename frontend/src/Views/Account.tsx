@@ -3,6 +3,7 @@ import "../../src/index.scss";
 import { CreateAccount } from "./useraccounts/CreateAccount";
 import { ReadAccount } from "./useraccounts/ReadAccount";
 import { UpdateAccount } from "./useraccounts/UpdateAccount";
+import { DeleteAccount } from "./useraccounts/DeleteAccount";
 
 
 export function Account() {
@@ -20,7 +21,8 @@ export function Account() {
 						{/*Add radio buttons so users can select an account action: create, view, update, delete*/}
 						<CreateAccount/>
 						<ReadAccount />
-						<UpdateAccount/>					
+						<UpdateAccount/>
+						<DeleteAccount/>				
 					</div>
 				</div>
 			</div>

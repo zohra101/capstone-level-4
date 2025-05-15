@@ -27,10 +27,10 @@ export function UpdateAccount() {
 
 		// Construct the UserAccount object
 		const updatedUserAccount: UserAccount = {
-			email: inputs.userEmail.value,
-			password: inputs.userPassword.value,
-			name: inputs.usersName.value,
-			phone: inputs.userPhone.value,
+			email: inputs.userEmailUpdate.value,
+			password: inputs.userPasswordUpdate.value,
+			name: inputs.usersNameUpdate.value,
+			phone: inputs.userPhoneUpdate.value,
 		};
 
 		console.log(
@@ -54,14 +54,15 @@ export function UpdateAccount() {
 							<h3 id="updateAccount">Update your account</h3>
 							<p>
 								To update your account, please make any changes in the fields
-								below and submit the form.
+								below and submit the form. Note: The Username field does not
+								appear because usernames cannot be changed.
 							</p>
 						</div>
 					</div>
 					<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 center">
 						<div className="col">
 							<form
-								id="outputTag"
+								id="updateAccountForm"
 								onSubmit={handleSubmit}
 							>
 								<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
@@ -82,6 +83,21 @@ export function UpdateAccount() {
 								<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 									<div className="col">
 										<span style={{ fontWeight: "bold" }}>
+											<label htmlFor="userPasswordUpdate">Password</label>
+											<br />
+										</span>
+										<input
+											type="password"
+											id="userPasswordUpdate"
+											className="inputs"
+											placeholder="Strong25@pass#"
+										/>
+									</div>
+								</div>
+								<hr></hr>
+								<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
+									<div className="col">
+										<span style={{ fontWeight: "bold" }}>
 											<label htmlFor="usersNameUpdate">Name</label>
 											<br />
 										</span>
@@ -94,20 +110,7 @@ export function UpdateAccount() {
 										/>
 									</div>
 								</div>
-								<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
-									<div className="col">
-										<span style={{ fontWeight: "bold" }}>
-											<label htmlFor="userPasswordUpdate">Password</label>
-											<br />
-										</span>
-										<input
-											type="password"
-											id="userPasswordUpdate"
-											className="inputs"
-											placeholder="Strong25@pass#"
-										/>
-									</div>
-								</div>
+
 								<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 									<div className="col">
 										<span style={{ fontWeight: "bold" }}>

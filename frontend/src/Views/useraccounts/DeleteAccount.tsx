@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "../../index";
-import { readUserAccount } from "../../modules/dynamoDB/readUserAccount";
 import { UserAccount } from "../../modules/dynamoDB/UserAccount";
+import { delUserAccount } from "../../modules/dynamoDB/delUserAccount";
 
-export function ReadAccount() {
+export function DeleteAccount() {
 	// State for lifecycle tracking
 	const [didMount, setDidMount] = useState(false);
 
 	// State for displaying feedback messages from the backend
 	const [feedbackMessage, setFeedbackMessage] = useState<string>("");
+
 
 	// Lifecycle hooks
 	useEffect(componentDidMount, []);
@@ -17,6 +18,7 @@ export function ReadAccount() {
 
 	// Function to handle form submission
 	async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+		debugger;
 		// Add event type for type safety
 		event.preventDefault(); // Prevent default form page reload
 
@@ -26,25 +28,21 @@ export function ReadAccount() {
 
 		// Construct the UserAccount object
 		const existingUserAccount: UserAccount = {
-			email: inputs.userEmailView.value,
-			password: inputs.userPasswordView.value,
+			email: inputs.userEmailDelete.value,
+			password: inputs.userPasswordDelete.value,
 		};
 
 		console.log(
-			"Attempting to retrieve account for:",
+			"Attempting to delete account for:",
 			existingUserAccount.email
 		);
 
 		// Call the frontend createUserAccount function and await the result
 		// Based on backend/frontend function return, this is expected to be a string message
-		await readUserAccount(existingUserAccount);
-		const feedbackMessage = `Email: ${existingUserAccount.email || "N/A"}<br />
-				 Username: ${existingUserAccount.username || "N/A"}<br />
-				 Name: ${existingUserAccount.name || "N/A"}<br />
-                 Phone: ${existingUserAccount.phone || "N/A"}`;
-
+		const resultMessage = await delUserAccount(existingUserAccount);
+	
 		// Update the feedback message state with the result
-		setFeedbackMessage(feedbackMessage); // Use the setter to update state
+		setFeedbackMessage(resultMessage); // Use the setter to update state
 	}
 
 	return (
@@ -52,29 +50,26 @@ export function ReadAccount() {
 			<div className="container m-3">
 				<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1">
 					<div className="col">
-						<h3 id="viewAccount">View your account information</h3>
-						<p>
-							To view your account, enter your email and
-							password below. Then click Submit.
-						</p>
+						<h3 id="deleteAccount">Delete your account</h3>
+						<p>To delete your account, enter your email and password below. Then click Submit.</p>
 					</div>
 				</div>
 				<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 center">
 					<div className="col">
 						<form
-							id="viewAccountForm"
+							id="deleteAccountForm"
 							onSubmit={handleSubmit}
->
+						>
 							<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 								<div className="col">
 									<span style={{ fontWeight: "bold" }}>
-										<label htmlFor="userEmailView">Email</label>
+										<label htmlFor="userEmailDelete">Email</label>
 										<br />
 									</span>
 									<input
 										required
 										type="email"
-										id="userEmailView"
+										id="userEmailDelete"
 										className="inputs"
 										placeholder="address@domain.com"
 									/>
@@ -83,13 +78,13 @@ export function ReadAccount() {
 							<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 								<div className="col">
 									<span style={{ fontWeight: "bold" }}>
-										<label htmlFor="userPasswordView">Password</label>
+										<label htmlFor="userPasswordDelete">Password</label>
 										<br />
 									</span>
 									<input
 										required
 										type="password"
-										id="userPasswordView"
+										id="userPasswordDelete"
 										className="inputs"
 										placeholder="Strong25@pass#"
 									/>
@@ -101,11 +96,8 @@ export function ReadAccount() {
 								</div>
 							</div>
 						</form>
-
 						{/* Output tag for displaying messages */}
-						<output
-							id="viewOutputTag"
-						>
+						<output id="deleteOutputTag">
 							{/* Display the feedback message state here */}
 							{feedbackMessage}
 						</output>
@@ -119,20 +111,20 @@ export function ReadAccount() {
 	// Lifecycle functions
 	function componentDidMount() {
 		setDidMount(true);
-		console.log("The Read Account component mounted.");
+		console.log("The Delete Account component mounted.");
 
 		// Update the tab title when the component mounts
 		const titleTag = document.getElementById("titleTag");
-		titleTag.innerHTML = "Alex M - Read Account ";
+		titleTag.innerHTML = "Alex M - Delete Account ";
 	}
 
 	function componentDidUpdate() {
 		// This useEffect runs on mount and every update if no dependency array or dependency array changes
-		if (didMount) console.log("The Read Account component updated.");
+		if (didMount) console.log("The Delete Account component updated.");
 	}
 	function componentDidUnmount() {
 		return function displayMessage() {
-			console.log("The Read Account  component unmounted.");
+			console.log("The Delete Account component unmounted.");
 		};
 	}
 }

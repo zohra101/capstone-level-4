@@ -26,11 +26,11 @@ export function CreateAccount() {
 
 		// Construct the UserAccount object
 		const newUserAccount: UserAccount = {
-			email: inputs.userEmail.value,
-			password: inputs.userPassword.value,
-			username: inputs.userName.value,
-			name: inputs.usersName.value,
-			phone: inputs.userPhone.value,
+			email: inputs.userEmailCreate.value,
+			password: inputs.userPasswordCreate.value,
+			username: inputs.userNameCreate.value,
+			name: inputs.usersNameCreate.value,
+			phone: inputs.userPhoneCreate.value,
 		};
 
 		console.log("Attempting to create account with:", newUserAccount);
@@ -49,13 +49,12 @@ export function CreateAccount() {
 			<div className="container m-3">
 				<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1">
 					<div className="col">
-						<h3 id="registerAccount">Register for an account</h3>
+						<h3 id="createAccount">Create an account</h3>
 						<p>
-							Your account allows you to view consultation notes and proposals
+							An account allows you to view consultation notes and proposals
 							for projects.
-						</p>
-						<p>
-							To register, please complete the fields below and submit the form.
+				
+							To create an account, please complete the fields below and submit the form.
 						</p>
 					</div>
 					{/* Output tag for displaying messages */}
@@ -167,7 +166,7 @@ export function CreateAccount() {
 
 		// Update the tab title when the component mounts
 		const titleTag = document.getElementById("titleTag");
-		document.title = "Alex M - Create Account ";
+		document.title = "Alex M - Create Account";
 	}
 
 	function componentDidUpdate() {
@@ -176,7 +175,7 @@ export function CreateAccount() {
 	}
 	function componentDidUnmount() {
 		return function displayMessage() {
-			console.log("The Create Account  component unmounted.");
+			console.log("The Create Account component unmounted.");
 		};
 	}
 }
