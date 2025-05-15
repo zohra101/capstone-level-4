@@ -1,7 +1,7 @@
 import React from "react";
 import copyright from "../../../assets/icons/copyright_cGainsboro_nobg.png";
-import { TestBackend } from "../TestBackend";
-import { AuthenticateDynamoDB } from "../AuthenticateDynamoDB";
+import { TestBackend } from "../../../archive/TestBackend";
+import { AuthenticateDynamoDB } from "../../../archive/AuthenticateDynamoDB";
 
 export function Footer() {
 	return (
