@@ -3,7 +3,7 @@ import "../../index";
 import { readUserAccount } from "../../modules/dynamoDB/readUserAccount";
 import { UserAccount } from "../../modules/dynamoDB/UserAccount";
 
-export function ReadAccount() {
+export function ViewAccount() {
 	// State for lifecycle tracking
 	const [didMount, setDidMount] = useState(false);
 
@@ -52,7 +52,7 @@ export function ReadAccount() {
 			<div className="container m-3">
 				<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1">
 					<div className="col">
-						<h3 id="viewAccount">View your account information</h3>
+						<h3 id="viewAccount">View your account</h3>
 						<p>
 							To view your account, enter your email and
 							password below. Then click Submit.
