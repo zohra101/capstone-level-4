@@ -33,10 +33,10 @@ app.get("/readAccount", readAccount); //The handler runs when the path is visite
 app.get("/updateAccount", updateAccount); //The handler runs when the path is visited in the URL
 app.get("/delAccount", delAccount); //The handler runs when the path is visited in the URL
 
-app.put("/createAccount", createAccount); //The handler runs when the path is visited in the URL
-app.put("/readAccount", readAccount); //The handler runs when the path is visited in the URL
-app.put("/updateAccount", updateAccount); //The handler runs when the path is visited in the URL
-app.put("/delAccount", delAccount); //The handler runs when the path is visited in the URL
+// app.post("/createAccount", createAccount); //The handler runs when the path is visited in the URL
+// app.post("/readAccount", readAccount); //The handler runs when the path is visited in the URL
+// app.post("/updateAccount", updateAccount); //The handler runs when the path is visited in the URL
+// app.post("/delAccount", delAccount); //The handler runs when the path is visited in the URL
 
 console.log("Current mode:", process.env.mode); // Force logging the mode
 

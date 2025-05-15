@@ -7,5 +7,9 @@ export async function getFavqApiResponse() {
 		quote: response.data.quote.body,
 		author: response.data.quote.author,
 	};
+
+	//Add logic to handle if FAVQs is offline
+	// if (!result) show a preset quote
+
 	return result;
 }
