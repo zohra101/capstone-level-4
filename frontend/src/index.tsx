@@ -13,6 +13,8 @@ import { HandleRefresh } from "../src/Views/nav/HandleRefresh";
 import { Consultation } from "./Views/Consultation";
 import { Message } from "./Views/Message";
 import { Account } from "./Views/Account";
+import { Provider } from "react-redux";
+import { store } from "./modules/state/store";
 
 
 const bodyTag = document.getElementById("bodyTag");
@@ -20,40 +22,42 @@ const root = createRoot(bodyTag);
 const rootPath = getRootPath();
 
 root.render(
-	<BrowserRouter>
-		<HandleRefresh>
-			<Header />
-			<Routes>
-				<Route
-					path={`${rootPath}/`}
-					element={<Home />}
-				/>
-				<Route
-					path={`${rootPath}/portfolio`}
-					element={<Portfolio />}
-				/>
-				<Route
-					path={`${rootPath}/alexresume`}
-					element={<AlexResume />}
-				/>
-				<Route
-					path={`${rootPath}/contact`}
-					element={<Message />}
-				/>
-				<Route
-					path={`${rootPath}/schedulefreeconsultation`}
-					element={<Consultation />}
-				/>
-				<Route
-					path={`${rootPath}/account`}
-					element={<Account />}
-				/>
-				<Route
-					path={`${rootPath}/about`}
-					element={<About />}
-				/>
-			</Routes>
-			<Footer />,
-		</HandleRefresh>
-	</BrowserRouter>
+	<Provider store={store}>
+		<BrowserRouter>
+			<HandleRefresh>
+				<Header />
+				<Routes>
+					<Route
+						path={`${rootPath}/`}
+						element={<Home />}
+					/>
+					<Route
+						path={`${rootPath}/portfolio`}
+						element={<Portfolio />}
+					/>
+					<Route
+						path={`${rootPath}/alexresume`}
+						element={<AlexResume />}
+					/>
+					<Route
+						path={`${rootPath}/contact`}
+						element={<Message />}
+					/>
+					<Route
+						path={`${rootPath}/schedulefreeconsultation`}
+						element={<Consultation />}
+					/>
+					<Route
+						path={`${rootPath}/account`}
+						element={<Account />}
+					/>
+					<Route
+						path={`${rootPath}/about`}
+						element={<About />}
+					/>
+				</Routes>
+				<Footer />,
+			</HandleRefresh>
+		</BrowserRouter>
+	</Provider>
 );
