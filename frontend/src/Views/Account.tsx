@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "../../src/index.scss";
 import { CreateAccount } from "./useraccounts/CreateAccount";
-import { ReadAccount } from "./useraccounts/ReadAccount";
 import { UpdateAccount } from "./useraccounts/UpdateAccount";
 import { DeleteAccount } from "./useraccounts/DeleteAccount";
+import { ViewAccount } from "./useraccounts/ViewAccount";
 
 
 export function Account() {
@@ -20,7 +20,7 @@ export function Account() {
 					<div className="col">
 						{/*Add radio buttons so users can select an account action: create, view, update, delete*/}
 						<CreateAccount/>
-						<ReadAccount />
+						<ViewAccount />
 						<UpdateAccount/>
 						<DeleteAccount/>				
 					</div>
