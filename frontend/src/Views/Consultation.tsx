@@ -10,6 +10,7 @@ export function Consultation() {
 	useEffect(componentDidUpdate);
 	useEffect(componentDidUnmount, []);
 
+	//Chrome says invalid use of for with label on this page
 	return (
 		<main>
 			<div className="container m-3">
