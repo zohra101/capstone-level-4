@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { handleSubmitEmail } from "../modules/email/handleSubmitEmail";
 import "../../src/index.scss";
 import { CreateAccount } from "./useraccounts/CreateAccount";
+import { ReadAccount } from "./useraccounts/ReadAccount";
 
 
 export function Account() {
@@ -17,6 +17,7 @@ export function Account() {
 				<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1">
 					<div className="col">
 						<CreateAccount/>
+						<ReadAccount />
 					</div>
 				</div>
 			</div>

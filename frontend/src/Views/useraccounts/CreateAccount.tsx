@@ -62,11 +62,10 @@ export function CreateAccount() {
 						<p>To register, please complete the fields below and submit the form.
 						</p>
 					</div>
-
 					{/* Output tag for displaying messages */}
 					<output id="createOutputTag">
 						{/* Display the feedback message state here */}
-						{feedbackMessage} {/* Render the state variable [12, 13] */}
+						{feedbackMessage}
 					</output>
 				</div>
 				<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 center">

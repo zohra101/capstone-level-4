@@ -51,7 +51,7 @@ export function ImageMap() {
 	}
 
 	function componentDidUpdate() {
-		if (didMount) console.log("The Image Map  component updated.");
+		if (didMount) console.log("The Image Map component updated.");
 	}
 
 	function componentDidUnmount() {
