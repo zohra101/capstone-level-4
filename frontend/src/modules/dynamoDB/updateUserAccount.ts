@@ -5,7 +5,7 @@ const backendURL = "http://localhost:9000";
 const backendRoute = "/updateAccount";
 
 export async function updateUserAccount(userAccount: UserAccount) {
-	console.log("createUserAccount called with:", userAccount);
+	console.log("updateUserAccount called with:", userAccount);
 	console.log("Email to validate:", userAccount.email);
 
 	if (userAccount.password === null) {
@@ -13,8 +13,8 @@ export async function updateUserAccount(userAccount: UserAccount) {
 	}
 
 	const emailToSend = userAccount.email === null ? "" : userAccount.email;
-	const url = `${backendURL}${backendRoute}?email=${emailToSend}&password=${userAccount.password}`;
+	const url = `${backendURL}${backendRoute}?email=${emailToSend}&password=${userAccount.password}&&name=${userAccount.name}&phone=${userAccount.phone}`;
 
-	const response = await axios.put(url);
+	const response = await axios.get(url);
 	return response.data;
 }

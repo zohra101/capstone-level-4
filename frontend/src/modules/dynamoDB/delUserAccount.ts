@@ -19,6 +19,6 @@ export async function delUserAccount(userAccount: UserAccount) {
 	const emailToSend = userAccount.email === null ? "" : userAccount.email;
 	const url = `${backendURL}${backendRoute}?email=${emailToSend}&password=${userAccount.password}`;
 
-	const response = await axios.put(url);
+	const response = await axios.get(url);
 	return response.data;
 }

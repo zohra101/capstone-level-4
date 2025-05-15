@@ -21,21 +21,16 @@ export function CreateAccount() {
 		event.preventDefault(); // Prevent default form page reload
 
 		// Get input values from the form elements
-		const target = event.target as typeof event.target & {
-			userEmail: { value: string };
-			userName: { value: string };
-			usersName: { value: string };
-			userPassword: { value: string };
-			userPhone: { value: number };
-		};
+		const form: any = event.target;
+		const inputs = form.elements;
 
 		// Construct the UserAccount object
 		const newUserAccount: UserAccount = {
-			email: target.userEmail.value,
-			password: target.userPassword.value,
-			username: target.userName.value,
-			name: target.usersName.value,
-			phone: target.userPhone.value,
+			email: inputs.userEmail.value,
+			password: inputs.userPassword.value,
+			username: inputs.userName.value,
+			name: inputs.usersName.value,
+			phone: inputs.userPhone.value,
 		};
 
 		console.log("Attempting to create account with:", newUserAccount);
@@ -56,10 +51,11 @@ export function CreateAccount() {
 					<div className="col">
 						<h3 id="registerAccount">Register for an account</h3>
 						<p>
-							Your Nivedana Design account allows you to view consultation notes
-							and proposals for projects.
+							Your account allows you to view consultation notes and proposals
+							for projects.
 						</p>
-						<p>To register, please complete the fields below and submit the form.
+						<p>
+							To register, please complete the fields below and submit the form.
 						</p>
 					</div>
 					{/* Output tag for displaying messages */}
@@ -77,13 +73,13 @@ export function CreateAccount() {
 							<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 								<div className="col">
 									<span style={{ fontWeight: "bold" }}>
-										<label htmlFor="userEmail">Email</label>
+										<label htmlFor="userEmailCreate">Email</label>
 										<br />
 									</span>
 									<input
 										required
 										type="email"
-										id="userEmail"
+										id="userEmailCreate"
 										className="inputs"
 										placeholder="address@domain.com"
 									/>
@@ -92,13 +88,13 @@ export function CreateAccount() {
 							<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 								<div className="col">
 									<span style={{ fontWeight: "bold" }}>
-										<label htmlFor="userName">Username</label>
+										<label htmlFor="userNameCreate">Username</label>
 										<br />
 									</span>
 									<input
 										required
 										type="userName"
-										id="userName"
+										id="userNameCreate"
 										className="inputs"
 										placeholder="YourUserName"
 									/>
@@ -107,13 +103,13 @@ export function CreateAccount() {
 							<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 								<div className="col">
 									<span style={{ fontWeight: "bold" }}>
-										<label htmlFor="usersName">Name</label>
+										<label htmlFor="usersNameCreate">Name</label>
 										<br />
 									</span>
 									<input
 										required
-										type="userName"
-										id="usersName"
+										type="usersName"
+										id="usersNameCreate"
 										className="inputs"
 										placeholder="YourName"
 									/>
@@ -122,13 +118,13 @@ export function CreateAccount() {
 							<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 								<div className="col">
 									<span style={{ fontWeight: "bold" }}>
-										<label htmlFor="userPassword">Passaword</label>
+										<label htmlFor="userPasswordCreate">Password</label>
 										<br />
 									</span>
 									<input
 										required
 										type="password"
-										id="userPassword"
+										id="userPasswordCreate"
 										className="inputs"
 										placeholder="Strong25@pass#"
 									/>
@@ -137,14 +133,14 @@ export function CreateAccount() {
 							<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 								<div className="col">
 									<span style={{ fontWeight: "bold" }}>
-										<label htmlFor="userPhone">Phone</label>
+										<label htmlFor="userPhoneCreate">Phone</label>
 										<br />
 									</span>
 									<input
 										required
 										type="tel"
 										pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-										id="userPhone"
+										id="userPhoneCreate"
 										className="inputs"
 										placeholder="555-555-5555"
 									/>

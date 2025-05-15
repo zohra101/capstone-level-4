@@ -21,15 +21,13 @@ export function ReadAccount() {
 		event.preventDefault(); // Prevent default form page reload
 
 		// Get input values from the form elements
-		const target = event.target as typeof event.target & {
-			userEmail: { value: string };
-			userPassword: { value: string };
-		};
+		const form: any = event.target;
+		const inputs = form.elements;
 
 		// Construct the UserAccount object
 		const existingUserAccount: UserAccount = {
-			email: target.userEmail.value,
-			password: target.userPassword.value,
+			email: inputs.userEmail.value,
+			password: inputs.userPassword.value,
 		};
 
 		console.log(
@@ -54,9 +52,9 @@ export function ReadAccount() {
 			<div className="container m-3">
 				<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1">
 					<div className="col">
-						<h3 id="sendEmail">View your account information</h3>
+						<h3 id="viewAccount">View your account information</h3>
 						<p>
-							To view your Nivedana Consulting account, enter your email and
+							To view your account, enter your email and
 							password below.
 						</p>
 					</div>
@@ -66,17 +64,17 @@ export function ReadAccount() {
 						<form
 							id="readAccountForm"
 							onSubmit={handleSubmit}
-						>
+>
 							<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 								<div className="col">
 									<span style={{ fontWeight: "bold" }}>
-										<label htmlFor="userEmail">Email</label>
+										<label htmlFor="userEmailView">Email</label>
 										<br />
 									</span>
 									<input
 										required
 										type="email"
-										id="userEmail"
+										id="userEmailView"
 										className="inputs"
 										placeholder="address@domain.com"
 									/>
@@ -85,13 +83,13 @@ export function ReadAccount() {
 							<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 								<div className="col">
 									<span style={{ fontWeight: "bold" }}>
-										<label htmlFor="userPassword">Passaword</label>
+										<label htmlFor="userPasswordView">Password</label>
 										<br />
 									</span>
 									<input
 										required
 										type="password"
-										id="userPassword"
+										id="userPasswordView"
 										className="inputs"
 										placeholder="Strong25@pass#"
 									/>

@@ -1,23 +1,60 @@
 import React, { useEffect, useState } from "react";
-import "../../src/index.scss";
-import { handleSubmitEmail } from "../../modules/email/handleSubmitEmail";
+import "../../index";
+import { UserAccount } from "../../modules/dynamoDB/UserAccount";
+import { updateUserAccount } from "../../modules/dynamoDB/updateUserAccount";
 
 export function UpdateAccount() {
-    const [didMount, setDidMount] = useState(false);
+	// State for lifecycle tracking
+	const [didMount, setDidMount] = useState(false);
 
-    useEffect(componentDidMount, []);
-    useEffect(componentDidUpdate);
-    useEffect(componentDidUnmount, []);
+	// State for displaying feedback messages from the backend
+	const [feedbackMessage, setFeedbackMessage] = useState<string>("");
+
+	// Lifecycle hooks
+	useEffect(componentDidMount, []);
+	useEffect(componentDidUpdate);
+	useEffect(componentDidUnmount, []);
+
+
+	// Function to handle form submission
+	async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+		// Add event type for type safety
+		event.preventDefault(); // Prevent default form page reload
+
+		// Get input values from the form elements
+		const form: any = event.target;
+		const inputs = form.elements;
+
+		// Construct the UserAccount object
+		const updatedUserAccount: UserAccount = {
+			email: inputs.userEmail.value,
+			password: inputs.userPassword.value,
+			name: inputs.usersName.value,
+			phone: inputs.userPhone.value,
+		};
+
+		console.log(
+			"Attempting to update account for:",
+			updatedUserAccount.email
+		);
+
+		// Call the frontend createUserAccount function and await the result
+		// Based on backend/frontend function return, this is expected to be a string message
+			const resultMessage = await updateUserAccount(updatedUserAccount);
+			
+				// Update the feedback message state with the result
+				setFeedbackMessage(resultMessage); // Use the setter to update state
+	}
 
     return (
 			<main>
 				<div className="container m-3">
 					<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1">
 						<div className="col">
-							<h3 id="sendEmail">Send an email</h3>
+							<h3 id="updateAccount">Update your account</h3>
 							<p>
-								To register for your Nivedana Consulting account, please
-								complete the fields below and submit the form.
+								To update your account, please make any changes in the fields
+								below and submit the form.
 							</p>
 						</div>
 					</div>
@@ -25,18 +62,18 @@ export function UpdateAccount() {
 						<div className="col">
 							<form
 								id="outputTag"
-								// onSubmit={handleSubmitEmail}
+								onSubmit={handleSubmit}
 							>
 								<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 									<div className="col">
 										<span style={{ fontWeight: "bold" }}>
-											<label htmlFor="userEmail">Email</label>
+											<label htmlFor="userEmailUpdate">Email</label>
 											<br />
 										</span>
 										<input
 											required
 											type="email"
-											id="userEmail"
+											id="userEmailUpdate"
 											className="inputs"
 											placeholder="address@domain.com"
 										/>
@@ -45,13 +82,13 @@ export function UpdateAccount() {
 								<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 									<div className="col">
 										<span style={{ fontWeight: "bold" }}>
-											<label htmlFor="usersName">Name</label>
+											<label htmlFor="usersNameUpdate">Name</label>
 											<br />
 										</span>
 										<input
 											required
-											type="userName"
-											id="usersName"
+											type="usersName"
+											id="usersNameUpdate"
 											className="inputs"
 											placeholder="YourName"
 										/>
@@ -60,13 +97,12 @@ export function UpdateAccount() {
 								<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 									<div className="col">
 										<span style={{ fontWeight: "bold" }}>
-											<label htmlFor="userPassword">Passaword</label>
+											<label htmlFor="userPasswordUpdate">Password</label>
 											<br />
 										</span>
 										<input
-											required
 											type="password"
-											id="userPassword"
+											id="userPasswordUpdate"
 											className="inputs"
 											placeholder="Strong25@pass#"
 										/>
@@ -75,16 +111,16 @@ export function UpdateAccount() {
 								<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 									<div className="col">
 										<span style={{ fontWeight: "bold" }}>
-											<label htmlFor="userPhone">Phone</label>
+											<label htmlFor="userPhoneUpdate">Phone</label>
 											<br />
 										</span>
 										<input
 											required
 											type="tel"
 											pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-											id="userPhone"
+											id="userPhoneUpdate"
 											className="inputs"
-											placeholder="01 5555555555"
+											placeholder="888-888-8888"
 										/>
 									</div>
 								</div>
@@ -96,8 +132,10 @@ export function UpdateAccount() {
 							</form>
 						</div>
 					</div>
-					<div id="spinner"></div>
-					<div id="outputTag2"></div>
+					<output id="updateOutputTag">
+						{/* Display the feedback message state here */}
+						{feedbackMessage}
+					</output>
 					<br />
 				</div>
 			</main>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../../src/index.scss";
 import { CreateAccount } from "./useraccounts/CreateAccount";
 import { ReadAccount } from "./useraccounts/ReadAccount";
+import { UpdateAccount } from "./useraccounts/UpdateAccount";
 
 
 export function Account() {
@@ -16,8 +17,10 @@ export function Account() {
 			<div className="container m-3">
 				<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1">
 					<div className="col">
+						{/*Add radio buttons so users can select an account action: create, view, update, delete*/}
 						<CreateAccount/>
 						<ReadAccount />
+						<UpdateAccount/>					
 					</div>
 				</div>
 			</div>
