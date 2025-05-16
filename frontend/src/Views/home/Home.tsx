@@ -2,9 +2,14 @@ import React, { useEffect, useState } from "react";
 import { HandleQuoteOfTheDay } from "./HandleQuoteOfTheDay";
 import { ServicesListGroup } from "./ServicesListGroup";
 import "../../../src/index.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { selectDidMount } from "../../modules/state/stateSelectors";
+import { set } from "../../modules/state/store";
 
 export function Home() {
-	const [didMount, setDidMount] = useState(false);
+	// const [didMount, setDidMount] = useState(false);
+	const didMount = useSelector(selectDidMount);
+	const dispatch = useDispatch();
 
 	useEffect(componentDidMount, []);
 	useEffect(componentDidUpdate, [didMount]);
@@ -123,7 +128,9 @@ export function Home() {
 	);
 
 	function componentDidMount() {
-		setDidMount(true);
+		// setDidMount(true);
+		let action = set.didMount(true);
+		dispatch(action);
 		console.log("The Home component mounted.");
 
 		const titleTag = document.getElementById("titleTag");
