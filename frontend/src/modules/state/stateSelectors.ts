@@ -1,6 +1,5 @@
 import { StateVariables } from "./stateVariables";
 
-
 export function selectDidMount(state: StateVariables) {
 	const { didMount } = state;
 	return didMount;

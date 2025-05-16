@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { HandleQuoteOfTheDay } from "./HandleQuoteOfTheDay";
 import { ServicesListGroup } from "./ServicesListGroup";
 import "../../../src/index.scss";
-import { CreateAccount } from "../useraccounts/CreateAccount";
 
 export function Home() {
 	const [didMount, setDidMount] = useState(false);

@@ -1,16 +1,16 @@
-//Fetch the response from the server and extract it
 import React, { useState, useEffect } from "react";
-// import { extractQotdResponse } from "../../modules/Qotd/extractQotdResponse";
 import axios, { AxiosResponse } from "axios";
-
-// const proxy = "https://corsproxy.io/?url=";
-// const baseUrl = "https://favqs.com/api";
-// const endPoint = "/qotd";
+import { useDispatch, useSelector } from "react-redux";
+import { selectDidMount } from "../../modules/state/stateSelectors";
+import { set } from "../../modules/state/store";
 
 export function HandleQuoteOfTheDay() {
-	const [didMount, setDidMount] = useState(false);
+	// const [didMount, setDidMount] = useState(false);
+	const didMount = useSelector(selectDidMount);
 	const [quote, setQuote] = useState("");
 	const [author, setAUthor] = useState("");
+
+	const dispatch = useDispatch();
 
 	useEffect(componentDidMount, []);
 	useEffect(componentDidUpdate, [didMount]);
@@ -44,27 +44,35 @@ export function HandleQuoteOfTheDay() {
 
 	async function getQuote() {
 		const domain = window.location.hostname;
-		const isDeployed = domain === "zohra101.github.io";
-		//|| doman === "enter cloudfront domain"
+		const isDeployed = domain === "zohra101.github.io"
+		// || domain === "d19khr1ql2iv95.cloudfront.net"
+		;
 
 		let response: AxiosResponse;
-		
-		if (isDeployed) response = await axios.get(
-			"https://pva375oymcqo2jvjv73hn5zere0rastx.lambda-url.us-east-2.on.aws/favqApiResponse"
-		);
+
+		if (isDeployed)
+			response = await axios.get(
+				"https://pva375oymcqo2jvjv73hn5zere0rastx.lambda-url.us-east-2.on.aws/favqApiResponse"
+			);
 		else response = await axios.get("http://localhost:9000/favqApiResponse");
-		
+
 		const { quote, author } = response.data;
-		setQuote(`"${quote}"`);
-		setAUthor(`${author}`);
+		if (!response.data) {
+			setQuote(
+				`“I have not failed. I've just found 10,000 ways that won't work.”`
+			);
+			setAUthor(`Thomas A. Edison`);
+		}
+		else {
+			setQuote(`"${quote}"`);
+			setAUthor(`${author}`);
+		};
 	}
 
 	function componentDidMount() {
-		// const url = proxy + baseUrl + endPoint;
-		// const promise = fetch(url);
-		// promise.then(extractQotdResponse);
-
-		setDidMount(true);
+		// setDidMount(true);
+		let action = set.didMount(true);
+		dispatch(action);
 		getQuote();
 		console.log("The HandleQuoteOfTheDay component mounted.");
 	}
