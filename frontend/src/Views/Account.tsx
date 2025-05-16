@@ -24,7 +24,6 @@ export function Account() {
 	useEffect(componentDidUnmount, []);
 
 	// Add onclick handler
-
 	function handleRadioButton(onclick: any) {
 		const inputs = onclick.currentTarget.elements;
 		const createAcct = inputs[0].checked;
