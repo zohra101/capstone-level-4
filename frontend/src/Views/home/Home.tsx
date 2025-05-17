@@ -36,7 +36,7 @@ export function Home() {
 							Baton Rouge, LA. Originally from New Jersey, I moved south to
 							escape the cold and snow, after completing my Master's in
 							Professional and Technical Communiction at the New Jersey
-							Institute for Technology (NJIT).
+							Institute for Technology.
 						</p>
 						<p>
 							I started as a technical writer by documenting the standard
