@@ -8,7 +8,13 @@ export function ViewAccount() {
 	const [didMount, setDidMount] = useState(false);
 
 	// State for displaying feedback messages from the backend
-	const [feedbackMessage, setFeedbackMessage] = useState<string>("");
+	// const [feedbackMessage, setFeedbackMessage] = useState<string>("");
+	const [accountDetails, setAccountDetails] = useState<{
+		email?: string;
+		username?: string;
+		name?: string;
+		phone?: string;
+	} | null>(null); // Initialize as null or an empty object
 
 	// Lifecycle hooks
 	useEffect(componentDidMount, []);
@@ -37,14 +43,15 @@ export function ViewAccount() {
 
 		// Call the frontend createUserAccount function and await the result
 		// Based on backend/frontend function return, this is expected to be a string message
-		await readUserAccount(existingUserAccount);
-		const feedbackMessage = `Email: ${existingUserAccount.email || "N/A"}<br />
-				 Username: ${existingUserAccount.username || "N/A"}<br />
-				 Name: ${existingUserAccount.name || "N/A"}<br />
-                 Phone: ${existingUserAccount.phone || "N/A"}`;
+		const accountDetails = await readUserAccount(existingUserAccount);
+		// const feedbackMessage = `Email: ${existingUserAccount.email || "N/A"}
+		// 		 Username: ${existingUserAccount.username || "N/A"}
+		// 		 Name: ${existingUserAccount.name || "N/A"}
+        //          Phone: ${existingUserAccount.phone || "N/A"}`;
 
 		// Update the feedback message state with the result
-		setFeedbackMessage(feedbackMessage); // Use the setter to update state
+		// setFeedbackMessage(feedbackMessage); // Use the setter to update state
+		setAccountDetails(accountDetails);
 	}
 
 	return (
@@ -54,8 +61,8 @@ export function ViewAccount() {
 					<div className="col">
 						<h3 id="viewAccount">View your account</h3>
 						<p>
-							To view your account, enter your email and
-							password below. Then click Submit.
+							To view your account, enter your email and password below. Then
+							click Submit.
 						</p>
 					</div>
 				</div>
@@ -64,7 +71,7 @@ export function ViewAccount() {
 						<form
 							id="viewAccountForm"
 							onSubmit={handleSubmit}
->
+						>
 							<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 								<div className="col">
 									<span style={{ fontWeight: "bold" }}>
@@ -103,11 +110,47 @@ export function ViewAccount() {
 						</form>
 
 						{/* Output tag for displaying messages */}
-						<output
-							id="viewOutputTag"
-						>
+						<output id="viewOutputTag">
 							{/* Display the feedback message state here */}
-							{feedbackMessage}
+							{/* Display feedback in a Bootstrap card */}
+							{accountDetails && (
+								<div className="card mt-3">
+									<div className="card-body">
+										<h5 className="card-title">Account Details</h5>
+										<div className="card-text">
+											{accountDetails.email && (
+												<p className="mb-0">
+													<strong>Email:</strong> {accountDetails.email}
+												</p>
+											)}
+											{accountDetails.username && (
+												<p className="mb-0">
+													<strong>Username:</strong> {accountDetails.username}
+												</p>
+											)}
+											{accountDetails.name && (
+												<p className="mb-0">
+													<strong>Name:</strong> {accountDetails.name}
+												</p>
+											)}
+											{accountDetails.phone && (
+												<p className="mb-0">
+													<strong>Phone:</strong> {accountDetails.phone}
+												</p>
+											)}
+											{/* Fallback if no details are found */}
+											{!accountDetails.email &&
+												!accountDetails.username &&
+												!accountDetails.name &&
+												!accountDetails.phone && (
+													<p className="mb-0 text-muted">
+														No account details available.
+													</p>
+												)}
+										</div>
+									</div>
+								</div>
+							)}
 						</output>
 					</div>
 				</div>
@@ -136,3 +179,5 @@ export function ViewAccount() {
 		};
 	}
 }
+
+
