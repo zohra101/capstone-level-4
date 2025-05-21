@@ -265,7 +265,7 @@ export function Portfolio() {
 					<div className="col">
 						<p>
 							For samples not represented here, please{" "}
-							<Link to="/contact#sendMessage">submit a request</Link> by
+							<Link to="/message#sendMessage">submit a request</Link> by
 							completing the form on my Contact page.
 						</p>
 					</div>
