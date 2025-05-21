@@ -40,7 +40,7 @@ root.render(
 						element={<AlexResume />}
 					/>
 					<Route
-						path={`${rootPath}/contact`}
+						path={`${rootPath}/message`}
 						element={<Message />}
 					/>
 					<Route

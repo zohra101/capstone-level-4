@@ -87,9 +87,9 @@ export function NavbarCollapsible() {
 						</NavLink>
 						<NavLink
 							className="nav-link nav-text"
-							to={`${rootPath}/contact`}
+							to={`${rootPath}/message`}
 						>
-							Contact
+							Message
 						</NavLink>
 						<NavLink
 							className="nav-link nav-text"

@@ -19,7 +19,7 @@ export function Message() {
 			<div className="container m-3">
 				<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1">
 					<div className="col">
-						<h3 id="sendEmail">Send an email</h3>
+						<h3 id="sendEmail">Send a message</h3>
 						<p>
 							If you have any questions about my services, please fill out and
 							submit the form below.
@@ -120,10 +120,10 @@ export function Message() {
 		// setDidMount(true);
 		let action = set.didMount(true);
 		dispatch(action);
-		console.log("The Contact component mounted.");
+		console.log("The Send Message component mounted.");
 
 		const titleTag = document.getElementById("titleTag");
-		titleTag.innerHTML = "Alex M - Contact";
+		titleTag.innerHTML = "Alex M - Send Message";
 
 		const individualTag = document.getElementById("individual");
 		new bootstrap.Tooltip(individualTag);
@@ -132,11 +132,11 @@ export function Message() {
 	}
 
 	function componentDidUpdate() {
-		if (didMount) console.log("The Contact component updated.");
+		if (didMount) console.log("The Send Message component updated.");
 	}
 	function componentDidUnmount() {
 		return function displayMessage() {
-			console.log("The Contact component unmounted.");
+			console.log("The Send Message component unmounted.");
 		};
 	}
 }
