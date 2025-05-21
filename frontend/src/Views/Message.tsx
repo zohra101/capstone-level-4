@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { handleSubmitEmail } from "../modules/email/handleSubmitEmail";
 import "../../src/index.scss";
-
+import { useDispatch, useSelector } from "react-redux";
+import { selectDidMount } from "../modules/state/stateSelectors";
+import { set } from "../modules/state/store";
 
 export function Message() {
-	const [didMount, setDidMount] = useState(false);
+	// const [didMount, setDidMount] = useState(false);
+	const didMount = useSelector(selectDidMount);
+	const dispatch = useDispatch();
 
 	useEffect(componentDidMount, []);
 	useEffect(componentDidUpdate);
@@ -113,7 +117,9 @@ export function Message() {
 	);
 
 	function componentDidMount() {
-		setDidMount(true);
+		// setDidMount(true);
+		let action = set.didMount(true);
+		dispatch(action);
 		console.log("The Contact component mounted.");
 
 		const titleTag = document.getElementById("titleTag");
