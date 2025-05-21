@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import alexHoli from "../../assets/images/alex.png";
 import "../index.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { selectDidMount } from "../modules/state/stateSelectors";
+import { set } from "../modules/state/store";
 
 export function About() {
-	const [didMount, setDidMount] = useState(false);
+	// const [didMount, setDidMount] = useState(false);
+	const didMount = useSelector(selectDidMount);
+	const dispatch = useDispatch();
 
 	useEffect(componentDidMount, []);
 	useEffect(componentDidUpdate);
@@ -38,7 +43,7 @@ export function About() {
 					<div className="col-12">
 						<h3 id="aboutMe">About me</h3>
 					</div>
-					<div className="col-3 border">
+					<div className="col-3">
 						<img
 							src={alexHoli}
 							alt="alex"
@@ -104,7 +109,9 @@ export function About() {
 	);
 
 	function componentDidMount() {
-		setDidMount(true);
+		// setDidMount(true);
+		let action = set.didMount(true);
+		dispatch(action);
 		console.log("The About component mounted.");
 
 		const titleTag = document.getElementById("titleTag");
