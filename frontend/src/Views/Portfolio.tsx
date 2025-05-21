@@ -261,7 +261,7 @@ export function Portfolio() {
 						<br />
 					</div>
 				</div>
-				<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1">
+				{/* <div className="row row-cols-2 row-cols-md-1 row-cols-lg-1">
 					<div className="col">
 						<p>
 							For samples not represented here, please{" "}
@@ -269,7 +269,7 @@ export function Portfolio() {
 							completing the form on my Contact page.
 						</p>
 					</div>
-				</div>
+				</div> */}
 			</div>
 		</main>
 	);
