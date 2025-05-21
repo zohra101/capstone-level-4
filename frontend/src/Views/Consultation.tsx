@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { handleSubmitConsultation } from "../modules/consultation/handleSubmitConsultation";
 import "../../src/index.scss";
-
+import { useDispatch, useSelector } from "react-redux";
+import { selectDidMount } from "../modules/state/stateSelectors";
+import { set } from "../modules/state/store";
 
 export function Consultation() {
-	const [didMount, setDidMount] = useState(false);
+	// const [didMount, setDidMount] = useState(false);
+	const didMount = useSelector(selectDidMount);
+	const dispatch = useDispatch();
 
 	useEffect(componentDidMount, []);
 	useEffect(componentDidUpdate);
@@ -130,7 +134,9 @@ export function Consultation() {
 	);
 
 	function componentDidMount() {
-		setDidMount(true);
+		// setDidMount(true);
+		let action = set.didMount(true);
+		dispatch(action);
 		console.log("The Consultation component mounted.");
 
 		const titleTag = document.getElementById("titleTag");
