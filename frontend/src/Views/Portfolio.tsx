@@ -8,9 +8,15 @@ import uxWriting from "../../assets/images/ux_writing.png";
 import wireframe from "../../assets/images/wireframe.png";
 import workflowDiagram from "../../assets/images/workflow_diagram.png";
 import "../index.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { selectDidMount } from "../modules/state/stateSelectors";
+import { set } from "../modules/state/store";
+import { Link } from "react-router";
 
 export function Portfolio() {
-	const [didMount, setDidMount] = useState(false);
+	// const [didMount, setDidMount] = useState(false);
+	const didMount = useSelector(selectDidMount);
+	const dispatch = useDispatch();
 
 	useEffect(componentDidMount, []);
 	useEffect(componentDidUpdate);
@@ -259,7 +265,7 @@ export function Portfolio() {
 					<div className="col">
 						<p>
 							For samples not represented here, please{" "}
-							<a href="contact.html#sendMessage">submit a request</a> by
+							<Link to="/contact#sendMessage">submit a request</Link> by
 							completing the form on my Contact page.
 						</p>
 					</div>
@@ -269,7 +275,9 @@ export function Portfolio() {
 	);
 
 	function componentDidMount() {
-		setDidMount(true);
+		// setDidMount(true);
+		let action = set.didMount(true);
+		dispatch(action);
 		console.log("The Portfolio component mounted.");
 
 		const titleTag = document.getElementById("titleTag");
