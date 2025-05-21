@@ -2,14 +2,8 @@ import dotenv from "dotenv";
 import { returnDynamoDBClient } from "./returnDynamoDBClient";
 import { GetCommandInput } from "@aws-sdk/lib-dynamodb";
 import { UserAccount } from "./UserAccount";
-// import path from "path";
-
-// const envPath = path.resolve(__dirname, "../../.env");
-// dotenv.config({ path: envPath });
-// console.log("envPath:", envPath);
 
 dotenv.config();
-
 
 export async function readUserAccount(
 	userAccount: UserAccount
@@ -20,7 +14,6 @@ export async function readUserAccount(
 		Key: { email: userAccount.email },
 	};
 
-	
 	const newClient = returnDynamoDBClient();
 	const response = await newClient.get(request);
 	const readResult = response.Item as UserAccount | undefined;

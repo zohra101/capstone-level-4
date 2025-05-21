@@ -10,17 +10,18 @@ export function returnDynamoDBClient(): DynamoDBDocument {
 		},
 	};
 
-	console.log(apiKey)
+	console.log(apiKey);
 
-	const client = new DynamoDB(apiKey);
-	let newClient = DynamoDBDocument.from(client);
+	// let newClient = DynamoDBDocument;
 
 	try {
-		newClient = DynamoDBDocument.from(client);
+		// Moved from original line 15
+		const client = new DynamoDB(apiKey);
+		let newClient = DynamoDBDocument.from(client);
+		// Moved fron original line 25
+		return newClient;
 	} catch (error) {
 		console.error("Error creating DynamoDBDocument:", error);
 		throw error; // Re-throw to see the crash details
 	}
-
-	return newClient;
 }
