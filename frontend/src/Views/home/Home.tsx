@@ -114,11 +114,11 @@ export function Home() {
 				</div>
 				<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1">
 					<div className="col mt-4">
-						<p>
+						{/* <p>
 							If my services seem like a good fit for your organization, please{" "}
 							<a href="contact.html#sendMessage">send a message</a> using the
 							Contact form.
-						</p>
+						</p> */}
 						<p>Thanks for visiting!</p>
 						<h2 className="signature ms-4 mt-2">Alex Marjanovic</h2>
 					</div>
