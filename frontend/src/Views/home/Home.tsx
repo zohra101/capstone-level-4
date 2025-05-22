@@ -17,15 +17,15 @@ export function Home() {
 
 	return (
 		<main id="homeMain">
-			<h1
-				id="mixin-welcome"
-				className="m-2"
-			>
-				Welcome
-			</h1>
-			<h3></h3>
-			<HandleQuoteOfTheDay />
-			<div className="container m-3">
+			<div className="container m-6">
+				<h1
+					id="mixin-welcome"
+					className="m-2"
+				>
+					Welcome
+				</h1>
+				<h3></h3>
+				<HandleQuoteOfTheDay />
 				<div
 					id="homeIntro"
 					className="row row-cols-2 row-cols-md-1 row-cols-lg-1"
@@ -62,7 +62,7 @@ export function Home() {
 					id="homeHelp"
 					className="row row-cols-2 row-cols-md-1 row-cols-lg-1"
 				>
-					<div className="col">
+					<div className="col mt-4">
 						<h3>How I can help</h3>
 						<p>
 							I'm a specialist at translating technology: creating and
@@ -93,7 +93,7 @@ export function Home() {
 					id="homeServices"
 					className="row row-cols-2 row-cols-md-1 row-cols-lg-1"
 				>
-					<div className="col">
+					<div className="col mt-4">
 						<h3>Services</h3>
 						<p>
 							Whether it's writing user manuals, creating process documentation,
@@ -108,12 +108,12 @@ export function Home() {
 					id="homeServicesList"
 					className="row row-cols-2 row-cols-md-1 row-cols-lg-1"
 				>
-					<div className="col">
+					<div className="col mt-2">
 						<ServicesListGroup />
 					</div>
 				</div>
 				<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1">
-					<div className="col">
+					<div className="col mt-4">
 						<p>
 							If my services seem like a good fit for your organization, please{" "}
 							<a href="contact.html#sendMessage">send a message</a> using the

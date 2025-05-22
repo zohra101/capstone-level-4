@@ -2,7 +2,7 @@ import React from "react";
 
 export function ServicesListGroup() {
 	return (
-		<div className="m-5 center">
+		<div className="m-6 center">
 			<div className="row">
 				<ul className="container list-group ms-3">
 					<li className="list-group-item list-group-item-color1 list-group-item-text1 boxShadowLI">

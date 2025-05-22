@@ -17,8 +17,8 @@ export function HandleQuoteOfTheDay() {
 	useEffect(componentDidUnmount, []);
 
 	return (
-		<div className="center">
-			<div className="card w-50 m-4 list-group-item-color1 boxShadow ">
+		<div className="ms-5 center">
+			<div className="card w-50 m-5 list-group-item-color1 boxShadow ">
 				<div className="card-header blockquote-header text-center">
 					<span className="badge text-bg-primary m-1">NEW!</span>
 					<i className="bi bi-book"></i> Quote of the Day
@@ -37,6 +37,7 @@ export function HandleQuoteOfTheDay() {
 					>
 						{author}
 					</footer>
+					<br />
 				</div>
 			</div>
 		</div>
