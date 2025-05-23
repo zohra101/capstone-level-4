@@ -5,6 +5,7 @@ import "../../../src/index.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { selectDidMount } from "../../modules/state/stateSelectors";
 import { set } from "../../modules/state/store";
+import { Link } from "react-router";
 
 export function Home() {
 	// const [didMount, setDidMount] = useState(false);
@@ -68,15 +69,11 @@ export function Home() {
 							I'm a specialist at translating technology: creating and
 							delivering information concisely, clearly, and effectively.
 							Bridging the gap between end users and technical experts,
-							primarily I create{" "}
-							<a href="portfolio.html#helpFile">help files</a>, design{" "}
-							<a href="portfolio.html#adminGuide">
-								{" "}
-								administrator and user guides
-							</a>
-							, and write <a href="portfolio.html#manual">manuals</a> that
-							explain how to use products or services. In addition to writing
-							the content, I also carefully select or create visual aids
+							primarily I create help files, design administrator and user guides, and write
+				manuals
+		
+							that explain how to use products or services. In addition to
+							writing the content, I also carefully select or create visual aids
 							(charts, diagrams, screenshots, etc.) that help readers understand
 							the information presented.
 						</p>
