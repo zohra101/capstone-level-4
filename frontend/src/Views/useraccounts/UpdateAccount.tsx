@@ -138,12 +138,13 @@ export function UpdateAccount() {
 								</div>
 							</div>
 						</form>
+						<output id="updateOutputTag">
+							{/* Display the feedback message state here */}
+							{messageToDisplay}
+						</output>
 					</div>
 				</div>
-				<output id="updateOutputTag">
-					{/* Display the feedback message state here */}
-					{messageToDisplay}
-				</output>
+
 				<br />
 			</div>
 		</main>
