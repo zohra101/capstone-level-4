@@ -1,9 +1,9 @@
 import axios from "axios";
 import { UserAccount } from "./UserAccount";
+import { lambdaUrl } from "../lambaUrl";
 
 const localPath = window.location.hostname;
 const localBackendURL = "http://localhost:9000";
-const lambdaUrl = process.env.REACT_APP_LAMBDA_URL;
 
 let baseUrl: string;
 
@@ -15,7 +15,7 @@ if (localPath === "localhost") {
 
 const backendRoute = "/delAccount";
 
-export async function delUserAccount(userAccount: UserAccount) {
+export async function delUserAccount(userAccount: UserAccount): Promise<string> {
 	console.log("createUserAccount called with:", userAccount);
 	console.log("Email to validate:", userAccount.email);
 

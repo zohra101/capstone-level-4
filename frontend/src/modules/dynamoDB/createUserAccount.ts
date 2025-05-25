@@ -5,7 +5,6 @@ import { lambdaUrl } from "../lambaUrl";
 const localPath = window.location.hostname;
 const localBackendURL = "http://localhost:9000";
 
-
 let baseUrl: string;
 
 if (localPath === "localhost") {

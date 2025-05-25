@@ -1,9 +1,9 @@
 import axios from "axios";
 import { UserAccount } from "./UserAccount";
+import { lambdaUrl } from "../lambaUrl";
 
 const localPath = window.location.hostname;
 const localBackendURL = "http://localhost:9000";
-const lambdaUrl = process.env.REACT_APP_LAMBDA_URL;
 
 let baseUrl: string;
 
@@ -15,7 +15,7 @@ if (localPath === "localhost") {
 
 const backendRoute = "/updateAccount";
 
-export async function updateUserAccount(userAccount: UserAccount) {
+export async function updateUserAccount(userAccount: UserAccount): Promise<string> {
 	console.log("updateUserAccount called with:", userAccount);
 	console.log("Email to validate:", userAccount.email);
 

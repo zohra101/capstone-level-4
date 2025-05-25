@@ -1,9 +1,9 @@
+import { lambdaUrl } from "../lambaUrl";
 import { UserAccount } from "./UserAccount";
 import axios from "axios";
 
 const localPath = window.location.hostname;
 const localBackendURL = "http://localhost:9000";
-const lambdaUrl = process.env.REACT_APP_LAMBDA_URL;
 
 let baseUrl: string;
 

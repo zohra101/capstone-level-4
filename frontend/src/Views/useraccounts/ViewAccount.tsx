@@ -15,15 +15,7 @@ export function ViewAccount() {
 	// State for displaying feedback messages from the backend
 	// const [feedbackMessage, setFeedbackMessage] = useState<string>("");
 	const account = useSelector(selectGlobalAccount);
-
-
-	// const [accountDetails, setAccountDetails] = useState<{
-	// 	email?: string;
-	// 	username?: string;
-	// 	name?: string;
-	// 	phone?: string;
-	// } | null>(null); // Initialize as null or an empty object
-
+	
 	// Lifecycle hooks
 	useEffect(componentDidMount, []);
 	useEffect(componentDidUpdate);
@@ -51,16 +43,7 @@ export function ViewAccount() {
 
 		// Call the frontend createUserAccount function and await the result
 		// Based on backend/frontend function return, this is expected to be a string message
-		const accountDetails = await readUserAccount(existingUserAccount);
-		// const feedbackMessage = `Email: ${existingUserAccount.email || "N/A"}
-		// 		 Username: ${existingUserAccount.username || "N/A"}
-		// 		 Name: ${existingUserAccount.name || "N/A"}
-		//          Phone: ${existingUserAccount.phone || "N/A"}`;
-
-		// Update the feedback message state with the result
-		// setFeedbackMessage(feedbackMessage); // Use the setter to update state
-		// setAccountDetails(accountDetails);
-
+		const accountDetails: string = await readUserAccount(existingUserAccount);
 		let action = set.globalAccount(accountDetails);
 		dispatch(action);
 	}

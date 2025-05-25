@@ -20,7 +20,7 @@ function allTests() {
 		expect(response).toBe("Your account updated successfully.");
 	});
 
-	it("throws an error for updating non-existing email address", async () => {
+	it("returns a message for updating non-existing email address", async () => {
 		//ARRANGE
 		const updatedAccount: UserAccount = {
 			email: "nonexistent@emails.com",
@@ -39,7 +39,7 @@ function allTests() {
 		);
 	});
 
-	it("throws an error if password is incorrect", async () => {
+	it("returns a message if password is incorrect", async () => {
 		//ARRANGE
 		const updatedAccount: UserAccount = {
 			email: "starfire8152@gmail.com", // already exists
@@ -56,7 +56,7 @@ function allTests() {
 		);
 	});
 
-	it("throws an error if user tries to update username", async () => {
+	it("returns a message if user tries to update username", async () => {
 		//ARRANGE
 		const updatedAccount: UserAccount = {
 			email: "starfire8152@gmail.com",
@@ -73,7 +73,7 @@ function allTests() {
 		);
 	});
 
-	it("throws an error for invalid email format", async () => {
+	it("returns a message for invalid email format", async () => {
 		//ARRANGE
 		const updatedAccount: UserAccount = {
 			email: "bademailformat.com",
