@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from "react";
 import "../../src/index.scss";
 import { useDispatch, useSelector } from "react-redux";
-import {
-	selectDidMount,
-} from "../modules/state/stateSelectors";
+import { set } from "../modules/state/store";
 import { CreateAccount } from "./useraccounts/CreateAccount";
 import { ViewAccount } from "./useraccounts/ViewAccount";
 import { UpdateAccount } from "./useraccounts/UpdateAccount";
 import { DeleteAccount } from "./useraccounts/DeleteAccount";
-import { set } from "../modules/state/store";
+import { selectAccountDidMount, selectComponent } from "../modules/state/stateSelectors";
 
 export function Account() {
 	// const [didMount, setDidMount] = useState(false);
-	const didMount = useSelector(selectDidMount);
-	// let component: any = useSelector(selectComponent);
-	const [selectedComponent, setSelectedComponent] =
-		useState(null); // Explicit type
-
+	const accountDidMount = useSelector(selectAccountDidMount);
 	const dispatch = useDispatch();
+
+	// const [selectedComponent, setSelectedComponent] = useState(null); // Explicit type
+	const component = useSelector(selectComponent);
 
 	useEffect(componentDidMount, []);
 	useEffect(componentDidUpdate);
@@ -31,14 +28,10 @@ export function Account() {
 		const updateAcct = inputs[2].checked;
 		const delAcct = inputs[3].checked;
 
-		let componentToShow: React.ReactNode | null = null;
-
-		if (createAcct) componentToShow = <CreateAccount />;
-		if (viewAcct) componentToShow = <ViewAccount />;
-		if (updateAcct) componentToShow = <UpdateAccount />;
-		if (delAcct) componentToShow = <DeleteAccount />;
-
-		setSelectedComponent(componentToShow);
+		if (createAcct) dispatch(set.component("create"));
+		if (viewAcct) dispatch(set.component("view"));
+		if (updateAcct) dispatch(set.component("update"));
+		if (delAcct) dispatch(set.component("delete"));
 	}
 
 	return (
@@ -89,7 +82,12 @@ export function Account() {
 					</div>
 					<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1">
 						<div className="col">
-							<output>{selectedComponent}</output>
+							<output>
+								{component === "create" && <CreateAccount />}
+								{component === "view" && <ViewAccount />}
+								{component === "update" && <UpdateAccount />}
+								{component === "delete" && <DeleteAccount />}
+							</output>
 						</div>
 					</div>
 				</div>
@@ -100,7 +98,7 @@ export function Account() {
 
 	function componentDidMount() {
 		// setDidMount(true);
-		let action = set.didMount(true);
+		let action = set.accountDidMount(true);
 		dispatch(action);
 		console.log("The Account component mounted.");
 
@@ -109,7 +107,7 @@ export function Account() {
 	}
 
 	function componentDidUpdate() {
-		if (didMount) console.log("The Account component updated.");
+		if (accountDidMount) console.log("The Account component updated.");
 	}
 
 	function componentDidUnmount() {

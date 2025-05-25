@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./AlexResume.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { selectDidMount } from "../modules/state/stateSelectors";
 import { set } from "../modules/state/store";
+import { selectAlexResumeDidMount } from "../modules/state/stateSelectors";
 
 export function AlexResume() {
 	// const [didMount, setDidMount] = useState(false);
-	const didMount = useSelector(selectDidMount);
+	const alexResumeDidMount = useSelector(selectAlexResumeDidMount);
 	const dispatch = useDispatch();
 
 	useEffect(componentDidMount, []);
@@ -282,7 +282,7 @@ export function AlexResume() {
 
 	function componentDidMount() {
 		// setDidMount(true);
-		let action = set.didMount(true);
+		let action = set.alexResumeDidMount(true);
 		dispatch(action);
 		console.log("The Resume component mounted.");
 
@@ -291,7 +291,7 @@ export function AlexResume() {
 	}
 
 	function componentDidUpdate() {
-		if (didMount) console.log("The Resume component updated.");
+		if (alexResumeDidMount) console.log("The Resume component updated.");
 	}
 
 	function componentDidUnmount() {

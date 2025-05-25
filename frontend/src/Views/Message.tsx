@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { handleSubmitEmail } from "../modules/email/handleSubmitEmail";
 import "../../src/index.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { selectDidMount } from "../modules/state/stateSelectors";
 import { set } from "../modules/state/store";
+import { selectMessageDidMount } from "../modules/state/stateSelectors";
 
 export function Message() {
 	// const [didMount, setDidMount] = useState(false);
-	const didMount = useSelector(selectDidMount);
+	const messageDidMount = useSelector(selectMessageDidMount);
 	const dispatch = useDispatch();
 
 	useEffect(componentDidMount, []);
@@ -118,7 +118,7 @@ export function Message() {
 
 	function componentDidMount() {
 		// setDidMount(true);
-		let action = set.didMount(true);
+		let action = set.messageDidMount(true);
 		dispatch(action);
 		console.log("The Send Message component mounted.");
 
@@ -132,7 +132,7 @@ export function Message() {
 	}
 
 	function componentDidUpdate() {
-		if (didMount) console.log("The Send Message component updated.");
+		if (messageDidMount) console.log("The Send Message component updated.");
 	}
 	function componentDidUnmount() {
 		return function displayMessage() {

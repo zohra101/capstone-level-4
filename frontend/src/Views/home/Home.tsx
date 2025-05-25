@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { HandleQuoteOfTheDay } from "./HandleQuoteOfTheDay";
 import { ServicesListGroup } from "./ServicesListGroup";
 import "../../../src/index.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { selectDidMount } from "../../modules/state/stateSelectors";
 import { set } from "../../modules/state/store";
-import { Link } from "react-router";
+import { selectHomeDidMount } from "../../modules/state/stateSelectors";
 
 export function Home() {
 	// const [didMount, setDidMount] = useState(false);
-	const didMount = useSelector(selectDidMount);
+	const homeDidMount = useSelector(selectHomeDidMount);
 	const dispatch = useDispatch();
 
 	useEffect(componentDidMount, []);
-	useEffect(componentDidUpdate, [didMount]);
+	useEffect(componentDidUpdate, [homeDidMount]);
 	useEffect(componentDidUnmount, []);
 
 	return (
@@ -126,7 +125,7 @@ export function Home() {
 
 	function componentDidMount() {
 		// setDidMount(true);
-		let action = set.didMount(true);
+		let action = set.homeDidMount(true);
 		dispatch(action);
 		console.log("The Home component mounted.");
 
@@ -135,7 +134,7 @@ export function Home() {
 	}
 
 	function componentDidUpdate() {
-		if (didMount) console.log("The Home component updated.");
+		if (homeDidMount) console.log("The Home component updated.");
 	}
 
 	function componentDidUnmount() {

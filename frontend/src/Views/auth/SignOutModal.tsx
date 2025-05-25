@@ -1,7 +1,9 @@
 import React, { FormEvent } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { set } from "../../modules/state/store";
 
-export function SignOutModal(props: any) {
-	const onSignOut = props.onSignOut;
+export function SignOutModal() {
+	const dispatch = useDispatch();
 
 	return (
 		<>
@@ -12,12 +14,11 @@ export function SignOutModal(props: any) {
 				data-bs-target="#signOutModal">
 				Sign Out
 			</button>
-
 			<form
 				onSubmit={handleSubmit}
 				className="modal fade"
 				id="signOutModal"
-				// tabIndex="-1"
+				tabIndex={-1}
 				aria-labelledby="signOutModalLabel"
 				aria-hidden="true">
 				<div className="modal-dialog modal-style">
@@ -60,6 +61,8 @@ export function SignOutModal(props: any) {
 		const inputs = event.target;
 		const closeButton = inputs[1];
 		closeButton.click();
-		onSignOut();
+		const action = set.globalAccount(undefined);
+		dispatch(action);
+		// onSignOut();
 	}
 }

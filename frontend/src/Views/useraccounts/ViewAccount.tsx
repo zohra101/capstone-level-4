@@ -2,19 +2,27 @@ import React, { useEffect, useState } from "react";
 import "../../index";
 import { readUserAccount } from "../../modules/dynamoDB/readUserAccount";
 import { UserAccount } from "../../modules/dynamoDB/UserAccount";
+import { useDispatch, useSelector } from "react-redux";
+import { selectGlobalAccount, selectViewAccountDidMount } from "../../modules/state/stateSelectors";
+import { set } from "../../modules/state/store";
 
 export function ViewAccount() {
 	// State for lifecycle tracking
-	const [didMount, setDidMount] = useState(false);
+	// const [viewAccountDidMount, setViewAccountDidMount] = useState(false);
+	const viewAccountDidMount = useSelector(selectViewAccountDidMount);
+	const dispatch = useDispatch();
 
 	// State for displaying feedback messages from the backend
 	// const [feedbackMessage, setFeedbackMessage] = useState<string>("");
-	const [accountDetails, setAccountDetails] = useState<{
-		email?: string;
-		username?: string;
-		name?: string;
-		phone?: string;
-	} | null>(null); // Initialize as null or an empty object
+	const account = useSelector(selectGlobalAccount);
+
+
+	// const [accountDetails, setAccountDetails] = useState<{
+	// 	email?: string;
+	// 	username?: string;
+	// 	name?: string;
+	// 	phone?: string;
+	// } | null>(null); // Initialize as null or an empty object
 
 	// Lifecycle hooks
 	useEffect(componentDidMount, []);
@@ -47,11 +55,14 @@ export function ViewAccount() {
 		// const feedbackMessage = `Email: ${existingUserAccount.email || "N/A"}
 		// 		 Username: ${existingUserAccount.username || "N/A"}
 		// 		 Name: ${existingUserAccount.name || "N/A"}
-        //          Phone: ${existingUserAccount.phone || "N/A"}`;
+		//          Phone: ${existingUserAccount.phone || "N/A"}`;
 
 		// Update the feedback message state with the result
 		// setFeedbackMessage(feedbackMessage); // Use the setter to update state
-		setAccountDetails(accountDetails);
+		// setAccountDetails(accountDetails);
+
+		let action = set.globalAccount(accountDetails);
+		dispatch(action);
 	}
 
 	return (
@@ -113,36 +124,36 @@ export function ViewAccount() {
 						<output id="viewOutputTag">
 							{/* Display the feedback message state here */}
 							{/* Display feedback in a Bootstrap card */}
-							{accountDetails && (
+							{account && (
 								<div className="card mt-3">
 									<div className="card-body">
 										<h5 className="card-title">Account Details</h5>
 										<div className="card-text">
-											{accountDetails.email && (
+											{account.email && (
 												<p className="mb-0">
-													<strong>Email:</strong> {accountDetails.email}
+													<strong>Email:</strong> {account.email}
 												</p>
 											)}
-											{accountDetails.username && (
+											{account.username && (
 												<p className="mb-0">
-													<strong>Username:</strong> {accountDetails.username}
+													<strong>Username:</strong> {account.username}
 												</p>
 											)}
-											{accountDetails.name && (
+											{account.name && (
 												<p className="mb-0">
-													<strong>Name:</strong> {accountDetails.name}
+													<strong>Name:</strong> {account.name}
 												</p>
 											)}
-											{accountDetails.phone && (
+											{account.phone && (
 												<p className="mb-0">
-													<strong>Phone:</strong> {accountDetails.phone}
+													<strong>Phone:</strong> {account.phone}
 												</p>
 											)}
 											{/* Fallback if no details are found */}
-											{!accountDetails.email &&
-												!accountDetails.username &&
-												!accountDetails.name &&
-												!accountDetails.phone && (
+											{!account.email &&
+												!account.username &&
+												!account.name &&
+												!account.phone && (
 													<p className="mb-0 text-muted">
 														No account details available.
 													</p>
@@ -161,7 +172,9 @@ export function ViewAccount() {
 
 	// Lifecycle functions
 	function componentDidMount() {
-		setDidMount(true);
+		// setViewAccountDidMount(true);
+		let action = set.viewAccountDidMount(true);
+		dispatch(action);
 		console.log("The Read Account component mounted.");
 
 		// Update the tab title when the component mounts
@@ -171,13 +184,11 @@ export function ViewAccount() {
 
 	function componentDidUpdate() {
 		// This useEffect runs on mount and every update if no dependency array or dependency array changes
-		if (didMount) console.log("The Read Account component updated.");
+		if (viewAccountDidMount) console.log("The Read Account component updated.");
 	}
 	function componentDidUnmount() {
 		return function displayMessage() {
-			console.log("The Read Account  component unmounted.");
+			console.log("The Read Account component unmounted.");
 		};
 	}
 }
-
-

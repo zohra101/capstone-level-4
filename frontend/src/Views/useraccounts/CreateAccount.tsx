@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from "react";
-import "../../index"
+import "../../index";
 import { createUserAccount } from "../../modules/dynamoDB/createUserAccount";
 import { UserAccount } from "../../modules/dynamoDB/UserAccount";
+import { useDispatch, useSelector } from "react-redux";
+import { set } from "../../modules/state/store";
+import {
+	selectViewAccountDidMount,
+	selectFeedbackMessage,
+} from "../../modules/state/stateSelectors";
 
 export function CreateAccount() {
 	// State for lifecycle tracking
-	const [didMount, setDidMount] = useState(false);
+	// const [didMount, setDidMount] = useState(false);
+	const createAccountDidMount = useSelector(selectViewAccountDidMount);
+	const dispatch = useDispatch();
 
 	// State for displaying feedback messages from the backend
-	const [feedbackMessage, setFeedbackMessage] = useState<string>("");
+	// const [feedbackMessage, setFeedbackMessage] = useState<string>("");
+	const messageToDisplay = useSelector(selectFeedbackMessage);
 
 	// Lifecycle hooks
 	useEffect(componentDidMount, []);
@@ -40,7 +49,10 @@ export function CreateAccount() {
 		const resultMessage = await createUserAccount(newUserAccount);
 
 		// Update the feedback message state with the result
-		setFeedbackMessage(resultMessage); // Use the setter to update state [13]
+		// setFeedbackMessage(resultMessage); // Use the setter to update state
+
+		let action = set.feedbackMessage(resultMessage);
+		dispatch(action);
 	}
 
 	return (
@@ -51,17 +63,11 @@ export function CreateAccount() {
 					<div className="col">
 						<h3 id="createAccount">Create an account</h3>
 						<p>
-							An account allows you to view consultation notes and proposals
-							for projects.
-				
-							To create an account, please complete the fields below and submit the form.
+							An account allows you to view consultation notes and proposals for
+							projects. To create an account, please complete the fields below
+							and submit the form.
 						</p>
 					</div>
-					{/* Output tag for displaying messages */}
-					<output id="createOutputTag">
-						{/* Display the feedback message state here */}
-						{feedbackMessage}
-					</output>
 				</div>
 				<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 center">
 					<div className="col">
@@ -151,6 +157,11 @@ export function CreateAccount() {
 								</div>
 							</div>
 						</form>
+						{/* Output tag for displaying messages */}
+						<output id="createOutputTag">
+							{/* Display the feedback message state here */}
+							{messageToDisplay}
+						</output>
 					</div>
 				</div>
 				<br />
@@ -161,7 +172,9 @@ export function CreateAccount() {
 	// Lifecycle functions
 
 	function componentDidMount() {
-		setDidMount(true);
+		// setDidMount(true);
+		let action = set.createAccountDidMount(true);
+		dispatch(action);
 		console.log("The Create Account component mounted.");
 
 		// Update the tab title when the component mounts
@@ -171,7 +184,8 @@ export function CreateAccount() {
 
 	function componentDidUpdate() {
 		// This useEffect runs on mount and every update if no dependency array or dependency array changes
-		if (didMount) console.log("The Create Account component updated.");
+		if (createAccountDidMount)
+			console.log("The Create Account component updated.");
 	}
 	function componentDidUnmount() {
 		return function displayMessage() {

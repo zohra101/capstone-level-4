@@ -3,7 +3,7 @@ import { NavLink } from "react-router";
 import { getRootPath } from "../../utils/getRootPath";
 import linkedInIcon from "../../../assets/icons/icon_linkedin.png";
 import emailIcon from "../../../assets/icons/icon_email_coral.png";
-// import { SignInArea } from "../auth/SignInArea";
+import { SignInArea } from "../auth/SignInArea";
 
 export function NavbarCollapsible() {
 	const rootPath = getRootPath();
@@ -111,7 +111,7 @@ export function NavbarCollapsible() {
 						</NavLink>
 					</div>
 				</div>
-				{/* <SignInArea /> */}
+				<SignInArea />
 			</div>
 		</nav>
 	);

@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { handleSubmitConsultation } from "../modules/consultation/handleSubmitConsultation";
 import "../../src/index.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { selectDidMount } from "../modules/state/stateSelectors";
 import { set } from "../modules/state/store";
+import { selectConsultationDidMount } from "../modules/state/stateSelectors";
 
 export function Consultation() {
 	// const [didMount, setDidMount] = useState(false);
-	const didMount = useSelector(selectDidMount);
+	const consultationDidMount = useSelector(selectConsultationDidMount);
 	const dispatch = useDispatch();
 
 	useEffect(componentDidMount, []);
@@ -15,6 +15,7 @@ export function Consultation() {
 	useEffect(componentDidUnmount, []);
 
 	//Chrome says invalid use of for with label on this page
+
 	return (
 		<main>
 			<div className="container m-3">
@@ -135,7 +136,7 @@ export function Consultation() {
 
 	function componentDidMount() {
 		// setDidMount(true);
-		let action = set.didMount(true);
+		let action = set.consultationDidMount(true);
 		dispatch(action);
 		console.log("The Consultation component mounted.");
 
@@ -144,7 +145,7 @@ export function Consultation() {
 	}
 
 	function componentDidUpdate() {
-		if (didMount) console.log("The Consultation component updated.");
+		if (consultationDidMount) console.log("The Consultation component updated.");
 	}
 
 	function componentDidUnmount() {

@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from "react";
 import axios, { AxiosResponse } from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { selectDidMount } from "../../modules/state/stateSelectors";
 import { set } from "../../modules/state/store";
+import { selectAuthor, selectQotdDidMount, selectQuote } from "../../modules/state/stateSelectors";
 
 export function HandleQuoteOfTheDay() {
 	// const [didMount, setDidMount] = useState(false);
-	const didMount = useSelector(selectDidMount);
-	const [quote, setQuote] = useState("");
-	const [author, setAUthor] = useState("");
+	const qotdDidMount = useSelector(selectQotdDidMount);
+
+	const quote = useSelector(selectQuote);
+	const author = useSelector(selectAuthor);
+
+	// const [quote, setQuote] = useState("");
+	// const [author, setAUthor] = useState("");
 
 	const dispatch = useDispatch();
 
 	useEffect(componentDidMount, []);
-	useEffect(componentDidUpdate, [didMount]);
+	useEffect(componentDidUpdate, [qotdDidMount]);
 	useEffect(componentDidUnmount, []);
 
 	return (
@@ -46,7 +50,7 @@ export function HandleQuoteOfTheDay() {
 	async function getQuote() {
 		const domain = window.location.hostname;
 		const isDeployed = domain === "zohra101.github.io"
-		// || domain === "d19khr1ql2iv95.cloudfront.net"
+		|| domain === "d19khr1ql2iv95.cloudfront.net"
 		;
 
 		let response: AxiosResponse;
@@ -59,27 +63,27 @@ export function HandleQuoteOfTheDay() {
 
 		const { quote, author } = response.data;
 		if (!response.data) {
-			setQuote(
+			dispatch(set.quote(
 				`“I have not failed. I've just found 10,000 ways that won't work.”`
-			);
-			setAUthor(`Thomas A. Edison`);
+			));
+			dispatch(set.author(`Thomas A. Edison`));
 		}
 		else {
-			setQuote(`"${quote}"`);
-			setAUthor(`${author}`);
+			dispatch(set.quote(quote));
+			dispatch(set.author(author));
 		};
 	}
 
 	function componentDidMount() {
 		// setDidMount(true);
-		let action = set.didMount(true);
+		let action = set.qotdDidMount(true);
 		dispatch(action);
 		getQuote();
 		console.log("The HandleQuoteOfTheDay component mounted.");
 	}
 
 	function componentDidUpdate() {
-		if (didMount) console.log("The HandleQuoteOfTheDay component updated.");
+		if (qotdDidMount) console.log("The HandleQuoteOfTheDay component updated.");
 	}
 
 	function componentDidUnmount() {

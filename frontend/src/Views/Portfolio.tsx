@@ -8,14 +8,15 @@ import uxWriting from "../../assets/images/ux_writing.png";
 import wireframe from "../../assets/images/wireframe.png";
 import workflowDiagram from "../../assets/images/workflow_diagram.png";
 import "../index.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { selectDidMount } from "../modules/state/stateSelectors";
-import { set } from "../modules/state/store";
 import { Link } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { set } from "../modules/state/store";
+import { selectPortfolioDidMount } from "../modules/state/stateSelectors";
+
 
 export function Portfolio() {
 	// const [didMount, setDidMount] = useState(false);
-	const didMount = useSelector(selectDidMount);
+	const portfolioDidMount = useSelector(selectPortfolioDidMount);
 	const dispatch = useDispatch();
 
 	useEffect(componentDidMount, []);
@@ -276,7 +277,7 @@ export function Portfolio() {
 
 	function componentDidMount() {
 		// setDidMount(true);
-		let action = set.didMount(true);
+		let action = set.portfolioDidMount(true);
 		dispatch(action);
 		console.log("The Portfolio component mounted.");
 
@@ -285,7 +286,7 @@ export function Portfolio() {
 	}
 
 	function componentDidUpdate() {
-		if (didMount) console.log("The Portfolio component updated.");
+		if (portfolioDidMount) console.log("The Portfolio component updated.");
 	}
 	function componentDidUnmount() {
 		return function displayMessage() {

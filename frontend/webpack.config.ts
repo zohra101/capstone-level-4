@@ -1,4 +1,5 @@
 import { Configuration } from "webpack";
+import Dotenv from "dotenv-webpack";
 
 export default {
 	//MODULES ARE CODE/FILES THAT ARE IMPORTED
@@ -34,4 +35,8 @@ export default {
 		historyApiFallback: true, //Provides support for SPAs by loading index.html on 404 errors
 		open: true, //Automatically opens a browser tab when starting Webpack Dev Server
 	},
+	plugins: [
+		new Dotenv({
+		systemvars: true,
+		})],
 } as Configuration;

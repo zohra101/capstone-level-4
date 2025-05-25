@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import alexHoli from "../../assets/images/alex.png";
 import "../index.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { selectDidMount } from "../modules/state/stateSelectors";
 import { set } from "../modules/state/store";
+import { selectAboutDidMount } from "../modules/state/stateSelectors";
 
 export function About() {
 	// const [didMount, setDidMount] = useState(false);
-	const didMount = useSelector(selectDidMount);
+	const aboutDidMount = useSelector(selectAboutDidMount);
 	const dispatch = useDispatch();
 
 	useEffect(componentDidMount, []);
@@ -110,7 +110,7 @@ export function About() {
 
 	function componentDidMount() {
 		// setDidMount(true);
-		let action = set.didMount(true);
+		let action = set.aboutDidMount(true);
 		dispatch(action);
 		console.log("The About component mounted.");
 
@@ -119,7 +119,7 @@ export function About() {
 	}
 
 	function componentDidUpdate() {
-		if (didMount) console.log("The About component updated.");
+		if (aboutDidMount) console.log("The About component updated.");
 	}
 
 	function componentDidUnmount() {

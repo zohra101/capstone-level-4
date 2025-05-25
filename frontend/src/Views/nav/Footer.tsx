@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import copyright from "../../../assets/icons/copyright_cGainsboro_nobg.png";
-import { TestBackend } from "../../../archive/TestBackend";
-import { AuthenticateDynamoDB } from "../../../archive/AuthenticateDynamoDB";
+import { useDispatch, useSelector } from "react-redux";
+import { set } from "../../modules/state/store";
+import { selectFooterDidMount } from "../../modules/state/stateSelectors";
 
 export function Footer() {
+
+	const footerDidMount = useSelector(selectFooterDidMount);
+	const dispatch = useDispatch();
+
+	useEffect(componentDidMount, []);
+	useEffect(componentDidUpdate, []);
+	useEffect(componentDidUnmount, []);
+
+
 	return (
 		<footer>
 			<hr />
@@ -17,12 +27,23 @@ export function Footer() {
 				/>{" "}
 				Aleksandra Marjanovic
 			</div>
-			{/* <div>
-				<TestBackend />
-			</div>
-			<div>
-				<AuthenticateDynamoDB/>
-			</div> */}
 		</footer>
 	);
+
+	function componentDidMount() {
+			let action = set.footerDidMount(true);
+			dispatch(action);
+			console.log("The Footer component mounted.");
+
+		}
+	
+		function componentDidUpdate() {
+			if (footerDidMount) console.log("The Footer component updated.");
+		}
+	
+		function componentDidUnmount() {
+			return () => {
+				console.log("The Footer component unmounted.");
+			};
+		}
 }

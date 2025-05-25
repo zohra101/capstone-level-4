@@ -1,15 +1,8 @@
-import { useState } from "react";
 import { readUserAccount } from "../modules/dynamoDB/readUserAccount";
 
 
-export async function handleSignInAttempt(
-	event: Event,
-	setErrorMessage: any,
-	onSignIn: any
-) {
-	event.preventDefault();
-	
-	debugger;
+export async function handleSignInAttempt(event: Event) {
+	// event.preventDefault();
 
 	const inputs = event.target as HTMLFormElement;
 	const emailInput = inputs[2] as HTMLInputElement;
@@ -21,22 +14,13 @@ export async function handleSignInAttempt(
 
 	console.log(email, password);
 
-	const [credentials = {email, password}, setCredentials] = useState(false);
+	const userAccount = {
+		email, password
+	}
 
-	// const userAccount = readUserAccount(setCredentials);
-	// console.log(userAccount);
+	const account = await readUserAccount(userAccount);
 
-	// const isAuthenticated = credentials.password === userAccount;
-	// console.log(isAuthenticated);
-	
-	// if (isAuthenticated) {
-	// 	closeButton.click();
-	// 	inputs.reset();
-	// 	onSignIn();
-	// } else
-	// 	setErrorMessage(
-	// 		"The email and password entered do not match any authorized login."
-	// 	);
+	return account || null;
 }
 
 

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { SignInContent } from "../../Views/auth/SignInContent";
 import { handleSignInAttempt } from "../../controllers/handleSignInAttempt";
+import { useDispatch, useSelector } from "react-redux";
+import { set } from "../../modules/state/store";
 
-export function SignInModal(props) {
-	const onSignIn = props.onSignIn;
+
+export function SignInModal() {
+	const dispatch = useDispatch();
 	const [errorMessage, setErrorMessage] = useState("");
 
 	return (
@@ -20,7 +23,7 @@ export function SignInModal(props) {
 				onSubmit={handleSubmit}
 				className="modal fade"
 				id="signInModal"
-				// tabIndex="-1"
+				tabIndex={-1}
 				aria-labelledby="signInModalLabel"
 				aria-hidden="true"
 			>
@@ -66,7 +69,15 @@ export function SignInModal(props) {
 		</>
 	);
 
-	function handleSubmit(event) {
-		handleSignInAttempt(event, setErrorMessage, onSignIn);
+	async function handleSubmit(event: any) {
+		event.preventDefault();
+		const account = await handleSignInAttempt(event as any);
+		if (account) {
+			const action = set.globalAccount(account);
+			dispatch(action);
+		} else
+			setErrorMessage(
+				"The email and password provided do not match an existing account."
+			);
 	}
 }

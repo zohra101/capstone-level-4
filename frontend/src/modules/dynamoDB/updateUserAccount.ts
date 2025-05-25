@@ -1,7 +1,18 @@
 import axios from "axios";
 import { UserAccount } from "./UserAccount";
 
-const backendURL = "http://localhost:9000";
+const localPath = window.location.hostname;
+const localBackendURL = "http://localhost:9000";
+const lambdaUrl = process.env.REACT_APP_LAMBDA_URL;
+
+let baseUrl: string;
+
+if (localPath === "localhost") {
+	baseUrl = localBackendURL;
+} else {
+	baseUrl = lambdaUrl;
+}
+
 const backendRoute = "/updateAccount";
 
 export async function updateUserAccount(userAccount: UserAccount) {
@@ -13,7 +24,7 @@ export async function updateUserAccount(userAccount: UserAccount) {
 	}
 
 	const emailToSend = userAccount.email === null ? "" : userAccount.email;
-	const url = `${backendURL}${backendRoute}?email=${emailToSend}&password=${userAccount.password}&&name=${userAccount.name}&phone=${userAccount.phone}`;
+	const url = `${localBackendURL}${backendRoute}?email=${emailToSend}&password=${userAccount.password}&&name=${userAccount.name}&phone=${userAccount.phone}`;
 
 	const response = await axios.get(url);
 	return response.data;

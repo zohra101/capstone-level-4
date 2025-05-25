@@ -1,11 +1,45 @@
+import { UserAccount } from "../dynamoDB/UserAccount";
+
 export const stateVariables = {
 	//Declare the state variables that this slice will use as key value pairs
-	didMount: false,
+
+	//Global
+	globalAccount: null as null | UserAccount,
+	globalAnswer: null as null | String,
+
+	//Local mount flags
+	aboutDidMount: false,
+	accountDidMount: false,
+	alexResumeDidMount: false,
+	consultationDidMount: false,
+	footerDidMount: false,
+	headerDidMount: false,
+	homeDidMount: false,
+	messageDidMount: false,
+	portfolioDidMount: false,
+	qotdDidMount: false,
+	createAccountDidMount: false,
+	deleteAccountDidMount: false,
+	updateAccountDidMount: false,
+	viewAccountDidMount: false,
+	signInAreaDidMount: false,
+	signInModalDidMount: false,
+	signOutAreaDidMount: false,
+
+	//AWS
+	isAuthenticated: false,
+
+	//Authentication
+	feedbackMessage: undefined,
+	signInButton: "<></>",
+	isSignedIn: false,
+	isSignedOut: false,
+	isActiveUser: true,
+
+	//API & UI
 	component: undefined,
-    isAuthenticated: false,
-    isSignedIn: false,
-    isSignedOut: false,
-    isActiveUser: true,
+	quote: undefined,
+	author: undefined,
 };
 
 export type StateVariables = typeof stateVariables;

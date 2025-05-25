@@ -1,7 +1,18 @@
 import axios from "axios";
 import { UserAccount } from "./UserAccount";
 
-const backendURL = "http://localhost:9000";
+const localPath = window.location.hostname;
+const localBackendURL = "http://localhost:9000";
+const lambdaUrl = process.env.REACT_APP_LAMBDA_URL;
+
+let baseUrl: string;
+
+if (localPath === "localhost") {
+	baseUrl = localBackendURL;
+} else {
+	baseUrl = lambdaUrl;
+}
+
 const backendRoute = "/delAccount";
 
 export async function delUserAccount(userAccount: UserAccount) {
@@ -17,7 +28,7 @@ export async function delUserAccount(userAccount: UserAccount) {
 		}
 
 	const emailToSend = userAccount.email === null ? "" : userAccount.email;
-	const url = `${backendURL}${backendRoute}?email=${emailToSend}&password=${userAccount.password}`;
+	const url = `${localBackendURL}${backendRoute}?email=${emailToSend}&password=${userAccount.password}`;
 
 	const response = await axios.get(url);
 	return response.data;

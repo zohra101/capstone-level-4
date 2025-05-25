@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import siteHeader from "../../../assets/images/siteHeader_4kp_rev2.png";
 import { useNavigate } from "react-router";
 import { getRootPath } from "../../utils/getRootPath";
+import { useDispatch, useSelector } from "react-redux";
+import { set } from "../../modules/state/store";
 
 declare global {
 	interface Window {
@@ -29,16 +31,18 @@ export function ImageMap() {
 			/>
 			<map name="tc-image-map">
 				<area
-					title="portfolio"
+					title="message"
 					coords="634,305,382"
 					shape="circle"
-					onClick={() => navigateTo(`${rootPath}/portfolio`)}
+					href="#" //Required for cursor to change
+					onClick={() => navigateTo(`${rootPath}/message`)}
 				></area>
 				<area
-					title="contact"
+					title="portfolio"
 					coords="2851,294,300"
 					shape="circle"
-					onClick={() => navigateTo(`${rootPath}/contact`)}
+					href="#" //Required for cursor to change
+					onClick={() => navigateTo(`${rootPath}/portfolio`)}
 				></area>
 			</map>
 		</div>

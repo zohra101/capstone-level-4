@@ -1,9 +1,10 @@
 import axios from "axios";
 import { UserAccount } from "./UserAccount";
+import { lambdaUrl } from "../lambaUrl";
 
 const localPath = window.location.hostname;
 const localBackendURL = "http://localhost:9000";
-const lambdaUrl = process.env.REACT_APP_LAMBDA_URL;
+
 
 let baseUrl: string;
 
@@ -12,9 +13,10 @@ if (localPath === "localhost") {
 } else {
 	baseUrl = lambdaUrl;
 }
+
 const backendRoute = "/createAccount";
 
-export async function createUserAccount(userAccount: UserAccount) {
+export async function createUserAccount(userAccount: UserAccount): Promise<string> {
 	console.log("createUserAccount called with:", userAccount);
 	console.log("Email to validate:", userAccount.email);
 
@@ -23,7 +25,7 @@ export async function createUserAccount(userAccount: UserAccount) {
 	}
 
 	const emailToSend = userAccount.email === null ? "" : userAccount.email;
-    const url = `${baseUrl}${backendRoute}?email=${emailToSend}&password=${userAccount.password}`;
+	const url = `${baseUrl}${backendRoute}?email=${emailToSend}&password=${userAccount.password}`;
 
 	const response = await axios.get(url);
 	return response.data;
