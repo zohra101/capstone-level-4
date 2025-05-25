@@ -1,0 +1,6 @@
+{
+	"compilerOptions": {
+		"module": "Preserve", //Allows use of mixed import/export versions
+		"types": ["vitest/globals"], //DECLARES TEST FUNCTIONS FOR TYPESCRIPT. LIST OF FOLDERS THAT HAVE DECLARATION FILES.
+	}
+}
