@@ -5,6 +5,11 @@ export function selectGlobalAccount(state: StateVariables): UserAccount | null {
 	return state.globalAccount;
 }
 
+export function selectGlobalAnswer(state: StateVariables) {
+	const { globalAnswer } = state;
+	return globalAnswer;
+}
+
 export function selectAboutDidMount(state: StateVariables): boolean {
 	return state.aboutDidMount;
 }
