@@ -1,0 +1,1 @@
+export const cloudFrontUrl = "d19khr1ql2iv95.cloudfront.net";

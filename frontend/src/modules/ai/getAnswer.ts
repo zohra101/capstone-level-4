@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
-import { appEngineUrl } from "./appEngineUrl";
 import { gitPageseUrl } from "./gitPageseUrl"; // Assuming you have this in a separate file or define it here
+import { cloudFrontUrl } from "./cloudFrontUrl";
 
 export async function getAnswer(
 	userQuestion: string,
@@ -19,7 +19,7 @@ export async function getAnswer(
 		baseUrl = gitPageseUrl;
 	} else {
 		// Default to App Engine URL for other deployed environments (e.g., your custom domain for App Engine)
-		baseUrl = appEngineUrl;
+		baseUrl = cloudFrontUrl;
 	}
 
 	const backendRoute = "ai"; // Assuming 'ai' is the correct route segment
