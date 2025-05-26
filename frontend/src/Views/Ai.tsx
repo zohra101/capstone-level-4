@@ -44,7 +44,7 @@ export function Ai() {
 					</form>
 				</div>
 				<br />
-				<div>{answer}</div>
+				<div>{answer}.</div>
 				<br />
 			</div>
 		</>

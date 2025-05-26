@@ -46,5 +46,5 @@ export async function getAnswer(
 	if (!answer) {
 		answer = "Sorry, I don't know the answer to this question.";
 	}
-	return answer;
+	return `The answer is: ${answer}`;
 }
