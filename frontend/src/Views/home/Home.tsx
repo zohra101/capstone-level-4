@@ -5,6 +5,7 @@ import "../../../src/index.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { set } from "../../modules/state/store";
 import { selectHomeDidMount } from "../../modules/state/stateSelectors";
+import { Ai } from "../Ai";
 
 export function Home() {
 	// const [didMount, setDidMount] = useState(false);
@@ -25,12 +26,11 @@ export function Home() {
 					Welcome
 				</h1>
 				<h3></h3>
-				<HandleQuoteOfTheDay />
 				<div
 					id="homeIntro"
 					className="row row-cols-2 row-cols-md-1 row-cols-lg-1"
 				>
-					<div className="col">
+					<div className="col mb-3">
 						<p>
 							Hi, I'm Alex Marjanovic, a technical communicator based out of
 							Baton Rouge, LA. Originally from New Jersey, I moved south to
@@ -59,6 +59,15 @@ export function Home() {
 					</div>
 				</div>
 				<div
+					id="homeFeatures"
+					className="row row-cols-2"
+				>
+					<div className="col">
+						<Ai />
+					</div>
+					{/* <div className="col"><HandleQuoteOfTheDay /></div> */}
+				</div>
+				<div
 					id="homeHelp"
 					className="row row-cols-2 row-cols-md-1 row-cols-lg-1"
 				>
@@ -68,13 +77,11 @@ export function Home() {
 							I'm a specialist at translating technology: creating and
 							delivering information concisely, clearly, and effectively.
 							Bridging the gap between end users and technical experts,
-							primarily I create help files, design administrator and user guides, and write
-				manuals
-		
-							that explain how to use products or services. In addition to
-							writing the content, I also carefully select or create visual aids
-							(charts, diagrams, screenshots, etc.) that help readers understand
-							the information presented.
+							primarily I create help files, design administrator and user
+							guides, and write manuals that explain how to use products or
+							services. In addition to writing the content, I also carefully
+							select or create visual aids (charts, diagrams, screenshots, etc.)
+							that help readers understand the information presented.
 						</p>
 						<p>
 							During my career in information techonology, I've worked for and
