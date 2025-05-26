@@ -8,7 +8,6 @@ import { selectHomeDidMount } from "../../modules/state/stateSelectors";
 import { Ai } from "../Ai";
 
 export function Home() {
-	// const [didMount, setDidMount] = useState(false);
 	const homeDidMount = useSelector(selectHomeDidMount);
 	const dispatch = useDispatch();
 

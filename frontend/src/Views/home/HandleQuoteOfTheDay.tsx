@@ -2,7 +2,13 @@ import React, { useEffect } from "react";
 import axios, { AxiosResponse } from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { set } from "../../modules/state/store";
-import { selectAuthor, selectQotdDidMount, selectQuote } from "../../modules/state/stateSelectors";
+import {
+	selectAuthor,
+	selectQotdDidMount,
+	selectQuote,
+} from "../../modules/state/stateSelectors";
+import { cloudFrontUrl } from "./cloudFrontUrl";
+import { data } from "react-router";
 
 export function HandleQuoteOfTheDay() {
 	// const [didMount, setDidMount] = useState(false);
@@ -49,29 +55,39 @@ export function HandleQuoteOfTheDay() {
 
 	async function getQuote() {
 		const domain = window.location.hostname;
-		const isDeployed = domain === "zohra101.github.io"
-		|| domain === "d19khr1ql2iv95.cloudfront.net"
-		;
+		const localBackendURL = "http://localhost:9000";
+
+		let baseUrl: string;
+
+		if (domain === "localhost") {
+			baseUrl = localBackendURL;
+		} else {
+			baseUrl = cloudFrontUrl;
+		}
+
+		const backendRoute = "/favqApiResponse";
+		const isDeployed =
+			domain === "zohra101.github.io" ||
+			domain === cloudFrontUrl;
 
 		let response: AxiosResponse;
 
-		if (isDeployed)
-			response = await axios.get(
-				"https://pva375oymcqo2jvjv73hn5zere0rastx.lambda-url.us-east-2.on.aws/favqApiResponse"
-			);
-		else response = await axios.get("http://localhost:9000/favqApiResponse");
-
 		const { quote, author } = response.data;
+
+		if (isDeployed) response = await axios.post(`${baseUrl}${backendRoute}`, data);
+		else response = await axios.post(`${backendRoute}`, data);
+
 		if (!response.data) {
-			dispatch(set.quote(
-				`“I have not failed. I've just found 10,000 ways that won't work.”`
-			));
+			dispatch(
+				set.quote(
+					`“I have not failed. I've just found 10,000 ways that won't work.”`
+				)
+			);
 			dispatch(set.author(`Thomas A. Edison`));
-		}
-		else {
+		} else {
 			dispatch(set.quote(quote));
 			dispatch(set.author(author));
-		};
+		}
 	}
 
 	function componentDidMount() {

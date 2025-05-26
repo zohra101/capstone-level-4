@@ -1,6 +1,5 @@
 // USE DEFAULT IMPORTS (INSTEAD OF NAMED IMPORTS) FOR ASSETS
 import React from "react";
-// import "./Home.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { selectGlobalAnswer } from "../modules/state/stateSelectors";
 import { set } from "../modules/state/store";
