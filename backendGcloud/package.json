@@ -7,7 +7,7 @@
 		"deploy": "gcloud app deploy ./dist/app.yaml",
 		"--------": "-------------------",
 		"build-production": "npx webpack --mode=production",
-		"open-live": "npx open-cli https://lithe-sonar-458919-c0.uc.r.appspot.com",
+		"open-live": "npx open-cli https://alexm-capstone-leve4.uc.r.appspot.com/",
 		"open-tab": "npx open-cli http://localhost:9000",
 		"close-port": "npx kill-port 9000",
 		"start-server": "npx nodemon ./dist/main.js",
