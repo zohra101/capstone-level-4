@@ -3,8 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectGlobalAnswer } from "../modules/state/stateSelectors";
 import { set } from "../modules/state/store";
-import { getAnswer } from "../modules/ai/getAnswer";
-
+import { getAnswer } from "../../archive/getAnswer.old";
 
 export function Ai() {
 	const answer = useSelector(selectGlobalAnswer);

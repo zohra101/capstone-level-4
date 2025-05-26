@@ -61,27 +61,21 @@ export function HandleQuoteOfTheDay() {
 
 		if (domain === "localhost") {
 			baseUrl = localBackendURL;
-		} else 
-		if (domain === "zohra101.github.io") {
-			baseUrl = "zohra101.github.io";
-		}
-		else {
+		} else {
 			baseUrl = cloudFrontUrl;
 		}
 
 		const backendRoute = "/favqApiResponse";
-
 		const isDeployed =
 			domain === "zohra101.github.io" ||
 			domain === cloudFrontUrl;
 
 		let response: AxiosResponse;
 
-		if (isDeployed) response = await axios.get(`${baseUrl}${backendRoute}`);
-		else response = await axios.get(`${localBackendURL}${backendRoute}`);
+		if (isDeployed) response = await axios.post(`${baseUrl}${backendRoute}`, data);
+		else response = await axios.post(`${backendRoute}`, data);
 
 		const { quote, author } = response.data;
-		
 		if (!response.data) {
 			dispatch(
 				set.quote(

@@ -64,7 +64,7 @@ export function Home() {
 					<div className="col">
 						<Ai />
 					</div>
-					<div className="col"><HandleQuoteOfTheDay /></div>
+					{/* <div className="col"><HandleQuoteOfTheDay /></div> */}
 				</div>
 				<div
 					id="homeHelp"
