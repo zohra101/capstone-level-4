@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 // import { HandleQuoteOfTheDay } from "./HandleQuoteOfTheDay";
-import { ServicesListGroup } from "./ServicesListGroup";
+// import { ServicesListGroup } from "./ServicesListGroup";
 import "../../../src/index.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { set } from "../../modules/state/store";
@@ -111,7 +111,7 @@ export function Home() {
 					className="row row-cols-2 row-cols-md-1 row-cols-lg-1"
 				>
 					<div className="col mt-2">
-						<ServicesListGroup />
+						{/* <ServicesListGroup /> */}
 					</div>
 				</div>
 				<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1">
