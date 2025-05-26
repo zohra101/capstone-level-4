@@ -5,6 +5,7 @@ import "../../../src/index.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { set } from "../../modules/state/store";
 import { selectHomeDidMount } from "../../modules/state/stateSelectors";
+import { Ai } from "../Ai";
 
 export function Home() {
 	// const [didMount, setDidMount] = useState(false);
@@ -25,6 +26,7 @@ export function Home() {
 					Welcome
 				</h1>
 				<h3></h3>
+				<Ai />
 				<HandleQuoteOfTheDay />
 				<div
 					id="homeIntro"
