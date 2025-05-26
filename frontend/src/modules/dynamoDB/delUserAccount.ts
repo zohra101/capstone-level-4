@@ -1,6 +1,6 @@
 import axios from "axios";
 import { UserAccount } from "./UserAccount";
-import { lambdaUrl } from "../lambaUrl";
+import { lambdaUrl } from "./lambaUrl";
 
 const localPath = window.location.hostname;
 const localBackendURL = "http://localhost:9000";
@@ -15,17 +15,19 @@ if (localPath === "localhost") {
 
 const backendRoute = "/delAccount";
 
-export async function delUserAccount(userAccount: UserAccount): Promise<string> {
+export async function delUserAccount(
+	userAccount: UserAccount
+): Promise<string> {
 	console.log("createUserAccount called with:", userAccount);
 	console.log("Email to validate:", userAccount.email);
 
-    if (
-			userAccount.email === null ||
-			userAccount.email === "" ||
-			userAccount.email === undefined
-		) {
-			return "Please enter the email address of the account you wish to delete.";
-		}
+	if (
+		userAccount.email === null ||
+		userAccount.email === "" ||
+		userAccount.email === undefined
+	) {
+		return "Please enter the email address of the account you wish to delete.";
+	}
 
 	const emailToSend = userAccount.email === null ? "" : userAccount.email;
 	const url = `${localBackendURL}${backendRoute}?email=${emailToSend}&password=${userAccount.password}`;

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { UserAccount } from "./UserAccount";
-import { lambdaUrl } from "../lambaUrl";
+import { lambdaUrl } from "./lambaUrl";
 
 const localPath = window.location.hostname;
 const localBackendURL = "http://localhost:9000";
@@ -15,7 +15,9 @@ if (localPath === "localhost") {
 
 const backendRoute = "/createAccount";
 
-export async function createUserAccount(userAccount: UserAccount): Promise<string> {
+export async function createUserAccount(
+	userAccount: UserAccount
+): Promise<string> {
 	console.log("createUserAccount called with:", userAccount);
 	console.log("Email to validate:", userAccount.email);
 

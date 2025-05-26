@@ -1,4 +1,4 @@
-import { lambdaUrl } from "../lambaUrl";
+import { lambdaUrl } from "./lambaUrl";
 import { UserAccount } from "./UserAccount";
 import axios from "axios";
 
@@ -15,11 +15,12 @@ if (localPath === "localhost") {
 
 const backendRoute = "/readAccount";
 
-export async function readUserAccount(userAccount: UserAccount): Promise<string> {
+export async function readUserAccount(
+	userAccount: UserAccount
+): Promise<string> {
 	const { email, password } = userAccount;
-    const url = `${localBackendURL}${backendRoute}?email=${email}&password=${password}`;
+	const url = `${localBackendURL}${backendRoute}?email=${email}&password=${password}`;
 
 	const response = await axios.get(url);
 	return response.data;
 }
-
