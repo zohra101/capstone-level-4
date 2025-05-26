@@ -13,7 +13,7 @@ export async function getAnswer(userQuestion: string, userContext: string): Prom
 		baseUrl = appEngineUrl;
 	}
 
-	const backendRoute = "/ai";
+	const backendRoute = "ai";
 	const isDeployed = domain === "zohra101.github.io" || domain === appEngineUrl;
 
     let response: AxiosResponse<any>;
