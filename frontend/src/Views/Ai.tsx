@@ -14,22 +14,39 @@ export function Ai() {
 	return (
 		<>
 			<div>
-				<h1 id="aiTitle">Use the AI to answer a question</h1>
-				<form onSubmit={handleSubmit}>
-					Question: <br />
-					<input
-						name="question"
-						defaultValue="What is my name?"
-					/>
-					Context: <br />
-					<textarea
-						name="context"
-						defaultValue="My name is Alex."
-					></textarea>
-					<br />
-					<input type="submit" />
-				</form>
-				{answer}
+				<h1
+					id="aiTitle"
+					className="aiTitle"
+				>
+					Use the AI to answer a question
+				</h1>
+				<div className="mt-3">
+					<form onSubmit={handleSubmit}>
+						<div>
+							Question: <br />
+							<input
+								name="question"
+								defaultValue="What is my name?"
+							/>
+						</div>
+						<br />
+						<div>
+							Context: <br />
+							<textarea
+								name="context"
+								defaultValue="My name is Alex."
+							></textarea>
+							<br />
+						</div>
+						<div>
+							<br />
+							<input type="submit" />
+						</div>
+					</form>
+				</div>
+				<br />
+				<div>{answer}</div>
+				<br />
 			</div>
 		</>
 	);

@@ -26,7 +26,7 @@ export function About() {
 							About this website
 						</h3>
 					</div>
-					<div className="col-12 ">
+					<div className="col-12">
 						<p>
 							I created this website using CSS, HTML, and JavaScript, storing my
 							code in GitHub and using VS Code for coding and debugging. For
