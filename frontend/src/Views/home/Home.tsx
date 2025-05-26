@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-// import { HandleQuoteOfTheDay } from "./HandleQuoteOfTheDay";
+import { HandleQuoteOfTheDay } from "./HandleQuoteOfTheDay";
 import { ServicesListGroup } from "./ServicesListGroup";
 import "../../../src/index.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -64,7 +64,7 @@ export function Home() {
 					<div className="col">
 						<Ai />
 					</div>
-					{/* <div className="col"><HandleQuoteOfTheDay /></div> */}
+					<div className="col"><HandleQuoteOfTheDay /></div>
 				</div>
 				<div
 					id="homeHelp"

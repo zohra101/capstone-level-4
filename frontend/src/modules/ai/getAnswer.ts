@@ -24,7 +24,7 @@ export async function getAnswer(
         ;
 	}
 
-	const backendRoute = "ai"; // Assuming 'ai' is the correct route segment
+	const backendRoute = "ai";
 
 	// For axios.post, we'll always use the determined baseUrl.
 	// The `isDeployed` variable is now redundant in this structure,
