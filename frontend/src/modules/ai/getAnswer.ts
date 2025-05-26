@@ -16,7 +16,7 @@ export async function getAnswer(
 		baseUrl = localBackendURL;
 	} else if (domain === "zohra101.github.io") {
 		// New condition for GitHub Pages
-		baseUrl = gitPageseUrl;
+		baseUrl = cloudFrontUrl;
 	} else {
 		// Default to App Engine URL for other deployed environments (e.g., your custom domain for App Engine)
 		baseUrl = cloudFrontUrl;
