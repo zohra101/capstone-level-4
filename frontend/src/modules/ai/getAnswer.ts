@@ -15,12 +15,13 @@ export async function getAnswer(
 	// Determine the base URL based on the current domain
 	if (domain === "localhost") {
 		baseUrl = localBackendURL;
-	} else if (domain === "zohra101.github.io") {
-		// New condition for GitHub Pages
-		baseUrl = appEngineUrl;
+	// } else if (domain === "zohra101.github.io") {
+	// 	// New condition for GitHub Pages
+		// baseUrl = appEngineUrl;
 	} else {
 		// Default to App Engine URL for other deployed environments (e.g., your custom domain for App Engine)
-		baseUrl = cloudFrontUrl;
+		baseUrl = baseUrl = appEngineUrl;
+        ;
 	}
 
 	const backendRoute = "ai"; // Assuming 'ai' is the correct route segment
