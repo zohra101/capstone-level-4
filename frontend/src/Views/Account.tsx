@@ -9,11 +9,9 @@ import { DeleteAccount } from "./useraccounts/DeleteAccount";
 import { selectAccountDidMount, selectComponent } from "../modules/state/stateSelectors";
 
 export function Account() {
-	// const [didMount, setDidMount] = useState(false);
 	const accountDidMount = useSelector(selectAccountDidMount);
 	const dispatch = useDispatch();
 
-	// const [selectedComponent, setSelectedComponent] = useState(null); // Explicit type
 	const component = useSelector(selectComponent);
 
 	useEffect(componentDidMount, []);
@@ -97,7 +95,6 @@ export function Account() {
 	);
 
 	function componentDidMount() {
-		// setDidMount(true);
 		let action = set.accountDidMount(true);
 		dispatch(action);
 		console.log("The Account component mounted.");

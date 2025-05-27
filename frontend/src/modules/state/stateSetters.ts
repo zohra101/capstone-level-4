@@ -138,9 +138,9 @@ export const stateSetters = {
 		state.signInAreaDidMount = newValue;
 	},
 
-	signInButton: function (state: StateVariables, action: ActionString) {
+	signInAreaButton: function (state: StateVariables, action: ActionString) {
 		const newValue = action.payload;
-		state.signInButton = newValue;
+		state.signInAreaButton = newValue;
 	},
 
 	isActiveUser: function (state: StateVariables, action: ActionBoolean) {

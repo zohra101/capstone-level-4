@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { SignInContent } from "../../Views/auth/SignInContent";
 import { handleSignInAttempt } from "../../controllers/handleSignInAttempt";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { set } from "../../modules/state/store";
 
 
@@ -9,7 +9,6 @@ export function SignInModal() {
 	const dispatch = useDispatch();
 	const [errorMessage, setErrorMessage] = useState("");
 	
-
 	return (
 		<>
 			<button

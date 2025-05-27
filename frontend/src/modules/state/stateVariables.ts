@@ -31,7 +31,7 @@ export const stateVariables = {
 
 	//Authentication
 	feedbackMessage: undefined,
-	signInButton: "<></>",
+	signInAreaButton: "<></>",
 	isSignedIn: false,
 	isSignedOut: false,
 	isActiveUser: true,

@@ -34,7 +34,6 @@ export function selectHomeDidMount(state: StateVariables): boolean {
 	return state.homeDidMount;
 }
 
-
 export function selectMessageDidMount(state: StateVariables): boolean {
 	return state.messageDidMount;
 }
@@ -99,8 +98,8 @@ export function selectSignInAreaDidMount(state: StateVariables): boolean {
 	return state.signInAreaDidMount;
 }
 
-export function selectSignInButton(state: StateVariables): string {
-	return state.signInButton;
+export function selectSignInAreaButton(state: StateVariables): string {
+	return state.signInAreaButton;
 }
 
 export function selectIsActiveUser(state: StateVariables): boolean {

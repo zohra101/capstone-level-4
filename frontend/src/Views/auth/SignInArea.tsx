@@ -4,26 +4,34 @@ import { SignOutModal } from "../auth/SignOutModal";
 import { useDispatch, useSelector } from "react-redux";
 import { set } from "../../modules/state/store";
 import {
+	selectComponent,
 	selectGlobalAccount,
+	selectSignInAreaButton,
 	selectSignInAreaDidMount,
 } from "../../modules/state/stateSelectors";
 
 export function SignInArea() {
 	const account = useSelector(selectGlobalAccount);
-	const [button, setButton] = useState(<></>);
+	const component = useSelector(selectComponent);
 	const signInAreaDidMount = useSelector(selectSignInAreaDidMount);
-
+	const signInAreaButton = useSelector(selectSignInAreaButton);
 	const dispatch = useDispatch();
 
 	useEffect(componentDidMount, []);
 	useEffect(componentDidUpdate, [account]);
 
-	return <>{button}</>;
+	return (
+		<>
+			{signInAreaButton}
+			{component ? React.createElement(component) : null}
+		</>
+	);
 
 	function componentDidMount() {
 		console.log("MOUNT PHASE: SignInArea");
-		if (account) setButton(<SignOutModal />);
-		else setButton(<SignInModal />);
+		set.signInAreaButton;
+		if (account) dispatch(set.component(SignOutModal));
+		else dispatch(set.component(SignInModal));
 		let action = set.signInAreaDidMount(true);
 		dispatch(action);
 	}
@@ -31,8 +39,8 @@ export function SignInArea() {
 	function componentDidUpdate() {
 		if (signInAreaDidMount) {
 			console.log("UPDATE PHASE: SignInArea");
-			if (account) setButton(<SignOutModal />);
-			else setButton(<SignInModal />);
+			if (account) dispatch(set.component(SignOutModal));
+			else dispatch(set.component(SignInModal));
 		}
 	}
 }
