@@ -23,10 +23,7 @@ const port = 9000; //Common backend ports are 3000, 8080, 9000
 const app = express(); //Instantiate an express.js object
 app.use(cors());
 app.get("/", root); //The handler runs when the path is visited in the URL
-// app.get("/backend", backend); //The handler runs when the path is visited in the URL
 app.get("/favqApiResponse", favqApiResponse); //The handler runs when the path is visited in the URL
-// app.get("/authDynamoDB", authDynamoDB); //The handler runs when the path is visited in the URL
-// app.get("/readDynamoDBClient", readDynamoDBClient); //The handler runs when the path is visited in the URL
 
 app.get("/createAccount", createAccount); //The handler runs when the path is visited in the URL
 app.get("/readAccount", readAccount); //The handler runs when the path is visited in the URL
@@ -37,6 +34,13 @@ app.get("/delAccount", delAccount); //The handler runs when the path is visited 
 // app.post("/readAccount", readAccount); //The handler runs when the path is visited in the URL
 // app.post("/updateAccount", updateAccount); //The handler runs when the path is visited in the URL
 // app.post("/delAccount", delAccount); //The handler runs when the path is visited in the URL
+
+app.use((req, res, next) => {
+	console.warn(
+		`Backend: No matching route found for ${req.method} ${req.originalUrl}.`
+	);
+	res.status(404).send("Cannot " + req.method + " " + req.originalUrl);
+});
 
 console.log("Current mode:", process.env.mode); // Force logging the mode
 
