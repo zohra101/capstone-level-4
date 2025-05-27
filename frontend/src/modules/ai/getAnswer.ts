@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
-import { gitPageseUrl } from "./gitPageseUrl"; // Assuming you have this in a separate file or define it here
-import { cloudFrontUrl } from "./cloudFrontUrl";
-import { appEngineUrl } from "./appEngineUrl";
+import { gitPageseUrl } from "../gitPageseUrl"; // Assuming you have this in a separate file or define it here
+import { cloudFrontUrl } from "../cloudFrontUrl";
+import { appEngineUrl } from "../appEngineUrl";
 
 export async function getAnswer(
 	userQuestion: string,

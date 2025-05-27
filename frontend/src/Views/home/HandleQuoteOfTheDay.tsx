@@ -7,8 +7,8 @@ import {
 	selectQotdDidMount,
 	selectQuote,
 } from "../../modules/state/stateSelectors";
-import { cloudFrontUrl } from "./cloudFrontUrl";
-import { data } from "react-router";
+import { lambdaUrl } from "../../modules/lambaUrl";
+import { cloudFrontUrl } from "../../modules/cloudFrontUrl";
 
 export function HandleQuoteOfTheDay() {
 	// const [didMount, setDidMount] = useState(false);
@@ -62,7 +62,7 @@ export function HandleQuoteOfTheDay() {
 		if (domain === "localhost") {
 			baseUrl = localBackendURL;
 		} else {
-			baseUrl = cloudFrontUrl;
+			baseUrl = lambdaUrl;
 		}
 
 		const backendRoute = "/favqApiResponse";
@@ -72,8 +72,8 @@ export function HandleQuoteOfTheDay() {
 
 		let response: AxiosResponse;
 
-		if (isDeployed) response = await axios.post(`${baseUrl}${backendRoute}`, data);
-		else response = await axios.post(`${backendRoute}`, data);
+		if (isDeployed) response = await axios.get(`${baseUrl}${backendRoute}`);
+		else response = await axios.get(`${localBackendURL}${backendRoute}`);
 
 		const { quote, author } = response.data;
 		if (!response.data) {
