@@ -21,7 +21,10 @@ const port = 9000; //Common backend ports are 3000, 8080, 9000
 // const path = "/"; //The path from where the server info will be rendered in the browser
 
 const app = express(); //Instantiate an express.js object
+
 app.use(cors());
+app.use(json()); //Configures Express to receive JSON parameters from Axios. 
+
 app.get("/", root); //The handler runs when the path is visited in the URL
 app.get("/favqApiResponse", favqApiResponse); //The handler runs when the path is visited in the URL
 
