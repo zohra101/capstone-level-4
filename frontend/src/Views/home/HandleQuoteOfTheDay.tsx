@@ -11,14 +11,10 @@ import { lambdaUrl } from "../../modules/lambaUrl";
 import { cloudFrontUrl } from "../../modules/cloudFrontUrl";
 
 export function HandleQuoteOfTheDay() {
-	// const [didMount, setDidMount] = useState(false);
 	const qotdDidMount = useSelector(selectQotdDidMount);
 
 	const quote = useSelector(selectQuote);
 	const author = useSelector(selectAuthor);
-
-	// const [quote, setQuote] = useState("");
-	// const [author, setAUthor] = useState("");
 
 	const dispatch = useDispatch();
 
@@ -90,7 +86,6 @@ export function HandleQuoteOfTheDay() {
 	}
 
 	function componentDidMount() {
-		// setDidMount(true);
 		let action = set.qotdDidMount(true);
 		dispatch(action);
 		getQuote();
