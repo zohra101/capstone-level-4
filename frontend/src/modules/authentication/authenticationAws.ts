@@ -1,7 +1,8 @@
+import { UserAccount } from "../dynamoDB/UserAccount";
 import { lambdaUrl } from "../lambaUrl";
 import axios from "axios";
 
-export async function authenticationAws(email = "", password = ""): Promise<boolean> {
+export async function authenticationAws(userEmail = "", userPassword = ""): Promise<UserAccount | undefined> {
 	
 const domain = window.location.hostname;
 	const localBackendURL = "http://localhost:9000/"; // Added trailing slash for correct URL concatenation
@@ -20,21 +21,15 @@ const domain = window.location.hostname;
 		;
 	}
 
-	const backendRoute = "authDynamoDB";
+	const backendRoute = "authenticateAws";
 
-	const credentials = {
+	const data = {
 		email: userEmail,
 		password: userPassword,
 	};
 
-	const response = await axios.post(`${baseUrl}${backendRoute}`, data)
-
-	// const matchingLogin = response.Item;
-	// if (!matchingLogin) {
-	// 	//Handles undefined error from password field
-	// 	console.log("User not found.");
-	// 	return false; //Handle user not found
-	// }
-	// const isAuthenticated = password === matchingLogin.password;
-	// return isAuthenticated;
+	const response = await axios.post(`${baseUrl}${backendRoute}`, data);
+	let account = response.data;
+	if (!account) account = undefined;
+	return account;
 }

@@ -1,6 +1,4 @@
 import axios, { AxiosResponse } from "axios";
-import { gitPageseUrl } from "../gitPageseUrl"; // Assuming you have this in a separate file or define it here
-import { cloudFrontUrl } from "../cloudFrontUrl";
 import { appEngineUrl } from "../appEngineUrl";
 
 export async function getAnswer(
@@ -8,7 +6,7 @@ export async function getAnswer(
 	userContext: string
 ): Promise<string> {
 	const domain = window.location.hostname;
-	const localBackendURL = "http://localhost:9000/"; // Added trailing slash for correct URL concatenation
+	const localBackendURL = "http://localhost:8080/"; // Added trailing slash for correct URL concatenation
 
 	let baseUrl: string;
 

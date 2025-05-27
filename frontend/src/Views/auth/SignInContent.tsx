@@ -17,6 +17,7 @@ export function SignInContent(props) {
 						required
 						className="htmlForm-control ms-3"
 						id="email"
+						name="userEmail"
 						placeholder="name@example.com"
 					/>
 				</div>
@@ -32,6 +33,7 @@ export function SignInContent(props) {
 						required
 						className="htmlForm-control ms-5"
 						id="password"
+						name = "userPassword"
 						placeholder="************"
 					/>
 				</div>

@@ -8,6 +8,7 @@ import { set } from "../../modules/state/store";
 export function SignInModal() {
 	const dispatch = useDispatch();
 	const [errorMessage, setErrorMessage] = useState("");
+	
 
 	return (
 		<>
@@ -52,6 +53,7 @@ export function SignInModal() {
 								type="button"
 								className="btn btn-secondary"
 								data-bs-dismiss="modal"
+								name="closeButton"
 							>
 								Close
 							</button>
@@ -60,7 +62,7 @@ export function SignInModal() {
 								type="submit"
 								className="btn btn-primary"
 							>
-								Sign In
+								Submit
 							</button>
 						</div>
 					</div>
@@ -72,9 +74,14 @@ export function SignInModal() {
 	async function handleSubmit(event: any) {
 		event.preventDefault();
 		const account = await handleSignInAttempt(event as any);
+		const form = event.target.elements;
+		const closeButton = form.closeButton;
+
 		if (account) {
 			const action = set.globalAccount(account);
 			dispatch(action);
+			console.log(closeButton)
+			closeButton.click();
 		} else
 			setErrorMessage(
 				"The email and password provided do not match an existing account."

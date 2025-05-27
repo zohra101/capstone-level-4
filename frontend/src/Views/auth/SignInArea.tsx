@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { set } from "../../modules/state/store";
 import {
 	selectGlobalAccount,
-
 	selectSignInAreaDidMount,
 } from "../../modules/state/stateSelectors";
 
@@ -25,7 +24,6 @@ export function SignInArea() {
 		console.log("MOUNT PHASE: SignInArea");
 		if (account) setButton(<SignOutModal />);
 		else setButton(<SignInModal />);
-		// setDidMount(true);
 		let action = set.signInAreaDidMount(true);
 		dispatch(action);
 	}
