@@ -8,11 +8,13 @@ dotenv.config();
 export async function readUserAccount(
 	userAccount: UserAccount
 ): Promise<UserAccount | string | undefined> {
-	debugger;
+	
 	const request: GetCommandInput = {
 		TableName: "logins",
 		Key: { email: userAccount.email },
 	};
+
+	console.log("Email key being used:", userAccount.email);
 
 	const newClient = returnDynamoDBClient();
 	const response = await newClient.get(request);
@@ -46,5 +48,6 @@ export async function readUserAccount(
 		return "No username was found for the provided email address.";
 	}
 
+	//Add ifMatchingLogin logic
 	return readResult;
 }

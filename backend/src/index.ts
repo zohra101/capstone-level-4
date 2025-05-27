@@ -11,6 +11,7 @@ import { createAccount } from "./routes/createAccount";
 import { readAccount } from "./routes/readAccount";
 import { updateAccount } from "./routes/updateAccount";
 import { delAccount } from "./routes/delAccount";
+import { authenticateAws } from "./routes/authenticateAws";
 
 dotenv.config();
 console.log("Dotenv configured");
@@ -33,17 +34,11 @@ app.get("/readAccount", readAccount); //The handler runs when the path is visite
 app.get("/updateAccount", updateAccount); //The handler runs when the path is visited in the URL
 app.get("/delAccount", delAccount); //The handler runs when the path is visited in the URL
 
+app.post("/authenticateAws", authenticateAws); //The handler runs when the path is visited in the URL
 // app.post("/createAccount", createAccount); //The handler runs when the path is visited in the URL
 // app.post("/readAccount", readAccount); //The handler runs when the path is visited in the URL
 // app.post("/updateAccount", updateAccount); //The handler runs when the path is visited in the URL
 // app.post("/delAccount", delAccount); //The handler runs when the path is visited in the URL
-
-app.use((req, res, next) => {
-	console.warn(
-		`Backend: No matching route found for ${req.method} ${req.originalUrl}.`
-	);
-	res.status(404).send("Cannot " + req.method + " " + req.originalUrl);
-});
 
 console.log("Current mode:", process.env.mode); // Force logging the mode
 
