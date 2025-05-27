@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { readUserAccount } from "../modules/dynamoDB/readUserAccount";
-import { UserAccount } from "../modules/dynamoDB/userAccount";
+import { UserAccount } from "../modules/dynamoDB/UserAccount";
+
 
 //function handler() {}; //Declare the handler as an empty function
 export async function readAccount(request: Request, response: Response) {

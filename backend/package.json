@@ -1,6 +1,7 @@
 {
 	"scripts": {
 		"start": "npm run close-port && npm run start-server",
+		"start2": "npm run open-tab && npm run start-build",
 		"build": "npm run open-tab && npm run start-build",
 		"test": "npx jest ./src/modules",
 		"deploy": "npm run build-production && npm run upload-zip",
