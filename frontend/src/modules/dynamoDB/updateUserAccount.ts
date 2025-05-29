@@ -1,23 +1,12 @@
-import axios from "axios";
+import { getBaseUrl } from "./getBaseUrl";
 import { UserAccount } from "./UserAccount";
-import { lambdaUrl } from "./lambaUrl";
-
-const localPath = window.location.hostname;
-const localBackendURL = "http://localhost:9000";
-
-let baseUrl: string;
-
-if (localPath === "localhost") {
-	baseUrl = localBackendURL;
-} else {
-	baseUrl = lambdaUrl;
-}
+import axios from "axios";
 
 const backendRoute = "/updateAccount";
 
 export async function updateUserAccount(
 	userAccount: UserAccount
-): Promise<string> {
+): Promise< string> {
 	console.log("updateUserAccount called with:", userAccount);
 	console.log("Email to validate:", userAccount.email);
 
@@ -26,7 +15,9 @@ export async function updateUserAccount(
 	}
 
 	const emailToSend = userAccount.email === null ? "" : userAccount.email;
-	const url = `${localBackendURL}${backendRoute}?email=${emailToSend}&password=${userAccount.password}&&name=${userAccount.name}&phone=${userAccount.phone}`;
+	const url = `${getBaseUrl()}${backendRoute}?email=${emailToSend}&password=${
+		userAccount.password
+	}&&name=${userAccount.name}&phone=${userAccount.phone}`;
 
 	const response = await axios.get(url);
 	return response.data;

@@ -40,7 +40,7 @@ export function DeleteAccount() {
 
 		// Call the frontend createUserAccount function and await the result
 		// Based on backend/frontend function return, this is expected to be a string message
-		const resultMessage = await delUserAccount(existingUserAccount);
+		const resultMessage: string = await delUserAccount(existingUserAccount);
 
 		// Update the feedback message state with the result
 		// setFeedbackMessage(resultMessage); // Use the setter to update state

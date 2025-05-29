@@ -6,13 +6,13 @@
 	"main": "src/index.js",
 	"scripts": {
 		"start": "npm run close-port && npx webpack server",
-		"test": "npx jest getAnswer",
+		"test": "npx jest updateUserAccount",
 		"build": "npx webpack --mode=production",
 		"deployGit": "npm run build && git add . &&  git commit -m \"commited new build\" && git push",
 		"deployAWS": "npm run s3-upload && npm run update-cloudfront",
 		"--------": "-------------------",
 		"close-port": "npx kill-port 8000",
-		"open-tab": "npx open-cli http://localhost:9000",
+		"open-tab": "npx open-cli http://localhost:8000",
 		"start-server": "npx nodemon ./dist/main.js",
 		"s3-upload": "aws s3 cp ./dist/ s3://alex-capstone-level-4/frontend/dist/ --recursive --exclude *.map",
 		"update-cloudfront": "aws cloudfront create-invalidation --distribution-id E3GE20MTGXAA8 --paths  \"/*\" "

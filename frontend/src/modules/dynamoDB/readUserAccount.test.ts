@@ -1,15 +1,28 @@
-import { readUserAccount } from "./readUserAccount";
-import { UserAccount } from "./UserAccount";
 
-//The function should communicate with the backend.
-//The backend retrieves an account from DynamoDB
-//The frontend returns the response from the backend. 
-//Ok to return a modified result. 
-//Write at least 5 tests. 
-//Code the function according to the test specifications. 
-//Assert the function return type.
-//Assert the datatype of the function parameter(s).
+// --- START: Mock window object for testing ---
+// This line checks if 'window' is currently undefined.
+// It typically will be undefined when running tests in Node.js.
+if (typeof global.window === 'undefined') {
+	// If 'window' is undefined, we create a basic mock version of it.
+	// We only include the 'location' property and within that, 'hostname',
+	// because that's what your code specifically needs.
+	// We're setting the 'hostname' to 'localhost' as a common default for tests.
+	// The 'as any' is a TypeScript thing to tell TypeScript that it's okay
+	// to add this property to the 'global' object even if its types don't officially declare 'window'.
+	global.window = {
+	  location: {
+		hostname: 'localhost', // You can change this to 'example.com' or whatever makes sense for your test
+	  },
+	} as any;
+  }
 
+  // --- END: Mock window object for testing ---
+  
+  // Now, and ONLY now, import the file that uses window.location.hostname.
+  // It's crucial that the mock above comes *before* this import.
+
+  import { UserAccount } from "./UserAccount";
+  import { readUserAccount } from "./readUserAccount";
 
 describe("readUserAccount", allTests);
 

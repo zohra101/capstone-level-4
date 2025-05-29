@@ -1,17 +1,6 @@
-import axios from "axios";
+import { getBaseUrl } from "./getBaseUrl";
 import { UserAccount } from "./UserAccount";
-import { lambdaUrl } from "./lambaUrl";
-
-const localPath = window.location.hostname;
-const localBackendURL = "http://localhost:9000";
-
-let baseUrl: string;
-
-if (localPath === "localhost") {
-	baseUrl = localBackendURL;
-} else {
-	baseUrl = lambdaUrl;
-}
+import axios from "axios";
 
 const backendRoute = "/createAccount";
 
@@ -26,7 +15,9 @@ export async function createUserAccount(
 	}
 
 	const emailToSend = userAccount.email === null ? "" : userAccount.email;
-	const url = `${baseUrl}${backendRoute}?email=${emailToSend}&password=${userAccount.password}`;
+	const url = `${getBaseUrl()}${backendRoute}?email=${emailToSend}&password=${
+		userAccount.password
+	}`;
 
 	const response = await axios.get(url);
 	return response.data;

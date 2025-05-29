@@ -42,7 +42,7 @@ export function UpdateAccount() {
 
 		// Call the frontend createUserAccount function and await the result
 		// Based on backend/frontend function return, this is expected to be a string message
-		const resultMessage = await updateUserAccount(updatedUserAccount);
+		const resultMessage: string = await updateUserAccount(updatedUserAccount);
 
 		// Update the feedback message state with the result
 		// setFeedbackMessage(resultMessage); // Use the setter to update state
