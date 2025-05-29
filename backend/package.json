@@ -3,7 +3,7 @@
 		"start": "npm run close-port && npm run start-server",
 		"start2": "npm run open-tab && npm run start-build",
 		"build": "npm run open-tab && npm run start-build",
-		"test": "npx jest ./src/modules",
+		"test": "npx jest delUserAccount",
 		"deploy": "npm run build-production && npm run upload-zip",
 		"--------": "-------------------",
 		"build-production": "npx webpack --mode=production",

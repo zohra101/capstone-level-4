@@ -22,7 +22,7 @@ function allTests() {
 
 
 
-	it("returns error when deleting an account that doesn't exist", async () => {
+	it("returns message when deleting an account that doesn't exist", async () => {
 		//ARRANGE
 		const deletedAccount: UserAccount = {
 			email: "deleteMe2@emails.com.com",
@@ -38,7 +38,7 @@ function allTests() {
 		);
 	});
 
-	it("returns an error if the email format is invalid", async () => {
+	it("returns a message if the email format is invalid", async () => {
 		// ARRANGE
 		const deletedAccount: UserAccount = {
 			email: "notvaldiemail",
@@ -52,7 +52,7 @@ function allTests() {
 		expect(response).toBe("Please provide a valid email address.");
 	});
 
-	it("returns an error if the provided user account object is empty", async () => {
+	it("returns a message if the provided user account object is empty", async () => {
 		// ARRANGE
 		const deletedAccount: any = {};
 
@@ -65,7 +65,7 @@ function allTests() {
 		);
 	});
 
-	it("returns an error if the provided user account object has a null email", async () => {
+	it("returns a message if the provided user account object has a null email", async () => {
 		// ARRANGE
 		const deletedAccount: UserAccount = {
 			email: null,

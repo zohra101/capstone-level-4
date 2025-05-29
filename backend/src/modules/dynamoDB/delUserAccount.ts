@@ -1,11 +1,9 @@
 import dotenv from "dotenv";
-dotenv.config();
+dotenv.config(); //Attaches the env variables in .env to the process object
 
-import { GetCommandInput, DeleteCommandInput } from "@aws-sdk/lib-dynamodb";
+import { GetCommandInput, GetCommandOutput, DeleteCommandInput } from "@aws-sdk/lib-dynamodb";
 import { returnDynamoDBClient } from "./returnDynamoDBClient";
 import { UserAccount } from "./UserAccount";
-
-dotenv.config(); //Attaches the env variables in .env to the process object
 
 export async function delUserAccount(userAccount: UserAccount) {
 	if (!userAccount || !userAccount.email) {
@@ -26,16 +24,14 @@ export async function delUserAccount(userAccount: UserAccount) {
 		Key: { email: userAccount.email },
 	};
 
-	const readResult = await newClient.get(requestRead);
+	const readResult: GetCommandOutput = await newClient.get(requestRead);
+	const existingAccount: UserAccount | undefined = readResult.Item as UserAccount;
 
 	//Return message that account does not exist
-	const doesEmailExist = readResult.Item !== undefined;
-
-	if (!doesEmailExist)
+	if (!existingAccount)
 		return "The account you are trying to delete does not exist.";
 
-	if (readResult.Item.email === "")
-		return "No password was found for the provided email address.";
+
 
 	const request: DeleteCommandInput = {
 		TableName: "logins",
@@ -43,5 +39,6 @@ export async function delUserAccount(userAccount: UserAccount) {
 	};
 
 	const response = await newClient.delete(request);
-	return "The account was deleted successfully.";
+
+	if (response) return "The account was deleted successfully.";
 }
