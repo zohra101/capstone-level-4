@@ -98,8 +98,20 @@ export function selectSignInAreaDidMount(state: StateVariables): boolean {
 	return state.signInAreaDidMount;
 }
 
-export function selectSignInAreaButton(state: StateVariables): string {
-	return state.signInAreaButton;
+export function selectSignInButton(state: StateVariables): boolean {
+	return state.signInButton;
+}
+
+export function selectSignOutButton(state: StateVariables): boolean {
+	return state.signOutButton;
+}
+
+export function selectSignInModal(state: StateVariables): boolean {
+	return state.signInModal;
+}
+
+export function selectSignOutModal(state: StateVariables): boolean {
+	return state.signOutModal;
 }
 
 export function selectIsActiveUser(state: StateVariables): boolean {

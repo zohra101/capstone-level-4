@@ -1,19 +1,20 @@
-
 import { readUserAccount } from "./readUserAccount";
 import { UserAccount } from "./UserAccount";
 
 export async function authenticateUser(userEmail: string, userPassword: string)
-: Promise<any> {
+: Promise<boolean> {
+	const result = await readUserAccount({
+		email: userEmail,
+		password: userPassword,
+	});
 
-	const userAccount: UserAccount = { email: userEmail, password: userPassword };
-	const readResult = await readUserAccount(userAccount);
-
-	let isAuthenticated = false;
-
-	if (typeof readResult === "object" && "password" in readResult) {
-		isAuthenticated = readResult.password === userPassword;
+	// If result is a string (error message) or undefined, authentication fails
+	if (typeof result === "string" || result === undefined) {
+		return false;
 	}
 
-	return isAuthenticated;
+	// Confirm password match
+	const isPasswordCorrect = userPassword === result.password;
 
+	return isPasswordCorrect;
 }

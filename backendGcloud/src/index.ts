@@ -6,7 +6,6 @@ import { ai } from "./routes/ai";
 import dotenv from "dotenv";
 import { postDemo } from "./routes/postDemo";
 
-
 dotenv.config();
 console.log("Dotenv configured");
 console.log("Current mode:", process.env.mode); 
@@ -21,9 +20,6 @@ app.use(json()); //Configures Express to receive JSON parameters from Axios.
 
 app.get("/", root); //The handler runs when the path is visited in the URL.
 app.get("/api", api); //The handler runs when the path is visited in the URL.
-// app.get("/ai", ai); //The handler runs when the path is visited in the URL.
-
-app.post("/postDemo", postDemo); //Use the HTTP POST method to listen on this route. POST is like a channle that the client and server can use to speak privately on. 
 app.post("/ai", ai); //Use the HTTP POST method to receive data securely and unaltered (without special characters like 20%).
 
 app.listen(port, hostname, handleListen); //Listen on the specified port and hostname.

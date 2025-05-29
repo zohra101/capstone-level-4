@@ -1,3 +1,4 @@
+import { Component, PureComponent } from "react";
 import { UserAccount } from "../dynamoDB/UserAccount";
 
 export const stateVariables = {
@@ -31,7 +32,10 @@ export const stateVariables = {
 
 	//Authentication
 	feedbackMessage: undefined,
-	signInAreaButton: "<></>",
+	signInButton: true,
+	signOutButton: false,
+	signInModal: true,
+	signOutModal: false,
 	isSignedIn: false,
 	isSignedOut: false,
 	isActiveUser: true,

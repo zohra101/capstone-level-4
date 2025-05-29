@@ -1,5 +1,6 @@
 import { StateVariables } from "./stateVariables";
 import { UserAccount } from "../dynamoDB/UserAccount";
+import { ButtonHTMLAttributes, Component } from "react";
 
 export const stateSetters = {
 	//Methods that match their state variables
@@ -118,9 +119,29 @@ export const stateSetters = {
 		state.author = newValue;
 	},
 
-	isAuthenticated: function (state: StateVariables, action: ActionBoolean) {
+	signInAreaDidMount: function (state: StateVariables, action: ActionBoolean) {
 		const newValue = action.payload;
-		state.isAuthenticated = newValue;
+		state.signInAreaDidMount = newValue;
+	},
+
+	signInButton: function (state: StateVariables, action: ActionShowButton) {
+		const newValue = action.payload;
+		state.signInButton = newValue;
+	},
+
+	signOutButton: function (state: StateVariables, action: ActionShowButton) {
+		const newValue = action.payload;
+		state.signOutButton = newValue;
+	},
+
+	signInModal: function (state: StateVariables, action: ActionShowModal) {
+		const newValue = action.payload;
+		state.signInModal = newValue;
+	},
+
+	signOutModal: function (state: StateVariables, action: ActionShowModal) {
+		const newValue = action.payload;
+		state.signOutModal = newValue;
 	},
 
 	isSignedIn: function (state: StateVariables, action: ActionBoolean) {
@@ -131,16 +152,6 @@ export const stateSetters = {
 	isSignedOut: function (state: StateVariables, action: ActionBoolean) {
 		const newValue = action.payload;
 		state.isSignedOut = newValue;
-	},
-
-	signInAreaDidMount: function (state: StateVariables, action: ActionBoolean) {
-		const newValue = action.payload;
-		state.signInAreaDidMount = newValue;
-	},
-
-	signInAreaButton: function (state: StateVariables, action: ActionString) {
-		const newValue = action.payload;
-		state.signInAreaButton = newValue;
 	},
 
 	isActiveUser: function (state: StateVariables, action: ActionBoolean) {
@@ -168,3 +179,14 @@ type ActionUserAccount = {
 	type: string;
 	payload: UserAccount;
 };
+
+type ActionShowButton = {
+	type: boolean;
+	payload: boolean;
+};
+
+type ActionShowModal = {
+	type: boolean;
+	payload: boolean;
+};
+

@@ -1,12 +1,9 @@
-import express, { json } from "express";
+import express, { json, urlencoded } from "express";
 import cors from "cors";
 import { root } from "./routes/root";
-// import { backend  } from "../archive/backend";
 import { favqApiResponse } from "./routes/favqApiResponse";
-// import { authDynamoDB } from "./routes/authDynamoDB";
 import serverless from "serverless-http";
 import dotenv from "dotenv";
-// import { readDynamoDBClient } from "./routes/readDynamoDBClient";
 import { createAccount } from "./routes/createAccount";
 import { readAccount } from "./routes/readAccount";
 import { updateAccount } from "./routes/updateAccount";
@@ -19,11 +16,11 @@ console.log("Current mode:", process.env.mode);
 
 const hostname = "localhost"; //Local domainnpm
 const port = 9000; //Common backend ports are 3000, 8080, 9000
-// const path = "/"; //The path from where the server info will be rendered in the browser
 
 const app = express(); //Instantiate an express.js object
 
 app.use(cors());
+app.use(urlencoded());//Allows data to be received from Postman through x-www-form-urlencoded.
 app.use(json()); //Configures Express to receive JSON parameters from Axios. 
 
 app.get("/", root); //The handler runs when the path is visited in the URL
@@ -34,6 +31,7 @@ app.get("/readAccount", readAccount); //The handler runs when the path is visite
 app.get("/updateAccount", updateAccount); //The handler runs when the path is visited in the URL
 app.get("/delAccount", delAccount); //The handler runs when the path is visited in the URL
 
+// app.post("/test", (req, res) => {res.send("Test handler is working");});
 app.post("/authenticateAws", authenticateAws); //The handler runs when the path is visited in the URL
 // app.post("/createAccount", createAccount); //The handler runs when the path is visited in the URL
 // app.post("/readAccount", readAccount); //The handler runs when the path is visited in the URL
@@ -48,7 +46,6 @@ if (isRunningLocally)
 	app.listen(port, hostname, handleListen); //Listen on the specified port and hostname
  else console.log("Server not starting locally because mode is:", process.env.mode);
 
-
 function handleListen() {
 
     console.log(`Listening on http;//${hostname}:${port}...`);
@@ -57,3 +54,4 @@ function handleListen() {
 }
 
 export const handler = serverless(app); //Convert Express app into a serverless app compatible with AWS Lambda
+
