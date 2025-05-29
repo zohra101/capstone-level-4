@@ -1,5 +1,4 @@
 import { readUserAccount } from "./readUserAccount";
-import { UserAccount } from "./UserAccount";
 
 export async function authenticateUser(userEmail: string, userPassword: string)
 : Promise<boolean> {
