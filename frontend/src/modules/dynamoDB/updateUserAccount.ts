@@ -1,12 +1,13 @@
-import { getBaseUrl } from "./getBaseUrl";
+import { getBackendRoutePrefix } from "../getBackendRoutePrefix";
+import { getBaseUrl } from "../getBaseUrl";
 import { UserAccount } from "./UserAccount";
 import axios from "axios";
 
-const backendRoute = "/updateAccount";
+const backendRoute = "updateAccount";
 
 export async function updateUserAccount(
 	userAccount: UserAccount
-): Promise< UserAccount | string> {
+): Promise<UserAccount | string> {
 	console.log("updateUserAccount called with:", userAccount);
 	console.log("Email to validate:", userAccount.email);
 
@@ -15,7 +16,7 @@ export async function updateUserAccount(
 	}
 
 	const emailToSend = userAccount.email === null ? "" : userAccount.email;
-	const url = `${getBaseUrl()}${backendRoute}?email=${emailToSend}&password=${
+	const url = `${getBaseUrl()}${getBackendRoutePrefix()}${backendRoute}?email=${emailToSend}&password=${
 		userAccount.password
 	}&&name=${userAccount.name}&phone=${userAccount.phone}`;
 

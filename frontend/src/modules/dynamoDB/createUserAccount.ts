@@ -1,8 +1,9 @@
-import { getBaseUrl } from "./getBaseUrl";
+import { getBackendRoutePrefix } from "../getBackendRoutePrefix";
+import { getBaseUrl } from "../getBaseUrl";
 import { UserAccount } from "./UserAccount";
 import axios from "axios";
 
-const backendRoute = "/createAccount";
+const backendRoute = "createAccount";
 
 export async function createUserAccount(
 	userAccount: UserAccount
@@ -15,7 +16,7 @@ export async function createUserAccount(
 	}
 
 	const emailToSend = userAccount.email === null ? "" : userAccount.email;
-	const url = `${getBaseUrl()}${backendRoute}?email=${emailToSend}&password=${
+	const url = `${getBaseUrl()}${getBackendRoutePrefix()}${backendRoute}?email=${emailToSend}&password=${
 		userAccount.password
 	}`;
 

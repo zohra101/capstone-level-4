@@ -1,9 +1,8 @@
-import { lambdaUrl } from "../lambaUrl";
+import { lambdaUrl } from "./lambaUrl";
 
 export function getBaseUrl(): string {
 	const localPath = window.location.hostname;
 	const localBackendURL = "http://localhost:9000";
-
 
 	let baseUrl: string;
 
@@ -12,6 +11,6 @@ export function getBaseUrl(): string {
 	} else {
 		baseUrl = lambdaUrl;
 	}
-	
-	return baseUrl; 
+
+	return baseUrl;
 }
