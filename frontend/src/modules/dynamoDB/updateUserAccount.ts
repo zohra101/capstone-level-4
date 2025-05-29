@@ -6,7 +6,7 @@ const backendRoute = "/updateAccount";
 
 export async function updateUserAccount(
 	userAccount: UserAccount
-): Promise< string> {
+): Promise< UserAccount | string> {
 	console.log("updateUserAccount called with:", userAccount);
 	console.log("Email to validate:", userAccount.email);
 
