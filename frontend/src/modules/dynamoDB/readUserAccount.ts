@@ -11,5 +11,5 @@ export async function readUserAccount(
 	const url = `${getBaseUrl()}${backendRoute}?email=${email}&password=${password}`;
 
 	const response = await axios.get(url);
-	return response.data;
+	return response.data as UserAccount | undefined;
 }

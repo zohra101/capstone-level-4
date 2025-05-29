@@ -20,5 +20,5 @@ export async function updateUserAccount(
 	}&&name=${userAccount.name}&phone=${userAccount.phone}`;
 
 	const response = await axios.get(url);
-	return response.data;
+	return response.data as UserAccount | undefined;
 }

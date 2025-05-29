@@ -43,7 +43,7 @@ export function ViewAccount() {
 
 		// Call the frontend createUserAccount function and await the result
 		// Based on backend/frontend function return, this is expected to be a string message
-		const accountDetails: UserAccount | undefined = await readUserAccount(existingUserAccount);
+		const accountDetails = await readUserAccount(existingUserAccount);
 		let action = set.globalAccount(accountDetails);
 		dispatch(action);
 	}
