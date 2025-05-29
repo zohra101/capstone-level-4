@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "../../index";
 import { UserAccount } from "../../modules/dynamoDB/UserAccount";
 import { delUserAccount } from "../../modules/dynamoDB/delUserAccount";
 import { useDispatch, useSelector } from "react-redux";

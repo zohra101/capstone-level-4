@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../../src/index.scss";
+// import "../../src/index.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { set } from "../modules/state/store";
 import { CreateAccount } from "./useraccounts/CreateAccount";
