@@ -1,1 +1,1 @@
-export const lambdaUrl = "https://pva375oymcqo2jvjv73hn5zere0rastx.lambda-url.us-east-2.on.aws/";
+export const lambdaUrl = "https://cdjfqtnqps46gfuinqaalkbr2i0ntenu.lambda-url.us-east-2.on.aws/";
