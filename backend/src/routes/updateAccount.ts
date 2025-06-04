@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
 import { updateUserAccount } from "../modules/dynamoDB/updateUserAccount";
+import { UserAccount } from "../modules/dynamoDB/UserAccount";
 
 //function handler() {}; //Declare the handler as an empty function
 export async function updateAccount(request: Request, response: Response) {
 	//Extract user account data from the request body
-	const userAccount: any = request.query;
+	const userAccount: UserAccount = request.query as any;
 	
 	//Call createUserAccount with the user data
 	const result = await updateUserAccount(userAccount); 

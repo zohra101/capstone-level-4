@@ -10,6 +10,7 @@ import { updateAccount } from "./routes/updateAccount";
 import { delAccount } from "./routes/delAccount";
 import { authenticateAws } from "./routes/authenticateAws";
 
+
 dotenv.config();
 console.log("Dotenv configured");
 console.log("Current mode:", process.env.mode); 
