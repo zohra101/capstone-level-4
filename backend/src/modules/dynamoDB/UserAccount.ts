@@ -1,9 +1,7 @@
 export type UserAccount = {
 	email: string;
 	password: string;
-	username?: string;
-	name?: string;
+	username: string;
+	name: string;
 	phone?: number;
 };
-
-//this file won't stay renamed

@@ -34,7 +34,25 @@ export async function createUserAccount(
 	const isPasswordNull = userAccount.password === null;
 	if (isPasswordNull) {
 		console.log("Password is blank, returning error status.");
-		return "A password is required to create an account. Please enter a valid email address.";
+		return "A password is required to create an account. Please enter a valid password.";
+	}
+
+	const isUsernameNull = userAccount.username === null;
+	if (isUsernameNull) {
+		console.log("Username is blank, returning error status.");
+		return "A username is required to create an account. Please enter a valid username.";
+	}
+
+	const isNameNull = userAccount.name === null;
+	if (isNameNull) {
+		console.log("Name is blank, returning error status.");
+		return "A name is required to create an account. Please enter a valid name.";
+	}
+
+	const isPhoneNull = userAccount.phone === null;
+	if (isPhoneNull) {
+		console.log("Phone is blank, returning error status.");
+		return "A phone number is required to create an account. Please enter a valid phone number.";
 	}
 
 	const newClient = returnDynamoDBClient();
