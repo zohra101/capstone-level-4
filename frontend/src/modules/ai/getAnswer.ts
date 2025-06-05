@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { appEngineUrl } from "../appEngineUrl";
+import { appEngineUrl } from "../authentication/appEngineUrl";
 
 export async function getAnswer(
 	userQuestion: string,

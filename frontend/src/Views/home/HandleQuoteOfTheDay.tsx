@@ -7,8 +7,8 @@ import {
 	selectQotdDidMount,
 	selectQuote,
 } from "../../modules/state/stateSelectors";
-import { lambdaUrl } from "../../modules/lambaUrl";
-import { cloudFrontUrl } from "../../modules/cloudFrontUrl";
+import { lambdaUrl } from "../../modules/authentication/lambaUrl";
+import { cloudFrontUrl } from "../../modules/authentication/cloudFrontUrl";
 
 export function HandleQuoteOfTheDay() {
 	const qotdDidMount = useSelector(selectQotdDidMount);
@@ -65,12 +65,12 @@ export function HandleQuoteOfTheDay() {
 		const backendRouteDeployed = "favqApiResponse";
 
 		const isDeployed =
-			domain === "zohra101.github.io" ||
-			domain === cloudFrontUrl;
+			domain === "zohra101.github.io" || domain === cloudFrontUrl;
 
 		let response: AxiosResponse;
 
-		if (isDeployed) response = await axios.get(`${baseUrl}${backendRouteDeployed}`);
+		if (isDeployed)
+			response = await axios.get(`${baseUrl}${backendRouteDeployed}`);
 		else response = await axios.get(`${localBackendURL}${backendRouteLocal}`);
 
 		const { quote, author } = response.data;

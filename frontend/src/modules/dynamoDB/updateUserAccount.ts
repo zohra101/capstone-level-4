@@ -1,5 +1,5 @@
-import { getBackendRoutePrefix } from "../getBackendRoutePrefix";
-import { getBaseUrl } from "../getBaseUrl";
+import { getBackendRoutePrefix } from "../authentication/getBackendRoutePrefix";
+import { getBaseUrl } from "../authentication/getBaseUrl";
 import { UserAccount } from "./UserAccount";
 import axios from "axios";
 
