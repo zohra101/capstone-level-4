@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { set } from "../../modules/state/store";
 import {
 	selectViewAccountDidMount,
-	selectFeedbackMessage,
+	selectCreateFeedbackMessage,
 } from "../../modules/state/stateSelectors";
 
 export function CreateAccount() {
@@ -16,7 +16,7 @@ export function CreateAccount() {
 
 	// State for displaying feedback messages from the backend
 	// const [feedbackMessage, setFeedbackMessage] = useState<string>("");
-	const messageToDisplay = useSelector(selectFeedbackMessage);
+	const messageToDisplay = useSelector(selectCreateFeedbackMessage);
 
 	// Lifecycle hooks
 	useEffect(componentDidMount, []);
@@ -50,7 +50,7 @@ export function CreateAccount() {
 		// Update the feedback message state with the result
 		// setFeedbackMessage(resultMessage); // Use the setter to update state
 
-		let action = set.feedbackMessage(createResultMessage);
+		let action = set.createFeedbackMessage(createResultMessage);
 		dispatch(action);
 	}
 

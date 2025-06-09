@@ -31,7 +31,10 @@ export const stateVariables = {
 	isAuthenticated: false,
 
 	//Authentication
-	feedbackMessage: undefined,
+	createFeedbackMessage: undefined,
+	deleteFeedbackMessage: undefined,
+	updateFeedbackMessage: undefined,
+	viewFeedbackMessage: undefined,
 	signInButton: true,
 	signOutButton: false,
 	signInModal: true,

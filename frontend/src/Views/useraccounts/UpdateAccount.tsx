@@ -3,7 +3,7 @@ import { UserAccount } from "../../modules/dynamoDB/UserAccount";
 import { updateUserAccount } from "../../modules/dynamoDB/updateUserAccount";
 import { useDispatch, useSelector } from "react-redux";
 import { set } from "../../modules/state/store";
-import { selectFeedbackMessage, selectUpdateccountDidMount } from "../../modules/state/stateSelectors";
+import { selectUpdateccountDidMount, selectUpdateFeedbackMessage } from "../../modules/state/stateSelectors";
 
 export function UpdateAccount() {
 	// State for lifecycle tracking
@@ -13,7 +13,7 @@ export function UpdateAccount() {
 
 	// State for displaying feedback messages from the backend
 	// const [feedbackMessage, setFeedbackMessage] = useState<string>("");
-	const messageToDisplay = useSelector(selectFeedbackMessage);
+	const messageToDisplay = useSelector(selectUpdateFeedbackMessage);
 
 	// Lifecycle hooks
 	useEffect(componentDidMount, []);
@@ -46,7 +46,7 @@ export function UpdateAccount() {
 		// Update the feedback message state with the result
 		// setFeedbackMessage(resultMessage); // Use the setter to update state
 
-		let action = set.feedbackMessage(updateResultMessage);
+		let action = set.updateFeedbackMessage(updateResultMessage);
 		if (updatedUserAccount) dispatch(action);
 	}
 

@@ -14,8 +14,8 @@
 		"close-port": "npx kill-port 8000",
 		"open-tab": "npx open-cli http://localhost:8000",
 		"start-server": "npx nodemon ./dist/main.js",
-		"s3-upload": "aws s3 cp ./dist/ s3://alex-capstone-level-4/frontend/dist/ --recursive --exclude *.map",
-		"update-cloudfront": "aws cloudfront create-invalidation --distribution-id E3GE20MTGXAA8 --paths  \"/*\" "
+		"s3-upload": "aws s3 cp ./dist/ s3://alex-capstone-level-4/frontend/dist --recursive --exclude *.map",
+		"update-cloudfront": "aws cloudfront create-invalidation --distribution-id ECAOYDREU995B --paths  \"/*\" "
 	},
 	"dependencies": {
 		"@aws-sdk/client-dynamodb": "^3.772.0",

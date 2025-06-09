@@ -99,9 +99,33 @@ export const stateSetters = {
 		state.accountDidMount = newValue;
 	},
 
-	feedbackMessage: function (state: StateVariables, action: ActionString) {
+	createFeedbackMessage: function (
+		state: StateVariables,
+		action: ActionString
+	) {
 		const newValue = action.payload;
-		state.feedbackMessage = newValue;
+		state.createFeedbackMessage = newValue;
+	},
+
+	deleteFeedbackMessage: function (
+		state: StateVariables,
+		action: ActionString
+	) {
+		const newValue = action.payload;
+		state.deleteFeedbackMessage = newValue;
+	},
+
+	updateFeedbackMessage: function (
+		state: StateVariables,
+		action: ActionString
+	) {
+		const newValue = action.payload;
+		state.updateFeedbackMessage = newValue;
+	},
+
+	viewFeedbackMessage: function (state: StateVariables, action: ActionString) {
+		const newValue = action.payload;
+		state.viewFeedbackMessage = newValue;
 	},
 
 	component: function (state: StateVariables, action: ActionString) {

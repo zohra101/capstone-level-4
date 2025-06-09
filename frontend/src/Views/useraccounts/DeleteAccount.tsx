@@ -3,7 +3,7 @@ import { UserAccount } from "../../modules/dynamoDB/UserAccount";
 import { delUserAccount } from "../../modules/dynamoDB/delUserAccount";
 import { useDispatch, useSelector } from "react-redux";
 import { set } from "../../modules/state/store";
-import { selectDeleteAccountDidMount, selectFeedbackMessage } from "../../modules/state/stateSelectors";
+import { selectDeleteAccountDidMount, selectDeleteFeedbackMessage } from "../../modules/state/stateSelectors";
 
 export function DeleteAccount() {
 	// State for lifecycle tracking
@@ -13,7 +13,7 @@ export function DeleteAccount() {
 
 	// State for displaying feedback messages from the backend
 	// const [feedbackMessage, setFeedbackMessage] = useState<string>("");
-	const messageToDisplay = useSelector(selectFeedbackMessage);
+	const messageToDisplay = useSelector(selectDeleteFeedbackMessage);
 
 	// Lifecycle hooks
 	useEffect(componentDidMount, []);
@@ -44,7 +44,7 @@ export function DeleteAccount() {
 		// Update the feedback message state with the result
 		// setFeedbackMessage(resultMessage); // Use the setter to update state
 
-		let action = set.feedbackMessage(deleteResultMessage);
+		let action = set.deleteFeedbackMessage(deleteResultMessage);
 		dispatch(action);
 	}
 
