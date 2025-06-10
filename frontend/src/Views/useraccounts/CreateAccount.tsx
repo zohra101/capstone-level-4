@@ -6,12 +6,13 @@ import { set } from "../../modules/state/store";
 import {
 	selectViewAccountDidMount,
 	selectCreateFeedbackMessage,
+	selectCreateAccountDidMount,
 } from "../../modules/state/stateSelectors";
 
 export function CreateAccount() {
 	// State for lifecycle tracking
 	// const [didMount, setDidMount] = useState(false);
-	const createAccountDidMount = useSelector(selectViewAccountDidMount);
+	const createAccountDidMount = useSelector(selectCreateAccountDidMount);
 	const dispatch = useDispatch();
 
 	// State for displaying feedback messages from the backend
@@ -83,6 +84,7 @@ export function CreateAccount() {
 									<input
 										required
 										type="email"
+										name="email"
 										id="userEmailCreate"
 										className="inputs"
 										placeholder="address@domain.com"
@@ -97,7 +99,8 @@ export function CreateAccount() {
 									</span>
 									<input
 										required
-										type="userName"
+										type="text"
+										name="userName"
 										id="userNameCreate"
 										className="inputs"
 										placeholder="YourUserName"
@@ -112,7 +115,8 @@ export function CreateAccount() {
 									</span>
 									<input
 										required
-										type="usersName"
+										type="text"
+										name="usersName"
 										id="usersNameCreate"
 										className="inputs"
 										placeholder="YourName"
@@ -128,6 +132,7 @@ export function CreateAccount() {
 									<input
 										required
 										type="password"
+										name="password"
 										id="userPasswordCreate"
 										className="inputs"
 										placeholder="Strong25@pass#"
@@ -143,6 +148,7 @@ export function CreateAccount() {
 									<input
 										required
 										type="tel"
+										name="phone"
 										pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
 										id="userPhoneCreate"
 										className="inputs"
@@ -189,6 +195,8 @@ export function CreateAccount() {
 	function componentDidUnmount() {
 		return function displayMessage() {
 			console.log("The Create Account component unmounted.");
+			let action = set.createFeedbackMessage("");
+			dispatch(action);
 		};
 	}
 }

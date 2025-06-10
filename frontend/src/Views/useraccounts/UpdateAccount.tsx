@@ -3,12 +3,12 @@ import { UserAccount } from "../../modules/dynamoDB/UserAccount";
 import { updateUserAccount } from "../../modules/dynamoDB/updateUserAccount";
 import { useDispatch, useSelector } from "react-redux";
 import { set } from "../../modules/state/store";
-import { selectUpdateccountDidMount, selectUpdateFeedbackMessage } from "../../modules/state/stateSelectors";
+import { selectUpdateAccountDidMount, selectUpdateFeedbackMessage } from "../../modules/state/stateSelectors";
 
 export function UpdateAccount() {
 	// State for lifecycle tracking
 	// const [didMount, setDidMount] = useState(false);
-	const updateAccountDidMount = useSelector(selectUpdateccountDidMount);
+	const updateAccountDidMount = useSelector(selectUpdateAccountDidMount);
 	const dispatch = useDispatch();
 
 	// State for displaying feedback messages from the backend
@@ -78,6 +78,7 @@ export function UpdateAccount() {
 									<input
 										required
 										type="email"
+										name="email"
 										id="userEmailUpdate"
 										className="inputs"
 										placeholder="address@domain.com"
@@ -92,6 +93,7 @@ export function UpdateAccount() {
 									</span>
 									<input
 										type="password"
+										name="password"
 										id="userPasswordUpdate"
 										className="inputs"
 										placeholder="Strong25@pass#"
@@ -107,7 +109,8 @@ export function UpdateAccount() {
 									</span>
 									<input
 										required
-										type="usersName"
+										type="text"
+										name="usersName"
 										id="usersNameUpdate"
 										className="inputs"
 										placeholder="YourName"
@@ -124,6 +127,7 @@ export function UpdateAccount() {
 									<input
 										required
 										type="tel"
+										name="phone"
 										pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
 										id="userPhoneUpdate"
 										className="inputs"
@@ -166,6 +170,8 @@ export function UpdateAccount() {
 	function componentDidUnmount() {
 		return function displayMessage() {
 			console.log("The Update Account  component unmounted.");
+			let action = set.updateFeedbackMessage("");
+			dispatch(action);
 		};
 	}
 }

@@ -5,7 +5,7 @@ export function selectGlobalAccount(state: StateVariables): UserAccount | null {
 	return state.globalAccount;
 }
 
-export function selectGlobalAnswer(state: StateVariables) {
+export function selectGlobalAnswer(state: StateVariables): string {
 	const { globalAnswer } = state;
 	return globalAnswer;
 }
@@ -58,7 +58,7 @@ export function selectDeleteAccountDidMount(state: StateVariables): boolean {
 	return state.deleteAccountDidMount;
 }
 
-export function selectUpdateccountDidMount(state: StateVariables): boolean {
+export function selectUpdateAccountDidMount(state: StateVariables): boolean {
 	return state.updateAccountDidMount;
 }
 
@@ -130,75 +130,6 @@ export function selectIsActiveUser(state: StateVariables): boolean {
 	return state.isActiveUser;
 }
 
-// export function selectGlobalAccount(state: StateVariables) {
-// 	const { globalAccount } = state;
-// 	return globalAccount;
-// }
-
-// export function selectAboutDidMount(state: StateVariables) {
-// 	const { aboutDidMount } = state;
-// 	return aboutDidMount;
-// }
-
-// export function selecAlexResumeDidMount(state: StateVariables) {
-// 	const { alexResumeDidMount } = state;
-// 	return alexResumeDidMount;
-// }
-
-// export function selectConsultationDidMountt(state: StateVariables) {
-// 	const { consultationDidMount } = state;
-// 	return consultationDidMount;
-// }
-
-// export function selectHomeDidMount(state: StateVariables) {
-// 	const { homeDidMount } = state;
-// 	return homeDidMount;
-// }
-
-// export function selectMessageDidMount(state: StateVariables) {
-// 	const { messageDidMount } = state;
-// 	return messageDidMount;
-// }
-
-// export function selectPortfolioDidMountt(state: StateVariables) {
-// 	const { portfolioDidMount } = state;
-// 	return portfolioDidMount;
-// }
-
-// export function selectViewAccountDidMount(state: StateVariables) {
-// 	const { viewAccountDidMount } = state;
-// 	return viewAccountDidMount;
-// }
-
-// export function selectAccountDidMount(state: StateVariables) {
-// 	const { accountDidMount } = state;
-// 	return accountDidMount;
-// }
-
-// export function selectComponent(state: StateVariables) {
-// 	const { component } = state;
-// 	return component;
-// }
-
-// export function selectIsAuthenticated(state: StateVariables) {
-// 	const { isAuthenticated } = state;
-// 	return isAuthenticated;
-// }
-
-// export function selectIsSignedIn(state: StateVariables) {
-// 	const { isSignedIn } = state;
-// 	return isSignedIn;
-// }
-
-// export function selectIsSignedOut(state: StateVariables) {
-// 	const { isSignedOut } = state;
-// 	return isSignedOut;
-// }
-
-// export function selectIsActiveUser(state: StateVariables) {
-// 	const { isActiveUser } = state;
-// 	return isActiveUser;
-// }
 
 
 

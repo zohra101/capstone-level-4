@@ -134,6 +134,8 @@ export function DeleteAccount() {
 	function componentDidUnmount() {
 		return function displayMessage() {
 			console.log("The Delete Account component unmounted.");
+			let action = set.deleteFeedbackMessage("");
+			dispatch(action);
 		};
 	}
 }

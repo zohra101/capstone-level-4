@@ -44,7 +44,8 @@ export function ViewAccount() {
 		// Based on backend/frontend function return, this is expected to be a string message
 		const accountDetails = await readUserAccount(existingUserAccount);
 		let action = set.globalAccount(accountDetails);
-		dispatch(action);
+		if (accountDetails) dispatch(action);
+		else console.log("Account not found or error reading account");
 	}
 
 	return (
@@ -74,6 +75,7 @@ export function ViewAccount() {
 									<input
 										required
 										type="email"
+										name="email"
 										id="userEmailView"
 										className="inputs"
 										placeholder="address@domain.com"
@@ -89,6 +91,7 @@ export function ViewAccount() {
 									<input
 										required
 										type="password"
+										name="password"
 										id="userPasswordView"
 										className="inputs"
 										placeholder="Strong25@pass#"

@@ -1,4 +1,5 @@
-import { getAnswer } from "../../../archive/getAnswer.old";
+import { getAnswer } from "./getAnswer";
+
 
 describe("getAnswer", () => {
 	it("returns a response when given a question and a context", async () => {
