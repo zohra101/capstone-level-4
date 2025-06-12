@@ -20,17 +20,17 @@ export async function readUserAccount(
 	const response = await newClient.get(request);
 	const readResult = response.Item as UserAccount;
 
-	// if (!readResult) {
-	// 	return "No account was found for the provided email address.";
-	// }
+	if (!readResult) {
+		return "No account was found for the provided email address.";
+	}
 
-	// if (
-	// 	readResult.password === "" ||
-	// 	readResult.password === null ||
-	// 	readResult.password === undefined
-	// ) {
-	// 	return "No password was found for the provided email address.";
-	// }
+	if (
+		readResult.password === "" ||
+		readResult.password === null ||
+		readResult.password === undefined
+	) {
+		return "No password was found for the provided email address.";
+	}
 
 	// if (
 	// 	readResult.name === "" ||

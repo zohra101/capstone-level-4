@@ -12,7 +12,7 @@ export async function updateUserAccount(
 	console.log("Email to validate:", userAccount.email);
 
 	if (userAccount.password === null) {
-		return "A password is required to create an account. Please enter a valid password.";
+		return "A password is required to update an account. Please enter a valid password.";
 	}
 
 	const emailToSend = userAccount.email === null ? "" : userAccount.email;
