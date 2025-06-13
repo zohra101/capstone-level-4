@@ -23,28 +23,36 @@ export function HandleQuoteOfTheDay() {
 	useEffect(componentDidUnmount, []);
 
 	return (
-		<div className="ms-5 center">
-			<div className="card w-50 m-5 list-group-item-color1 boxShadow ">
-				<div className="card-header blockquote-header text-center">
-					<span className="badge text-bg-primary m-1">NEW!</span>
-					<i className="bi bi-book"></i> Quote of the Day
-					<hr />
+		<div
+			id="qotd"
+			className="row justify-content-center"
+		>
+			<div className="col-12 col-lg-8 offset-lg-2">
+				<div className="card w-100 m-5 list-group-item-color1 boxShadow ">
+					<div className="card-header blockquote-header text-center">
+						<span className="badge text-bg-primary m-1">NEW!</span>
+						<i className="bi bi-book"></i> Quote of the Day
+						<hr />
+					</div>
+					<div className="card-body">
+						<blockquote
+							id="qotdQuoteTag"
+							className="blockquote mb-3"
+						>
+							{quote}
+						</blockquote>
+						<footer
+							id="qotdAuthorTag"
+							className="blockquote-footer mt-2 list-group-item-text1"
+						>
+							{author}
+						</footer>
+					</div>
 				</div>
-				<div className="card-body">
-					<blockquote
-						id="qotdQuoteTag"
-						className="blockquote mb-3"
-					>
-						{quote}
-					</blockquote>
-					<footer
-						id="qotdAuthorTag"
-						className="blockquote-footer mt-2 list-group-item-text1"
-					>
-						{author}
-					</footer>
-					<br />
-				</div>
+			</div>
+
+			<div className="col-12 col-lg-4">
+				{/* Placeholder or additional content */}
 			</div>
 		</div>
 	);

@@ -61,9 +61,6 @@ export function Home() {
 					id="homeFeatures"
 					className="row row-cols-2"
 				>
-					<div className="col">
-						<Ai />
-					</div>
 					<div className="col"><HandleQuoteOfTheDay /></div>
 				</div>
 				<div
