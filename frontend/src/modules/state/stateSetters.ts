@@ -1,6 +1,5 @@
 import { StateVariables } from "./stateVariables";
 import { UserAccount } from "../dynamoDB/UserAccount";
-import { ButtonHTMLAttributes, Component } from "react";
 
 export const stateSetters = {
 	//Methods that match their state variables

@@ -5,7 +5,7 @@ import "../../../src/index.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { set } from "../../modules/state/store";
 import { selectHomeDidMount } from "../../modules/state/stateSelectors";
-import { Ai } from "../Ai";
+import { Ai } from "./Ai";
 
 export function Home() {
 	const homeDidMount = useSelector(selectHomeDidMount);
@@ -61,7 +61,9 @@ export function Home() {
 					id="homeFeatures"
 					className="row row-cols-2"
 				>
-					<div className="col"><HandleQuoteOfTheDay /></div>
+					<div className="col">
+						<HandleQuoteOfTheDay />
+					</div>
 				</div>
 				<div
 					id="homeHelp"

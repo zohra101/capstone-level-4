@@ -1,10 +1,10 @@
 // USE DEFAULT IMPORTS (INSTEAD OF NAMED IMPORTS) FOR ASSETS
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectGlobalAnswer } from "../modules/state/stateSelectors";
-import { set } from "../modules/state/store";
-import { getAnswer } from "../modules/ai/getAnswer";
-
+import { selectGlobalAnswer } from "../../modules/state/stateSelectors";
+import { set } from "../../modules/state/store";
+import { getAnswer } from "../../modules/ai/getAnswer";
+import { contextData } from "../../modules/ai/contextData";
 
 export function Ai() {
 	const answer = useSelector(selectGlobalAnswer);
@@ -13,39 +13,43 @@ export function Ai() {
 	return (
 		<>
 			<div>
-				<h1
+				<p
 					id="aiTitle"
 					className="aiTitle"
 				>
-					Use the AI to answer a question
-				</h1>
+					To search forinformation on this site, enter a question below and
+					click submit for the answer.
+				</p>
 				<div className="mt-3">
 					<form onSubmit={handleSubmit}>
-						<div>
-							Question: <br />
+						<div className="aiTitle bold">
+							Question <br />
 							<input
+								type="text"
 								name="question"
-								defaultValue="What is my name?"
+								placeholder="What is your name?"
 							/>
 						</div>
 						<br />
 						<div>
-							Context: <br />
-							<textarea
-								name="context"
-								defaultValue="My name is Alex."
-							></textarea>
-							<br />
-						</div>
-						<div>
 							<br />
 							<input type="submit" />
 						</div>
+						<br />
+						<div
+							id="answer"
+							className="row"
+						>
+							<div className="col-12 col-lg-8">
+								<div className="card w-100">
+									<div className="card-title aiTitle bold">Answer</div>
+									<div className="card-header">{answer}</div>
+								</div>
+							</div>
+						</div>
+						<br />
 					</form>
 				</div>
-				<br />
-				<div>{answer}</div>
-				<br />
 			</div>
 		</>
 	);
@@ -54,7 +58,7 @@ export function Ai() {
 		event.preventDefault();
 		const form = event.target.elements;
 		const question = form.question.value;
-		const context = form.context.value;
+		const context = contextData;
 		const answer = await getAnswer(question, context);
 		const action = set.globalAnswer(answer);
 		dispatch(action);
