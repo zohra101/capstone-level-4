@@ -9,17 +9,14 @@ export async function updateUserAccount(
 	userAccount: UserAccount
 ): Promise<UserAccount | string> {
 	console.log("updateUserAccount called with:", userAccount);
-	console.log("Email to validate:", userAccount.email);
+
 
 	if (userAccount.password === null) {
 		return "A password is required to update an account. Please enter a valid password.";
 	}
+	const { email, password, name, phone } = userAccount;
+	const url = `${getBaseUrl()}${getBackendRoutePrefix()}${backendRoute}`;
 
-	const emailToSend = userAccount.email === null ? "" : userAccount.email;
-	const url = `${getBaseUrl()}${getBackendRoutePrefix()}${backendRoute}?email=${emailToSend}&password=${
-		userAccount.password
-	}&&name=${userAccount.name}&phone=${userAccount.phone}`;
-
-	const response = await axios.get(url);
+	const response = await axios.post(url, { email, password, name, phone }); 
 	return response.data as UserAccount | undefined;
 }
