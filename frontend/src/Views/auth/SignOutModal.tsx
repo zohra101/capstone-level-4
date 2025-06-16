@@ -11,7 +11,8 @@ export function SignOutModal() {
 				type="button"
 				className="btn btn-primary"
 				data-bs-toggle="modal"
-				data-bs-target="#signOutModal">
+				data-bs-target="#signOutModal"
+			>
 				Sign Out
 			</button>
 			<form

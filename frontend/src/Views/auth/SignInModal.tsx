@@ -4,11 +4,10 @@ import { handleSignInAttempt } from "../../controllers/handleSignInAttempt";
 import { useDispatch } from "react-redux";
 import { set } from "../../modules/state/store";
 
-
 export function SignInModal() {
 	const dispatch = useDispatch();
 	const [errorMessage, setErrorMessage] = useState("");
-	
+
 	return (
 		<>
 			<button
@@ -72,18 +71,42 @@ export function SignInModal() {
 
 	async function handleSubmit(event: any) {
 		event.preventDefault();
+
 		const account = await handleSignInAttempt(event as any);
+
 		const form = event.target.elements;
 		const closeButton = form.closeButton;
 
 		if (account) {
+			// Step 1: Successful Authentication
+			// Step 2: Dispatch Redux Action to update global account state
 			const action = set.globalAccount(account);
 			dispatch(action);
-			console.log(closeButton)
-			closeButton.click();
-		} else
+
+			// Step 3: Clear any previous error messages
+			setErrorMessage("");
+
+			// Step 4: Dismiss the Bootstrap modal using its native JavaScript API
+			const signInModalElement = document.getElementById("signInModal");
+			if (signInModalElement) {
+				// Get the Bootstrap modal instance
+				// (Note: 'bootstrap' needs to be available in the global scope or imported)
+				const modalInstance = (window as any).bootstrap.Modal.getInstance(
+					signInModalElement
+				);
+				if (modalInstance) {
+					modalInstance.hide(); // Hides the modal
+				} else {
+					// If no instance exists (e.g., modal not yet fully initialized by Bootstrap),
+					// create a new instance and then hide it.
+					new (window as any).bootstrap.Modal(signInModalElement).hide();
+				}
+			}
+		} else {
+			// Handle unsuccessful sign-in (e.g., display an error message)
 			setErrorMessage(
-				"The email and password provided do not match an existing account."
+				"The email and password provided do not match."
 			);
+		}
 	}
 }

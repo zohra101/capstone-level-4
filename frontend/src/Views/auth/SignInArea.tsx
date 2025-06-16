@@ -28,13 +28,21 @@ export function SignInArea() {
 	useEffect(componentDidMount, []);
 	useEffect(componentDidUpdate, [account]);
 
-	return <>{}</>;
+	return (
+		<>
+
+			<div className="ms-3">
+				{signInModal && <SignInModal />}
+				{signOutModal && <SignOutModal />}
+			</div>
+		</>
+	);
 
 	function componentDidMount() {
 		console.log("MOUNT PHASE: SignInArea");
-		dispatch(set.signInButton);
-		if (account) dispatch(set.component(signOutModal));
-		else dispatch(set.component(signInModal));
+		dispatch(set.signInButton(true));
+		if (account) dispatch(set.component("SignOut"));
+		else dispatch(set.component("SignInl"));
 		let action = set.signInAreaDidMount(true);
 		dispatch(action);
 	}
@@ -42,8 +50,17 @@ export function SignInArea() {
 	function componentDidUpdate() {
 		if (signInAreaDidMount) {
 			console.log("UPDATE PHASE: SignInArea");
-			if (account) dispatch(set.component(SignOutModal));
-			else dispatch(set.component(SignInModal));
+			if (account) {
+				dispatch(set.signInButton(false)); // hide sign in button
+				dispatch(set.signOutButton(true)); // show sign out button
+				dispatch(set.signInModal(false)); // hide sign in modal
+				dispatch(set.signOutModal(true)); // show sign out modal
+			} else {
+				dispatch(set.signInButton(true));
+				dispatch(set.signOutButton(false));
+				dispatch(set.signInModal(true));
+				dispatch(set.signOutModal(false));
+			}
 		}
 	}
 }
