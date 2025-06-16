@@ -8,22 +8,12 @@ const backendRoute = "delAccount";
 export async function delUserAccount(
 	userAccount: UserAccount
 ): Promise<string> {
-	console.log("createUserAccount called with:", userAccount);
-	console.log("Email to validate:", userAccount.email);
-
-	if (
-		userAccount.email === null ||
-		userAccount.email === "" ||
-		userAccount.email === undefined
-	) {
-		return "Please enter the email address of the account you wish to delete.";
-	}
+	console.log("delUserAccount called with:", userAccount);
 
 	const emailToSend = userAccount.email === null ? "" : userAccount.email;
-	const url = `${getBaseUrl()}${getBackendRoutePrefix()}${backendRoute}?email=${emailToSend}&password=${
-		userAccount.password
-	}`;
+	const passwordToSend = userAccount.password === null ? "" : userAccount.password;
+	const url = `${getBaseUrl()}${getBackendRoutePrefix()}${backendRoute}`;
 
-	const response = await axios.get(url);
+	const response = await axios.post(url, { emailToSend, passwordToSend }); 
 	return response.data;
 }

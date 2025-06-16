@@ -9,8 +9,8 @@ export async function readUserAccount(
 	userAccount: UserAccount
 ): Promise<UserAccount | string> {
 	const { email, password } = userAccount;
-	const url = `${getBaseUrl()}${getBackendRoutePrefix()}${backendRoute}?email=${email}&password=${password}`;
+	const url = `${getBaseUrl()}${getBackendRoutePrefix()}${backendRoute}`;
 
-	const response = await axios.get(url);
+	const response = await axios.post(url, { email, password }); 
 	return response.data as UserAccount | undefined;
 }
