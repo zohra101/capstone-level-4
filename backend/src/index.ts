@@ -28,14 +28,14 @@ app.get("/", root); //The handler runs when the path is visited in the URL
 app.get("/favqApiResponse", favqApiResponse); //The handler runs when the path is visited in the URL
 
 app.get("/createAccount", createAccount); //The handler runs when the path is visited in the URL
-app.get("/readAccount", readAccount); //The handler runs when the path is visited in the URL
+// app.get("/readAccount", readAccount); //The handler runs when the path is visited in the URL
 app.get("/updateAccount", updateAccount); //The handler runs when the path is visited in the URL
 app.get("/delAccount", delAccount); //The handler runs when the path is visited in the URL
 
 // app.post("/test", (req, res) => {res.send("Test handler is working");});
 app.post("/authenticateAws", authenticateAws); //The handler runs when the path is visited in the URL
 // app.post("/createAccount", createAccount); //The handler runs when the path is visited in the URL
-// app.post("/readAccount", readAccount); //The handler runs when the path is visited in the URL
+app.post("/readAccount", readAccount); //The handler runs when the path is visited in the URL
 // app.post("/updateAccount", updateAccount); //The handler runs when the path is visited in the URL
 // app.post("/delAccount", delAccount); //The handler runs when the path is visited in the URL
 
