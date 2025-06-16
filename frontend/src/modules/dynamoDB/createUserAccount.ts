@@ -15,13 +15,9 @@ export async function createUserAccount(
 		return "A password is required to create an account. Please enter a valid password.";
 	}
 
-	const emailToSend = userAccount.email === null ? "" : userAccount.email;
-	const url = `${getBaseUrl()}${getBackendRoutePrefix()}${backendRoute}?email=${emailToSend}&password=${
-		userAccount.password
-	}&name=${userAccount.name}&username=${
-		userAccount.username
-	}&phone=${userAccount.phone}`;
+	const { email, password, username, name, phone } = userAccount;
+	const url = `${getBaseUrl()}${getBackendRoutePrefix()}${backendRoute}`;
 
-	const response = await axios.get(url);
+	const response = await axios.post(url, { email, password, username, name, phone }); 
 	return response.data;
 }
