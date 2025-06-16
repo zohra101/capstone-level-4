@@ -7,7 +7,7 @@ import { UserAccount } from "../modules/dynamoDB/UserAccount";
 export async function readAccount(request: Request, response: Response) {
 	//Extract user account data from the request
 	// const userAccount: UserAccount = request.query as any;
-	const userAccount: UserAccount = request.body as any;
+	const userAccount: UserAccount = request.body;
 
 	//Call readUserAccount with the user data
 	const result = await readUserAccount(userAccount as UserAccount);

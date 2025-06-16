@@ -32,21 +32,11 @@ export async function readUserAccount(
 		return "No password was found for the provided email address.";
 	}
 
-	// if (
-	// 	readResult.name === "" ||
-	// 	readResult.name === null ||
-	// 	readResult.name === undefined
-	// ) {
-	// 	return "No name was found for the provided email address.";
-	// }
-
-	// if (
-	// 	readResult.username === "" ||
-	// 	readResult.username === null ||
-	// 	readResult.username === undefined
-	// ) {
-	// 	return "No username was found for the provided email address.";
-	// }
+	if (
+		readResult.password !== userAccount.password
+	) {
+		return "Incorrect email or password. Please try again.";
+	}
 
 	//Add ifMatchingLogin logic
 	return readResult;

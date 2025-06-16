@@ -1,4 +1,4 @@
-import { UserAccount } from "./userAccount";
+import { UserAccount } from "../dynamoDB/UserAccount";
 import { readUserAccount } from "./readUserAccount";
 
 describe("readUserAccount", allTests);
@@ -6,10 +6,10 @@ describe("readUserAccount", allTests);
 function allTests() {
 	it("the object has the properties password, name, usrname, phone, and isActive when given an existing valid email and valid password", async () => {
 		//ARRANGE
-		const userAccount: UserAccount = {
+		const userAccount: UserAccount= {
 			email: "starfire8152@gmail.com",
 			password: "Cust1234",
-		};
+		} as any;
 
 		//ACT
 		const response = await readUserAccount(userAccount);
@@ -27,7 +27,7 @@ function allTests() {
 		const userAccount: UserAccount = {
 			email: "noemail@logins.com",
 			password: undefined,
-		};
+		} as any;
 
 		//ACT
 		const response = await readUserAccount(userAccount);
@@ -43,7 +43,7 @@ function allTests() {
 		const userAccount: UserAccount = {
 			email: "def@logins.com",
 			password: undefined,
-		};
+		} as any;
 
 		//ACT
 		const response = await readUserAccount(userAccount);
@@ -59,7 +59,7 @@ function allTests() {
 		const userAccount: UserAccount = {
 			email: "testUser24@emails.com",
 			password: "Cust1234",
-		};
+		} as any;
 
 		//ACT
 		const response = await readUserAccount(userAccount);
@@ -73,7 +73,7 @@ function allTests() {
 		const userAccount: UserAccount = {
 			email: "alex.marjanovic.ba.tw@gmail.com",
 			password: "Main1234@",
-		};
+		} as any;
 
 		//ACT
 		const response = await readUserAccount(userAccount);

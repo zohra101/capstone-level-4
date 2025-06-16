@@ -6,6 +6,8 @@ import { returnDynamoDBClient } from "./returnDynamoDBClient";
 import { UserAccount } from "./UserAccount";
 
 export async function delUserAccount(userAccount: UserAccount) {
+	console.log("Received userAccount:", userAccount); // Check full object
+
 	if (!userAccount || !userAccount.email) {
 		return "Please enter the email address of the account you wish to delete.";
 	}
@@ -25,13 +27,12 @@ export async function delUserAccount(userAccount: UserAccount) {
 	};
 
 	const readResult: GetCommandOutput = await newClient.get(requestRead);
-	const existingAccount: UserAccount | undefined = readResult.Item as UserAccount;
+	const existingAccount: UserAccount | undefined =
+		readResult.Item as UserAccount;
 
 	//Return message that account does not exist
 	if (!existingAccount)
 		return "The account you are trying to delete does not exist.";
-
-
 
 	const request: DeleteCommandInput = {
 		TableName: "logins",
