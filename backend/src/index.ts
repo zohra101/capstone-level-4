@@ -15,12 +15,20 @@ dotenv.config();
 console.log("Dotenv configured");
 console.log("Current mode:", process.env.mode); 
 
+const corsOptions = {
+	// origin: "https://your-frontend-domain.com", // restrict to your frontend URL
+	methods: ["GET", "POST", "PUT", "DELETE"], // allowed HTTP methods
+	allowedHeaders: ["Content-Type", "Authorization"], // allowed headers
+	// credentials: true, // if you want to allow cookies/auth headers
+	optionsSuccessStatus: 200, // for legacy browsers (IE11, some mobile)
+};
+
 const hostname = "localhost"; //Local domainnpm
 const port = 9000; //Common backend ports are 3000, 8080, 9000
 
 const app = express(); //Instantiate an express.js object
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(urlencoded());//Allows data to be received from Postman through x-www-form-urlencoded.
 app.use(json()); //Configures Express to receive JSON parameters from Axios. 
 
