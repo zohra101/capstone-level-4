@@ -12,7 +12,6 @@ export async function handleSignInAttempt(event: Event) {
 
 	const account = await authenticationAws(email, password);
 	if (account) {
-		// closeButton.click();
 		form.reset();
 	}
 

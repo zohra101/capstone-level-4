@@ -37,7 +37,7 @@ export async function authenticationAws(
 	try {
 		const response = await axios.post(`${baseUrl}${backendRoute}`, data);
 		let account = response.data;
-		if (!account) account = undefined;
+		if (typeof account === "string") account = undefined;
 		return account;
 	} catch (error) {
 		// Here you swallow the error and return undefined on failure

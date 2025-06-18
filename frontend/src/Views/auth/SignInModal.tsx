@@ -84,24 +84,9 @@ export function SignInModal() {
 			dispatch(action);
 
 			// Step 3: Clear any previous error messages
+			debugger;
 			setErrorMessage("");
-
-			// Step 4: Dismiss the Bootstrap modal using its native JavaScript API
-			const signInModalElement = document.getElementById("signInModal");
-			if (signInModalElement) {
-				// Get the Bootstrap modal instance
-				// (Note: 'bootstrap' needs to be available in the global scope or imported)
-				const modalInstance = (window as any).bootstrap.Modal.getInstance(
-					signInModalElement
-				);
-				if (modalInstance) {
-					modalInstance.hide(); // Hides the modal
-				} else {
-					// If no instance exists (e.g., modal not yet fully initialized by Bootstrap),
-					// create a new instance and then hide it.
-					new (window as any).bootstrap.Modal(signInModalElement).hide();
-				}
-			}
+			closeButton.click();
 		} else {
 			// Handle unsuccessful sign-in (e.g., display an error message)
 			setErrorMessage(
