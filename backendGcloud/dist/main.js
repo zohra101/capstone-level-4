@@ -21233,30 +21233,6 @@ function api(request, response) {
 
 /***/ }),
 
-/***/ "./src/routes/postDemo.ts":
-/*!********************************!*\
-  !*** ./src/routes/postDemo.ts ***!
-  \********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   postDemo: () => (/* binding */ postDemo)
-/* harmony export */ });
-//function handler() {}; //Declare the handler as an empty function
-function postDemo(request, response) {
-  // const data = ({ message: "hello"}) ;
-  const data = {
-    origin: request.headers.origin,
-    query: request.query,
-    body: request.body
-  };
-  response.send(data);
-}
-
-/***/ }),
-
 /***/ "./src/routes/root.ts":
 /*!****************************!*\
   !*** ./src/routes/root.ts ***!
@@ -21564,8 +21540,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _routes_ai__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./routes/ai */ "./src/routes/ai.ts");
 /* harmony import */ var dotenv__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! dotenv */ "./node_modules/.pnpm/dotenv@16.5.0/node_modules/dotenv/lib/main.js");
 /* harmony import */ var dotenv__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(dotenv__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _routes_postDemo__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./routes/postDemo */ "./src/routes/postDemo.ts");
-
 
 
 
@@ -21585,8 +21559,6 @@ app.use((0,express__WEBPACK_IMPORTED_MODULE_0__.json)()); //Configures Express t
 
 app.get("/", _routes_root__WEBPACK_IMPORTED_MODULE_2__.root); //The handler runs when the path is visited in the URL.
 app.get("/api", _routes_api__WEBPACK_IMPORTED_MODULE_3__.api); //The handler runs when the path is visited in the URL.
-// app.get("/ai", ai); //The handler runs when the path is visited in the URL.
-app.post("/postDemo", _routes_postDemo__WEBPACK_IMPORTED_MODULE_6__.postDemo); //Use the HTTP POST method to listen on this route. POST is like a channle that the client and server can use to speak privately on. 
 app.post("/ai", _routes_ai__WEBPACK_IMPORTED_MODULE_4__.ai); //Use the HTTP POST method to receive data securely and unaltered (without special characters like 20%).
 
 app.listen(port, hostname, handleListen); //Listen on the specified port and hostname.

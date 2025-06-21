@@ -3,23 +3,24 @@ import { SignInContent } from "../../Views/auth/SignInContent";
 import { handleSignInAttempt } from "../../controllers/handleSignInAttempt";
 import { useDispatch } from "react-redux";
 import { set } from "../../modules/state/store";
+import { useNavigate } from "react-router";
 
 export function SignInModal() {
 	const dispatch = useDispatch();
 	const [errorMessage, setErrorMessage] = useState("");
+	const navigate = useNavigate();
 
 	return (
 		<>
 			<button
 				type="submit"
-				className="btn btn-light"
+				className="btn btn-signin"
 				data-bs-toggle="modal"
 				data-bs-target="#signInModal"
 			>
 				Sign In
 			</button>
-			<form
-				onSubmit={handleSubmit}
+			<div
 				className="modal fade"
 				id="signInModal"
 				tabIndex={-1}
@@ -42,30 +43,32 @@ export function SignInModal() {
 								aria-label="Close"
 							></button>
 						</div>
-						<div className="modal-body m-2">
-							<SignInContent errorMessage={errorMessage} />
-						</div>
-						<div className="modal-footer">
-							<button
-								id="signInCloseButton"
-								type="button"
-								className="btn btn-secondary"
-								data-bs-dismiss="modal"
-								name="closeButton"
-							>
-								Close
-							</button>
-							<button
-								id="signInSubmitButton"
-								type="submit"
-								className="btn btn-primary"
-							>
-								Submit
-							</button>
-						</div>
+						<form onSubmit={handleSubmit}>
+							<div className="modal-body m-2 ivory">
+								<SignInContent errorMessage={errorMessage} />
+							</div>
+							<div className="modal-footer">
+								<button
+									id="signInCloseButton"
+									type="button"
+									className="btn btn-secondary"
+									data-bs-dismiss="modal"
+									name="closeButton"
+								>
+									Close
+								</button>
+								<button
+									id="signInSubmitButton"
+									type="submit"
+									className="btn btn-dark"
+								>
+									Submit
+								</button>
+							</div>
+						</form>
 					</div>
 				</div>
-			</form>
+			</div>
 		</>
 	);
 
@@ -84,14 +87,12 @@ export function SignInModal() {
 			dispatch(action);
 
 			// Step 3: Clear any previous error messages
-			debugger;
 			setErrorMessage("");
 			closeButton.click();
+			navigate("/");
 		} else {
 			// Handle unsuccessful sign-in (e.g., display an error message)
-			setErrorMessage(
-				"The email and password provided do not match."
-			);
+			setErrorMessage("The email and password provided do not match.");
 		}
 	}
 }

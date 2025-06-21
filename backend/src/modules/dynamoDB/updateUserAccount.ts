@@ -7,7 +7,7 @@ dotenv.config(); //Attaches the env variables in .env to the process object
 
 export async function updateUserAccount(
 	userAccount: UserAccount
-): Promise<UserAccount | string> {
+): Promise<string> {
 	console.log("updateUserAccount called with:", userAccount);
 	console.log("Email to validate:", userAccount.email);
 
@@ -53,6 +53,7 @@ export async function updateUserAccount(
 
 	const response = await newClient.update(request);
 
-	if (response)
-	return "Your account updated successfully.";
+	const isAccountUpdated: boolean = response.$metadata.httpStatusCode === 200;
+	if (isAccountUpdated) return "Your account updated successfully.";
+	else return "Your changes were not saved. Please contact the site administrator for assistance."
 }

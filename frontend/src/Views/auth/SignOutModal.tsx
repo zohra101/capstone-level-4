@@ -9,59 +9,61 @@ export function SignOutModal() {
 		<>
 			<button
 				type="button"
-				className="btn btn-primary"
+				className="btn btn-signin"
 				data-bs-toggle="modal"
 				data-bs-target="#signOutModal"
 			>
 				Sign Out
 			</button>
-			<form
-				onSubmit={handleSubmit}
+			<div
 				className="modal fade"
 				id="signOutModal"
 				tabIndex={-1}
 				aria-labelledby="signOutModalLabel"
-				aria-hidden="true">
-				<div className="modal-dialog modal-style">
-					<div className="modal-content">
+				aria-hidden="true"
+			>
+				<div className="modal-dialog">
+					<div className="modal-content modal-style">
 						<div className="modal-header">
 							<h1
 								className="modal-title fs-5"
-								id="signOutModalLabel">
+								id="signOutModalLabel"
+							>
 								Sign Out
 							</h1>
 							<button
 								type="button"
 								className="btn-close"
 								data-bs-dismiss="modal"
-								aria-label="Close"></button>
+								aria-label="Close"
+							></button>
 						</div>
 						<div className="modal-body">Are you sure you want to sign out?</div>
 						<div className="modal-footer">
 							<button
 								type="button"
 								className="btn btn-secondary"
-								data-bs-dismiss="modal">
+								data-bs-dismiss="modal"
+							>
 								Close
 							</button>
 							<button
 								id="signOutSubmitButton"
-								type="submit"
-								className="btn btn-primary">
-								Submit
+								type="button"
+								className="btn btn-dark"
+								data-bs-dismiss="modal"
+								onClick={handleSignOut}
+							>
+								Sign Out
 							</button>
 						</div>
 					</div>
 				</div>
-			</form>
+			</div>
 		</>
 	);
 
-	function handleSubmit(event: FormEvent) {
-		event.preventDefault();
-		const inputs = event.target;
-		const closeButton = inputs[1];
-		closeButton.click();
+	function handleSignOut(event: any) {
 		const action = set.globalAccount(undefined);
 		dispatch(action);
 	}

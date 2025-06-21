@@ -5,7 +5,6 @@ import { UserAccount } from "../modules/dynamoDB/UserAccount";
 
 //function handler() {}; //Declare the handler as an empty function
 export async function authenticateAws(request: Request, response: Response) {
-	debugger;
 	const { email, password } = request.body; // Extract email and password from the query object
 
 	console.log("request.body:", request.body);

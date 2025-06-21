@@ -33,7 +33,10 @@ export function Ai() {
 						<br />
 						<div>
 							<br />
-							<input type="submit" />
+							<input
+								type="submit"
+								className="btn btn-dark"
+							/>
 						</div>
 						<br />
 						<div

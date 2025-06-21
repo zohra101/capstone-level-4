@@ -7,7 +7,7 @@ const backendRoute = "updateAccount";
 
 export async function updateUserAccount(
 	userAccount: UserAccount
-): Promise<UserAccount | string> {
+): Promise<string> {
 	console.log("updateUserAccount called with:", userAccount);
 
 
@@ -18,5 +18,5 @@ export async function updateUserAccount(
 	const url = `${getBaseUrl()}${getBackendRoutePrefix()}${backendRoute}`;
 
 	const response = await axios.post(url, { email, password, name, phone }); 
-	return response.data as UserAccount | undefined;
+	return response.data;
 }

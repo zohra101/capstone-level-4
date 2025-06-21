@@ -4,7 +4,7 @@
 }
 
 @mixin welcomeTextShadow {
-  text-shadow: 2px 2px rgb(215, 199, 57);
+  text-shadow: 2px 2px rgb(236, 233, 183);
 }
 
 #mixin-welcome {
@@ -83,8 +83,15 @@ h3 {
 .aiTitle {
   font-family: $primaryFont;
   font-size: 16px;
-  color: rgb(17, 75, 95);
+  color: rgb(12, 0, 0);
 }
+
+.radioText {
+  font-family: $primaryFont;
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+}
+
 .bold {
   font-weight: bold;
 }
@@ -105,10 +112,10 @@ h3 {
 
 .modal-style {
   background-color: ivory;
-  color: rgb(7, 58, 41);
+  color: rgb(2, 32, 54,1);
   & h1 {
         font-family: $primaryFont;
-        color: rgb(7, 58, 41);
+        color:rgb(2, 32, 54, 1);;
   }
 }
 
@@ -136,7 +143,7 @@ h3 {
 
 a {
   background-color: ivory;
-  color: rgb(7, 58, 41);
+  color: rgb(2, 32, 54, 1);
 }
 a:hover {
   color: violet;
@@ -146,6 +153,32 @@ a:hover {
   color: rgb(181, 225, 241)
 }
 
+.delete-account-modal {
+  background-color: rgb(219, 193, 198);
+  color: rgb(181, 225, 241)
+}
+
+.btn-signin {
+  color: rgb(0, 0, 0);
+  background-color: rgb(163, 212, 215); // lime green example
+  border: 2px solid  rgb(2, 32, 54, 1); // dodger blue border
+  border-radius: 0.375rem; // match Bootstrap's btn border-radius
+  padding: 0.375rem 0.75rem; // match Bootstrap's btn padding
+  font-size: 1rem;
+  font-weight: 400;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+
+  &:hover {
+    color: ivory;
+    background-color: rgb(2, 32, 54, 1); // deep sky blue on hover
+    border-color:  ivory; // forest green border on hover
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.25rem rgba(50, 205, 50, 0.5); // soft green glow
+  }
+}
 
 //Opacity
 .fullOpacity {
@@ -153,7 +186,8 @@ a:hover {
 }
 
 //Transform rotate and animate
- .animation:hover {
+
+.animation:hover {
   transform: scale(1) rotate(20deg);
   transition: transform 1s;
 }

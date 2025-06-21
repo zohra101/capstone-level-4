@@ -204,12 +204,12 @@ type ActionUserAccount = {
 };
 
 type ActionShowButton = {
-	type: boolean;
+	type: string;
 	payload: boolean;
 };
 
 type ActionShowModal = {
-	type: boolean;
+	type: string;
 	payload: boolean;
 };
 

@@ -5,9 +5,16 @@ import linkedInIcon from "../../../assets/icons/icon_linkedin.png";
 import emailIcon from "../../../assets/icons/icon_email_coral.png";
 import { SignInArea } from "../auth/SignInArea";
 import { AiModal } from "../home/AiModal";
+import { useSelector } from "react-redux";
+import { selectGlobalAccount } from "../../modules/state/stateSelectors";
+import { CreateAccountModal } from "../useraccounts/CreateAccountModal";
+import { MyAccountModal } from "../MyAccountModal";
 
 export function NavbarCollapsible() {
 	const rootPath = getRootPath();
+
+	const account = useSelector(selectGlobalAccount);
+
 	return (
 		<nav
 			className="navbar nav-tabs navbar-expand-sm"
@@ -100,12 +107,6 @@ export function NavbarCollapsible() {
 						</NavLink>
 						<NavLink
 							className="nav-link nav-text"
-							to={`${rootPath}/account`}
-						>
-							Account
-						</NavLink>
-						<NavLink
-							className="nav-link nav-text"
 							to={`${rootPath}/about`}
 						>
 							About
@@ -113,6 +114,8 @@ export function NavbarCollapsible() {
 					</div>
 				</div>
 				<AiModal />
+				<CreateAccountModal/>
+				<MyAccountModal/>
 				<SignInArea />
 			</div>
 		</nav>

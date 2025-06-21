@@ -3,11 +3,11 @@ import { UserAccount } from "../../modules/dynamoDB/UserAccount";
 import { updateUserAccount } from "../../modules/dynamoDB/updateUserAccount";
 import { useDispatch, useSelector } from "react-redux";
 import { set } from "../../modules/state/store";
-import { selectUpdateAccountDidMount, selectUpdateFeedbackMessage } from "../../modules/state/stateSelectors";
+import { selectGlobalAccount, selectUpdateAccountDidMount, selectUpdateFeedbackMessage } from "../../modules/state/stateSelectors";
 
 export function UpdateAccount() {
 	// State for lifecycle tracking
-	// const [didMount, setDidMount] = useState(false);
+	const globalAccount = useSelector(selectGlobalAccount);
 	const updateAccountDidMount = useSelector(selectUpdateAccountDidMount);
 	const dispatch = useDispatch();
 
@@ -31,8 +31,8 @@ export function UpdateAccount() {
 
 		// Construct the UserAccount object
 		const updatedUserAccount: UserAccount = {
-			email: inputs.userEmailUpdate.value,
-			password: inputs.userPasswordUpdate.value,
+			email: globalAccount.email || "", // use logged-in user email here
+			password: globalAccount.password || "",
 			name: inputs.usersNameUpdate.value,
 			phone: inputs.userPhoneUpdate.value,
 		};
@@ -45,9 +45,16 @@ export function UpdateAccount() {
 
 		// Update the feedback message state with the result
 		// setFeedbackMessage(resultMessage); // Use the setter to update state
+		const isAccountUpdated = updateResultMessage === "Your account updated successfully.";
+		
+		if (isAccountUpdated) {
+			const action1 = set.updateFeedbackMessage(updateResultMessage);
+			const action2 = set.globalAccount(updatedUserAccount);
+			dispatch(action1);
+			dispatch(action2);
+		}
 
-		let action = set.updateFeedbackMessage(updateResultMessage);
-		if (updatedUserAccount) dispatch(action);
+
 	}
 
 	return (
@@ -55,7 +62,6 @@ export function UpdateAccount() {
 			<div className="container m-3">
 				<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1">
 					<div className="col">
-						<h3 id="updateAccount">Update your account</h3>
 						<p>
 							To update your account, please make any changes in the fields
 							below and submit the form. Note: The Username field does not
@@ -72,38 +78,6 @@ export function UpdateAccount() {
 							<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 								<div className="col">
 									<span style={{ fontWeight: "bold" }}>
-										<label htmlFor="userEmailUpdate">Email</label>
-										<br />
-									</span>
-									<input
-										required
-										type="email"
-										name="email"
-										id="userEmailUpdate"
-										className="inputs"
-										placeholder="address@domain.com"
-									/>
-								</div>
-							</div>
-							<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
-								<div className="col">
-									<span style={{ fontWeight: "bold" }}>
-										<label htmlFor="userPasswordUpdate">Password</label>
-										<br />
-									</span>
-									<input
-										type="password"
-										name="password"
-										id="userPasswordUpdate"
-										className="inputs"
-										placeholder="Strong25@pass#"
-									/>
-								</div>
-							</div>
-							<hr></hr>
-							<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
-								<div className="col">
-									<span style={{ fontWeight: "bold" }}>
 										<label htmlFor="usersNameUpdate">Name</label>
 										<br />
 									</span>
@@ -114,6 +88,7 @@ export function UpdateAccount() {
 										id="usersNameUpdate"
 										className="inputs"
 										placeholder="YourName"
+										defaultValue={globalAccount.name}
 									/>
 								</div>
 							</div>
@@ -132,16 +107,20 @@ export function UpdateAccount() {
 										id="userPhoneUpdate"
 										className="inputs"
 										placeholder="888-888-8888"
+										defaultValue={globalAccount.phone}
 									/>
 								</div>
 							</div>
 							<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 								<div className="col">
-									<button className="btn btn-dark animation">Submit</button>
+									<button className="btn btn-warning">Update</button>
 								</div>
 							</div>
 						</form>
-						<output id="updateOutputTag">
+						<output
+							id="updateOutputTag"
+							className="d-block text-success pb-2"
+						>
 							{/* Display the feedback message state here */}
 							{messageToDisplay}
 						</output>
@@ -165,11 +144,11 @@ export function UpdateAccount() {
 
 	function componentDidUpdate() {
 		if (updateAccountDidMount)
-			console.log("The Update Account  component updated.");
+			console.log("The Update Account component updated.");
 	}
 	function componentDidUnmount() {
 		return function displayMessage() {
-			console.log("The Update Account  component unmounted.");
+			console.log("The Update Account component unmounted.");
 			let action = set.updateFeedbackMessage("");
 			dispatch(action);
 		};

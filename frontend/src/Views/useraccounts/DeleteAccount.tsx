@@ -3,13 +3,28 @@ import { UserAccount } from "../../modules/dynamoDB/UserAccount";
 import { delUserAccount } from "../../modules/dynamoDB/delUserAccount";
 import { useDispatch, useSelector } from "react-redux";
 import { set } from "../../modules/state/store";
-import { selectDeleteAccountDidMount, selectDeleteFeedbackMessage } from "../../modules/state/stateSelectors";
+import {
+	selectDeleteAccountDidMount,
+	selectDeleteFeedbackMessage,
+	selectGlobalAccount,
+} from "../../modules/state/stateSelectors";
+
+declare global {
+	interface Window {
+		bootstrap: any;
+	}
+}
+
+// Declare modal instance variable outside component to keep it persistent
+let bsModalInstance: any = null;
 
 export function DeleteAccount() {
 	// State for lifecycle tracking
 	// const [didMount, setDidMount] = useState(false);
 	const deleteAccountDidMount = useSelector(selectDeleteAccountDidMount);
 	const dispatch = useDispatch();
+
+	const account = useSelector(selectGlobalAccount);
 
 	// State for displaying feedback messages from the backend
 	// const [feedbackMessage, setFeedbackMessage] = useState<string>("");
@@ -20,98 +35,150 @@ export function DeleteAccount() {
 	useEffect(componentDidUpdate);
 	useEffect(componentDidUnmount, []);
 
+	function showModal() {
+		const modalEl = document.getElementById("deleteAccountModal");
+		if (!modalEl) return;
+
+		// Create a new instance every time user clicks Delete button
+		bsModalInstance = new window.bootstrap.Modal(modalEl, {});
+		bsModalInstance.show();
+	}
+
 	// Function to handle form submission
-	async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+	async function handleDelete(event: any) {
 		// Add event type for type safety
 		event.preventDefault(); // Prevent default form page reload
-
-		// Get input values from the form elements
-		const form: any = event.target;
-		const inputs = form.elements;
+		console.log("handleSubmit fired");
 
 		// Construct the UserAccount object
 		const existingUserAccount: UserAccount = {
-			email: inputs.userEmailDelete.value,
-			password: inputs.userPasswordDelete.value,
+			email: account.email,
+			password: account.password,
 		};
 
 		console.log("Attempting to delete account for:", existingUserAccount.email);
 
 		// Call the frontend createUserAccount function and await the result
 		// Based on backend/frontend function return, this is expected to be a string message
-		const deleteResultMessage: string = await delUserAccount(existingUserAccount);
+		const deleteResultMessage: string = await delUserAccount(
+			existingUserAccount
+		);
 
 		// Update the feedback message state with the result
 		// setFeedbackMessage(resultMessage); // Use the setter to update state
+		dispatch(set.deleteFeedbackMessage(deleteResultMessage));
 
-		let action = set.deleteFeedbackMessage(deleteResultMessage);
-		dispatch(action);
+		// Close the modal and sign the user out
+		setTimeout(() => {
+			if (bsModalInstance) {
+				bsModalInstance.hide();
+
+				const fadeBackground = document.querySelector(".modal-backdrop");
+				if (fadeBackground !== null) {
+					fadeBackground.parentNode?.removeChild(fadeBackground);
+				}
+
+				document.body.classList.remove("modal-open");
+			}
+		}, 2000);
+
+		// Sign out after 15 seconds total (10 + 5)
+		setTimeout(() => {
+			dispatch(set.globalAccount(undefined));
+		}, 5000);
 	}
 
 	return (
-		<main>
+		<>
 			<div className="container m-3">
 				<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1">
 					<div className="col">
-						<h3 id="deleteAccount">Delete your account</h3>
 						<p>
-							To delete your account, enter your email and password below. Then
-							click Submit.
+							To delete your account, click the Delete button below. Your
+							account will be deleted and will be unretrievable. To regain
+							access, you will need to sign up again.
 						</p>
 					</div>
 				</div>
-				<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 center">
-					<div className="col">
-						<form
-							id="deleteAccountForm"
-							onSubmit={handleSubmit}
+				<div className="row">
+					<div className="col-12 col-md-6 offset-md-3 text-center center">
+						<button
+							type="button"
+							className="btn btn-danger"
+							onClick={showModal}
 						>
-							<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
-								<div className="col">
-									<span style={{ fontWeight: "bold" }}>
-										<label htmlFor="userEmailDelete">Email</label>
-										<br />
-									</span>
-									<input
-										required
-										type="email"
-										id="userEmailDelete"
-										className="inputs"
-										placeholder="address@domain.com"
-									/>
+							Delete My Account
+						</button>
+						<div
+							className="modal fade"
+							id="deleteAccountModal"
+							tabIndex={-1}
+							aria-labelledby="deleteAccountModalLabel"
+							aria-hidden="true"
+						>
+							<div className="modal-dialog">
+								<div className="modal-content bg-danger-subtle">
+									<div className="modal-header">
+										<h1
+											className="modal-title fs-5"
+											id="deleteAccountModalLabel"
+										>
+											Delete Account
+										</h1>
+										<button
+											type="button"
+											className="btn-close"
+											data-bs-dismiss="modal"
+											aria-label="Close"
+										></button>
+									</div>
+									<div className="modal-body ">
+										<p>Are you sure you want to delete your account? </p>
+										<p>
+											{" "}
+											If so, click <b>Delete</b> to proceed.
+										</p>
+										<p>
+											{" "}
+											If not, then click <b>Close</b> or <b>X</b> to return to
+											your account page.
+										</p>
+									</div>
+									<div className="modal-footer">
+										<button
+											type="button"
+											className="btn btn-secondary"
+											data-bs-dismiss="modal"
+										>
+											Close
+										</button>
+										<button
+											id="deleteAccountSubmitButton"
+											type="button"
+											className="btn btn-danger"
+											onClick={handleDelete}
+										>
+											Delete
+										</button>
+									</div>
 								</div>
 							</div>
-							<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
-								<div className="col">
-									<span style={{ fontWeight: "bold" }}>
-										<label htmlFor="userPasswordDelete">Password</label>
-										<br />
-									</span>
-									<input
-										required
-										type="password"
-										id="userPasswordDelete"
-										className="inputs"
-										placeholder="Strong25@pass#"
-									/>
-								</div>
-							</div>
-							<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
-								<div className="col">
-									<button className="btn btn-dark animation">Submit</button>
-								</div>
-							</div>
-						</form>
-						{/* Output tag for displaying messages */}
-						<output id="deleteOutputTag">
-							{/* Display the feedback message state here */}
-							{messageToDisplay}
-						</output>
+						</div>
 					</div>
 				</div>
-				<br />
 			</div>
-		</main>
+
+			<div>
+				{/* Output tag for displaying messages */}
+				<output
+					id="deleteOutputTag"
+					className="d-block text-success pb-2"
+				>
+					{/* Display the feedback message state here */}
+					{messageToDisplay}
+				</output>
+			</div>
+		</>
 	);
 
 	// Lifecycle functions

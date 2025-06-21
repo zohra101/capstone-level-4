@@ -6,7 +6,7 @@ export function AiModal() {
 		<>
 			<button
 				type="button"
-				className="btn btn-light"
+				className="btn btn-outline-info animation"
 				data-bs-toggle="modal"
 				data-bs-target="#aiModal"
 			>

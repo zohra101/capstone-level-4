@@ -28,9 +28,9 @@ export function HandleQuoteOfTheDay() {
 			className="row justify-content-center"
 		>
 			<div className="col-12 col-lg-8 offset-lg-2">
-				<div className="card w-100 m-5 list-group-item-color1 boxShadow ">
+				<div className="card w-100 m-5 list-group-item-color1 boxShadow">
 					<div className="card-header blockquote-header text-center">
-						<span className="badge text-bg-primary m-1">NEW!</span>
+						<span className="badge text-bg-primary m-1 ">NEW!</span>
 						<i className="bi bi-book"></i> Quote of the Day
 						<hr />
 					</div>

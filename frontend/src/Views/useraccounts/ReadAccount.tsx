@@ -1,65 +1,43 @@
 import React, { useEffect, useState } from "react";
-import { readUserAccount } from "../../modules/dynamoDB/readUserAccount";
-import { UserAccount } from "../../modules/dynamoDB/UserAccount";
 import { useDispatch, useSelector } from "react-redux";
-import { selectGlobalAccount, selectViewAccountDidMount } from "../../modules/state/stateSelectors";
+import {
+	selectGlobalAccount,
+	selectViewAccountDidMount,
+} from "../../modules/state/stateSelectors";
 import { set } from "../../modules/state/store";
 
 export function ReadAccount() {
 	// State for lifecycle tracking
-	// const [viewAccountDidMount, setViewAccountDidMount] = useState(false);
 	const viewAccountDidMount = useSelector(selectViewAccountDidMount);
 	const dispatch = useDispatch();
 
-	// State for displaying feedback messages from the backend
-	// const [feedbackMessage, setFeedbackMessage] = useState<string>("");
 	const account = useSelector(selectGlobalAccount);
-	
+
 	// Lifecycle hooks
-	useEffect(componentDidMount, []);
-	useEffect(componentDidUpdate);
-	useEffect(componentDidUnmount, []);
+	// useEffect(componentDidMount, []);
+	// useEffect(componentDidUpdate);
+	// useEffect(componentDidUnmount, []);
+	useEffect(() => {
+		componentDidMount();
+		return () => componentDidUnmount();
+	}, []);
 
-	// Function to handle form submission
-	async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-		// Add event type for type safety
-		event.preventDefault(); // Prevent default form page reload
-
-		// Get input values from the form elements
-		const form: any = event.target;
-		const inputs = form.elements;
-
-		// Construct the UserAccount object
-		const existingUserAccount: UserAccount = {
-			email: inputs.userEmailView.value,
-			password: inputs.userPasswordView.value,
-		};
-
-		console.log(
-			"Attempting to retrieve account for:",
-			existingUserAccount.email
-		);
-
-		// Call the frontend createUserAccount function and await the result
-		// Based on backend/frontend function return, this is expected to be a string message
-		const accountDetails = await readUserAccount(existingUserAccount);
-		let action = set.globalAccount(accountDetails);
-		if (accountDetails) dispatch(action);
-		else console.log("Account not found or error reading account");
-	}
+	useEffect(() => {
+		componentDidUpdate();
+	});
 
 	return (
 		<main>
-			<div className="container m-3">
-				<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1">
+			<div className="container-fluid m-3">
+				<div className="row row-cols-1 row-cols-md-1 row-cols-lg-1">
 					<div className="col">
 						<h3 id="viewAccount">My account</h3>
 					</div>
 				</div>
-				<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 center">
-					<div className="col">
+				<div className="row justify-content-center">
+					<div className="col-12 col-sm-6 col-md-8 col-lg-12">
 						{/* Output tag for displaying messages */}
-						<output id="viewOutputTag">
+						<div id="viewOutputTag">
 							{/* Display the feedback message state here */}
 							{/* Display feedback in a Bootstrap card */}
 							{account && (
@@ -100,7 +78,7 @@ export function ReadAccount() {
 									</div>
 								</div>
 							)}
-						</output>
+						</div>
 					</div>
 				</div>
 				<br />
@@ -125,8 +103,6 @@ export function ReadAccount() {
 		if (viewAccountDidMount) console.log("The Read Account component updated.");
 	}
 	function componentDidUnmount() {
-		return function displayMessage() {
-			console.log("The Read Account component unmounted.");
-		};
+		console.log("The Read Account component unmounted.");
 	}
 }

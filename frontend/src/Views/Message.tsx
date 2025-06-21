@@ -103,7 +103,7 @@ export function Message() {
 							</div>
 							<div className="row row-cols-2 row-cols-md-1 row-cols-lg-1 p-2">
 								<div className="col">
-									<button className="btn btn-dark animation">Submit</button>
+									<button className="btn btn-dark">Submit</button>
 								</div>
 							</div>
 						</form>

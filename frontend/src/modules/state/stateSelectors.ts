@@ -66,19 +66,19 @@ export function selectAccountDidMount(state: StateVariables): boolean {
 	return state.accountDidMount;
 }
 
-export function selectCreateFeedbackMessage(state: StateVariables): boolean {
+export function selectCreateFeedbackMessage(state: StateVariables): string {
 	return state.createFeedbackMessage;
 }
 
-export function selectDeleteFeedbackMessage(state: StateVariables): boolean {
+export function selectDeleteFeedbackMessage(state: StateVariables): string {
 	return state.deleteFeedbackMessage;
 }
 
-export function selectUpdateFeedbackMessage(state: StateVariables): boolean {
+export function selectUpdateFeedbackMessage(state: StateVariables): string {
 	return state.updateFeedbackMessage;
 }
 
-export function selectViewFeedbackMessag(state: StateVariables): boolean {
+export function selectViewFeedbackMessag(state: StateVariables): string {
 	return state.viewFeedbackMessage;
 }
 
