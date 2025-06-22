@@ -6,6 +6,7 @@ export const stateVariables = {
 
 	//Global
 	globalAccount: null as null | UserAccount,
+	globalCredentials: null as null | UserAccount,
 	globalAnswer: "(The answer will appear here.)",
 
 	//Local mount flags

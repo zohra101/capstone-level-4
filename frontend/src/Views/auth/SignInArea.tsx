@@ -11,6 +11,9 @@ import {
 	selectSignInModal,
 	selectSignOutModal,
 } from "../../modules/state/stateSelectors";
+import { Credentials } from "../../modules/state/Credentials";
+import { authenticationAws } from "../../modules/authentication/authenticationAws";
+import { UserAccount } from "../../modules/dynamoDB/UserAccount";
 
 export function SignInArea() {
 	// Redux selectors to get necessary state from store
@@ -30,7 +33,6 @@ export function SignInArea() {
 
 	return (
 		<>
-
 			<div className="ms-3">
 				{signInModal && <SignInModal />}
 				{signOutModal && <SignOutModal />}
@@ -41,10 +43,10 @@ export function SignInArea() {
 	function componentDidMount() {
 		console.log("MOUNT PHASE: SignInArea");
 		dispatch(set.signInButton(true));
-		if (account) dispatch(set.component("SignOut"));
-		else dispatch(set.component("SignInl"));
-		let action = set.signInAreaDidMount(true);
-		dispatch(action);
+		dispatch(set.signInAreaDidMount(true));
+
+		getPersistentLogin();
+
 	}
 
 	function componentDidUpdate() {
@@ -62,5 +64,21 @@ export function SignInArea() {
 				dispatch(set.signOutModal(false));
 			}
 		}
+	}
+
+	async function getPersistentLogin() {
+		let account: UserAccount = undefined;
+		const login = localStorage.getItem("credentials");
+		if (login) {
+			const credentials: Credentials = JSON.parse(login);
+			const { email, password } = credentials;
+			account = await authenticationAws(email, password);
+			if (account) {
+				const action = set.globalAccount(account);
+				dispatch(action);
+			} else localStorage.setItem("credentials", undefined);	
+		}
+		if (account) dispatch(set.component("SignOut"));
+		else dispatch(set.component("SignIn"));
 	}
 }

@@ -63,8 +63,12 @@ export function SignOutModal() {
 		</>
 	);
 
-	function handleSignOut(event: any) {
+	function handleSignOut(event: React.MouseEvent<HTMLButtonElement>) {
+		event.preventDefault();
+
 		const action = set.globalAccount(undefined);
 		dispatch(action);
+
+		localStorage.setItem("credentials", undefined);
 	}
 }

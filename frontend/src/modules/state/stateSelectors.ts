@@ -5,6 +5,10 @@ export function selectGlobalAccount(state: StateVariables): UserAccount | null {
 	return state.globalAccount;
 }
 
+export function globalCredentials(state: StateVariables): UserAccount | null {
+	return state.globalCredentials;
+}
+
 export function selectGlobalAnswer(state: StateVariables): string {
 	const { globalAnswer } = state;
 	return globalAnswer;
