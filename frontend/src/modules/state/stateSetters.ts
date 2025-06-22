@@ -1,5 +1,6 @@
 import { StateVariables } from "./stateVariables";
 import { UserAccount } from "../dynamoDB/UserAccount";
+import { Credentials } from "./Credentials";
 
 export const stateSetters = {
 	//Methods that match their state variables
@@ -8,6 +9,14 @@ export const stateSetters = {
 	globalAccount: function (state: StateVariables, action: ActionUserAccount) {
 		const newValue = action.payload;
 		state.globalAccount = newValue;
+	},
+
+	globalCredentials: function (
+		state: StateVariables,
+		action: ActionCredentials
+	) {
+		const newValue = action.payload;
+		state.globalCredentials = newValue;
 	},
 
 	globalAnswer: function (state: StateVariables, action: ActionString) {
@@ -211,5 +220,10 @@ type ActionShowButton = {
 type ActionShowModal = {
 	type: string;
 	payload: boolean;
+};
+
+type ActionCredentials = {
+	type: string;
+	payload: Credentials | undefined;
 };
 

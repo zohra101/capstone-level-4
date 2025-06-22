@@ -4,6 +4,7 @@ import { handleSignInAttempt } from "../../controllers/handleSignInAttempt";
 import { useDispatch } from "react-redux";
 import { set } from "../../modules/state/store";
 import { useNavigate } from "react-router";
+import { Credentials } from "../../modules/state/Credentials";
 
 export function SignInModal() {
 	const dispatch = useDispatch();
@@ -81,18 +82,30 @@ export function SignInModal() {
 		const closeButton = form.closeButton;
 
 		if (account) {
-			// Step 1: Successful Authentication
-			// Step 2: Dispatch Redux Action to update global account state
+			// Successful Authentication
+			// Dispatch Redux Action to update global account state
 			const action = set.globalAccount(account);
 			dispatch(action);
 
-			// Step 3: Clear any previous error messages
+			const credentials: Credentials = {
+				email: account.email,
+				password: account.password
+			};
+			const loginString = JSON.stringify(credentials);
+			localStorage.setItem("credentials", loginString);
+
+			// Clear any previous error messages 
 			setErrorMessage("");
+
+			//Close modal
 			closeButton.click();
-			navigate("/");
+
+			//Send user to a page
+			navigate("/myaccount");
+
 		} else {
 			// Handle unsuccessful sign-in (e.g., display an error message)
-			setErrorMessage("The email and password provided do not match.");
+			setErrorMessage("The email and password do not match.");
 		}
 	}
 }

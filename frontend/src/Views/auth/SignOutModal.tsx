@@ -51,7 +51,7 @@ export function SignOutModal() {
 								id="signOutSubmitButton"
 								type="button"
 								className="btn btn-dark"
-								data-bs-dismiss="modal"
+								// data-bs-dismiss="modal"
 								onClick={handleSignOut}
 							>
 								Sign Out
@@ -64,7 +64,13 @@ export function SignOutModal() {
 	);
 
 	function handleSignOut(event: any) {
+		event.preventDefault();
+		const inputs = event.targrt;
+		const closeButton = inputs[1];
+		closeButton.click();
 		const action = set.globalAccount(undefined);
 		dispatch(action);
+
+		localStorage.setItem("credentials", undefined);
 	}
 }
