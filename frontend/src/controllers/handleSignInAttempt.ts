@@ -4,12 +4,17 @@ import { UserAccount } from "../modules/dynamoDB/UserAccount";
 export async function handleSignInAttempt(event: Event): Promise<UserAccount | undefined> {
 	event.preventDefault();
 
-	let form: any = event.target; // Cast event.target to HTMLFormElement
-	form = form.elements;
-	const email = form.email.value;
-	const password = form.password.value;
-	const closeButton = form.closeButton;
-	const inputs: any = event.target;
+	const form = event.currentTarget as HTMLFormElement;
+	const elements = form.elements as typeof form.elements & {
+		email: HTMLInputElement;
+		password: HTMLInputElement;
+		closeButton: HTMLButtonElement;
+	};
+
+	const email = elements.email.value;
+	const password = elements.password.value;
+	const closeButton = elements.closeButton;
+
 
 	console.log(email, password);
 

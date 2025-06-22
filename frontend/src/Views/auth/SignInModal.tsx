@@ -101,7 +101,7 @@ export function SignInModal() {
 			closeButton.click();
 
 			//Send user to a page
-			navigate("/myaccount");
+			navigate("/");
 
 		} else {
 			// Handle unsuccessful sign-in (e.g., display an error message)

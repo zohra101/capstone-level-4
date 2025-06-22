@@ -43,6 +43,7 @@ export function SignInArea() {
 	function componentDidMount() {
 		console.log("MOUNT PHASE: SignInArea");
 		dispatch(set.signInButton(true));
+		dispatch(set.signInAreaDidMount(true));
 
 		getPersistentLogin();
 
@@ -78,6 +79,6 @@ export function SignInArea() {
 			} else localStorage.setItem("credentials", undefined);	
 		}
 		if (account) dispatch(set.component("SignOut"));
-		else dispatch(set.component("SignInl"));
+		else dispatch(set.component("SignIn"));
 	}
 }
