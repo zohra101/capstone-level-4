@@ -53,7 +53,9 @@ export function SignInArea() {
 		if (signInAreaDidMount) {
 			console.log("UPDATE PHASE: SignInArea");
 
-			getPersistentLogin();
+			if (!account) {
+				getPersistentLogin();
+			}
 
 			if (account) {
 				dispatch(set.signInButton(false)); // hide sign in button
@@ -72,19 +74,21 @@ export function SignInArea() {
 	async function getPersistentLogin() {
 		let account: UserAccount = undefined;
 		const login = localStorage.getItem("credentials");
-		if (login) {
+
+		if (login && login !== "") {
 			const credentials: Credentials = JSON.parse(login);
 			const { email, password, timestamp } = credentials;
 			const currentTimestamp = Date.now();
 			const elapsedTime = currentTimestamp - timestamp;
 			const isExpired = elapsedTime > 100000;
+
 			if (isExpired) {
 				localStorage.setItem("credentials", "");
 				const action = set.globalAccount(undefined);
 				dispatch(action);
-			}
-			else {
+			} else {
 				account = await authenticationAws(email, password);
+
 				if (account) {
 					const action = set.globalAccount(account);
 					dispatch(action);
