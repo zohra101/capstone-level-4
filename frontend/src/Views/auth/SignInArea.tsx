@@ -56,18 +56,18 @@ export function SignInArea() {
 			if (!account) {
 				getPersistentLogin();
 			}
+		}
 
-			if (account) {
-				dispatch(set.signInButton(false)); // hide sign in button
-				dispatch(set.signOutButton(true)); // show sign out button
-				dispatch(set.signInModal(false)); // hide sign in modal
-				dispatch(set.signOutModal(true)); // show sign out modal
-			} else {
-				dispatch(set.signInButton(true));
-				dispatch(set.signOutButton(false));
-				dispatch(set.signInModal(true));
-				dispatch(set.signOutModal(false));
-			}
+		if (account) {
+			dispatch(set.signInButton(false)); // hide sign in button
+			dispatch(set.signOutButton(true)); // show sign out button
+			dispatch(set.signInModal(false)); // hide sign in modal
+			dispatch(set.signOutModal(true)); // show sign out modal
+		} else {
+			dispatch(set.signInButton(true));
+			dispatch(set.signOutButton(false));
+			dispatch(set.signInModal(true));
+			dispatch(set.signOutModal(false));
 		}
 	}
 

@@ -5,12 +5,13 @@ import { useDispatch } from "react-redux";
 import { set } from "../../modules/state/store";
 import { useNavigate } from "react-router";
 import { Credentials } from "../../modules/state/Credentials";
-import { current } from "@reduxjs/toolkit";
+import { getRootPath } from "../../utils/getRootPath";
 
 export function SignInModal() {
 	const dispatch = useDispatch();
 	const [errorMessage, setErrorMessage] = useState("");
 	const navigate = useNavigate();
+	const rootPath = getRootPath();
 
 	return (
 		<>
@@ -97,14 +98,14 @@ export function SignInModal() {
 			const loginString = JSON.stringify(credentials);
 			localStorage.setItem("credentials", loginString);
 
-			// Clear any previous error messages 
+			// Clear any previous error messages
 			setErrorMessage("");
 
 			//Close modal
 			closeButton.click();
 
-			//Send user to a page
-			navigate("/");
+			//Send user to the Home page, including fix for Git Pages
+			navigate(rootPath + "/");
 
 		} else {
 			// Handle unsuccessful sign-in (e.g., display an error message)
