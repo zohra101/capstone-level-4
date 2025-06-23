@@ -14,6 +14,7 @@ import {
 import { Credentials } from "../../modules/state/Credentials";
 import { authenticationAws } from "../../modules/authentication/authenticationAws";
 import { UserAccount } from "../../modules/dynamoDB/UserAccount";
+import { get } from "http";
 
 export function SignInArea() {
 	// Redux selectors to get necessary state from store
@@ -46,12 +47,14 @@ export function SignInArea() {
 		dispatch(set.signInAreaDidMount(true));
 
 		getPersistentLogin();
-
 	}
 
 	function componentDidUpdate() {
 		if (signInAreaDidMount) {
 			console.log("UPDATE PHASE: SignInArea");
+
+			getPersistentLogin();
+
 			if (account) {
 				dispatch(set.signInButton(false)); // hide sign in button
 				dispatch(set.signOutButton(true)); // show sign out button
@@ -71,13 +74,24 @@ export function SignInArea() {
 		const login = localStorage.getItem("credentials");
 		if (login) {
 			const credentials: Credentials = JSON.parse(login);
-			const { email, password } = credentials;
-			account = await authenticationAws(email, password);
-			if (account) {
-				const action = set.globalAccount(account);
+			const { email, password, timestamp } = credentials;
+			const currentTimestamp = Date.now();
+			const elapsedTime = currentTimestamp - timestamp;
+			const isExpired = elapsedTime > 100000;
+			if (isExpired) {
+				localStorage.setItem("credentials", "");
+				const action = set.globalAccount(undefined);
 				dispatch(action);
-			} else localStorage.setItem("credentials", undefined);	
+			}
+			else {
+				account = await authenticationAws(email, password);
+				if (account) {
+					const action = set.globalAccount(account);
+					dispatch(action);
+				} else localStorage.setItem("credentials", "");
+			}
 		}
+
 		if (account) dispatch(set.component("SignOut"));
 		else dispatch(set.component("SignIn"));
 	}
