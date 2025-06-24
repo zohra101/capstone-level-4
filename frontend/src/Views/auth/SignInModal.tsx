@@ -84,11 +84,7 @@ export function SignInModal() {
 		const closeButton = form.closeButton;
 
 		if (account) {
-			// Successful Authentication
-			// Dispatch Redux Action to update global account state
-			const action = set.globalAccount(account);
-			dispatch(action);
-
+			//Authentication attempt
 			const currentTimestamp = Date.now();
 			const credentials: Credentials = {
 				email: account.email,
@@ -97,6 +93,17 @@ export function SignInModal() {
 			};
 			const loginString = JSON.stringify(credentials);
 			localStorage.setItem("credentials", loginString);
+
+			//Dispatch Redux actions to update global account and sign in area states
+			const action1 = set.globalAccount(account);
+			dispatch(action1);
+
+			const action2 = set.signInButton(false);
+			dispatch(action2);
+
+			const action3 = set.signOutButton(true);
+			dispatch(action3);
+
 
 			// Clear any previous error messages
 			setErrorMessage("");

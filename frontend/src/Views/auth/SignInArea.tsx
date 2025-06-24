@@ -23,20 +23,16 @@ export function SignInArea() {
 	const signInButton = useSelector(selectSignInButton);
 	const signOutButton = useSelector(selectSignOutButton);
 
-	// These Redux selectors indicate if the modal *component itself* should be rendered at all.
-	const signInModal = useSelector(selectSignInModal);
-	const signOutModal = useSelector(selectSignOutModal);
-
 	const dispatch = useDispatch();
 
 	useEffect(componentDidMount, []);
-	useEffect(componentDidUpdate, [account]);
+	useEffect(componentDidUpdate, [signInAreaDidMount, account]);
 
 	return (
 		<>
 			<div className="ms-3">
-				{signInModal && <SignInModal />}
-				{signOutModal && <SignOutModal />}
+				{signInButton && <SignInModal />}
+				{signOutButton && <SignOutModal />}
 			</div>
 		</>
 	);
@@ -45,58 +41,104 @@ export function SignInArea() {
 		console.log("MOUNT PHASE: SignInArea");
 		dispatch(set.signInButton(true));
 		dispatch(set.signInAreaDidMount(true));
-
-		getPersistentLogin();
 	}
 
 	function componentDidUpdate() {
+		// Only check for persistent login if the area has mounted AND there is no account currently set.
+		// This prevents continuous checks when an account is already active or after sign-out.
 		if (signInAreaDidMount) {
-			console.log("UPDATE PHASE: SignInArea");
-
-			if (!account) {
-				getPersistentLogin();
-			}
+			// console.log("UPDATE PHASE: SignInArea");
+			getPersistentLogin();
 		}
 
-		if (account) {
-			dispatch(set.signInButton(false)); // hide sign in button
-			dispatch(set.signOutButton(true)); // show sign out button
-			dispatch(set.signInModal(false)); // hide sign in modal
-			dispatch(set.signOutModal(true)); // show sign out modal
-		} else {
-			dispatch(set.signInButton(true));
-			dispatch(set.signOutButton(false));
-			dispatch(set.signInModal(true));
-			dispatch(set.signOutModal(false));
-		}
-	}
+		async function getPersistentLogin() {
+			console.log("FUNCTION CALL: getPersistentLogin started.");
+			let account: UserAccount = undefined; //Set account as undefined to initialize the process
 
-	async function getPersistentLogin() {
-		let account: UserAccount = undefined;
-		const login = localStorage.getItem("credentials");
+			const login = localStorage.getItem("credentials"); //Get creds from localStorage
+			console.log(
+				"localStorage 'credentials' value (BEFORE JSON.parse):",
+				login,
+				"Type:",
+				typeof login
+			);
 
-		if (login && login !== "") {
-			const credentials: Credentials = JSON.parse(login);
-			const { email, password, timestamp } = credentials;
-			const currentTimestamp = Date.now();
-			const elapsedTime = currentTimestamp - timestamp;
-			const isExpired = elapsedTime > 100000;
+			if (login) {
+				//If creds exist and are not blank or null
+				const credentials: Credentials = JSON.parse(login); //Parse creds
+				const { email, password, timestamp } = credentials; //Destructure creds
+				const currentTimestamp = Date.now(); //Get current timestamp
+				const elapsedTime = currentTimestamp - timestamp; //Calculate elapsed time since log in
+				const isExpired = elapsedTime > 50000; //Set timeout period for sign out
 
-			if (isExpired) {
-				localStorage.setItem("credentials", "");
-				const action = set.globalAccount(undefined);
-				dispatch(action);
+				console.log(
+					"currentTimestamp:",
+					currentTimestamp,
+					"timestamp:",
+					timestamp,
+					"Elapsed time:",
+					elapsedTime,
+					"Expired?",
+					isExpired
+				);
+
+				if (isExpired) {
+					//If timeoout is reeached
+					console.log("Timeout expired. Logging out.");
+					localStorage.removeItem("credentials"); //Remove creds from localStorage
+					const actionSetGlobalAccount = set.globalAccount(undefined);
+					const actionSetSignInButton = set.signInButton(true); 
+					const actionSetSignOutButton = set.signOutButton(false); //Ensure SignOut button is hidden
+
+					dispatch(actionSetGlobalAccount);
+					dispatch(actionSetSignInButton);
+					dispatch(actionSetSignOutButton);
+			
+				} else {
+					account = await authenticationAws(email, password); //Authenticate the user
+
+					if (account) {
+						//If authenticated
+						console.log("Authentication successful. Setting global account.");
+						const actionSetGlobalAccount = set.globalAccount(account);
+						const actionSetSignInButton = set.signInButton(false); //Ensure SignIn button is hidden
+						const actionSetSignOutButton = set.signOutButton(true); 
+
+						dispatch(actionSetGlobalAccount);
+						dispatch(actionSetSignInButton);
+						dispatch(actionSetSignOutButton);
+					} else {
+						console.log(
+							"Authentication failed for non-expired credentials. Logging out."
+						);
+						localStorage.removeItem("credentials");
+						const actionSetGlobalAccount = set.globalAccount(undefined);
+						const actionSetSignInButton = set.signInButton(true); 
+						const actionSetSignOutButton = set.signOutButton(false); //Ensure SignOut button is hidden
+
+						dispatch(actionSetGlobalAccount);
+						dispatch(actionSetSignInButton);
+						dispatch(actionSetSignOutButton);
+					}
+				}
 			} else {
-				account = await authenticationAws(email, password);
+				console.log(
+					"No persistent credentials found. Ensuring signed-out state."
+				);
 
 				if (account) {
-					const action = set.globalAccount(account);
-					dispatch(action);
-				} else localStorage.setItem("credentials", "");
+					const actionSetGlobalAccount = set.globalAccount(account);
+					dispatch(actionSetGlobalAccount);
+				}
+			
+				const actionSetSignInButton = set.signInButton(true); //Show SignIn button
+				const actionSetSignOutButton = set.signOutButton(false); //Hide SignOut button
+
+				dispatch(actionSetSignInButton);
+				dispatch(actionSetSignOutButton);
 			}
 		}
-
-		if (account) dispatch(set.component("SignOut"));
-		else dispatch(set.component("SignIn"));
 	}
+
 }
+

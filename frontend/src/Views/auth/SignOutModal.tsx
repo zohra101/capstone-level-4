@@ -69,6 +69,11 @@ export function SignOutModal() {
 		const action = set.globalAccount(undefined);
 		dispatch(action);
 
+		const action2 = set.signInButton(true);
+		dispatch(action2);
+		const action3 = set.signOutButton(false);
+		dispatch(action3);
+
 		localStorage.setItem("credentials", "");
 	}
 }
