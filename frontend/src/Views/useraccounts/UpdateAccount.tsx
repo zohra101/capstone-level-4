@@ -137,9 +137,6 @@ export function UpdateAccount() {
 		let action = set.updateAccountDidMount(true);
 		dispatch(action);
 		console.log("The Update Account component mounted.");
-
-		const titleTag = document.getElementById("titleTag");
-		titleTag.innerHTML = "Alex M - Update Account ";
 	}
 
 	function componentDidUpdate() {

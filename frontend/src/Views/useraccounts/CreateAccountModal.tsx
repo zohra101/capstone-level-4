@@ -258,10 +258,6 @@ export function CreateAccountModal() {
 				modalElement
 			);
 		}
-
-		// Update the tab title when the component mounts
-		const titleTag = document.getElementById("titleTag");
-		document.title = "Alex M - Create Account";
 	}
 
 	function componentDidUpdate() {

@@ -92,10 +92,6 @@ export function ReadAccount() {
 		let action = set.viewAccountDidMount(true);
 		dispatch(action);
 		console.log("The Read Account component mounted.");
-
-		// Update the tab title when the component mounts
-		const titleTag = document.getElementById("titleTag");
-		titleTag.innerHTML = "Alex M - Read Account ";
 	}
 
 	function componentDidUpdate() {

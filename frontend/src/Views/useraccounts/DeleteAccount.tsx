@@ -187,10 +187,6 @@ export function DeleteAccount() {
 		let action = set.deleteAccountDidMount(true);
 		dispatch(action);
 		console.log("The Delete Account component mounted.");
-
-		// Update the tab title when the component mounts
-		const titleTag = document.getElementById("titleTag");
-		titleTag.innerHTML = "Alex M - Delete Account ";
 	}
 
 	function componentDidUpdate() {
