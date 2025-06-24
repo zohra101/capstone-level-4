@@ -63,6 +63,11 @@ export function SignInArea() {
 				typeof login
 			);
 
+			if (login === null || login === "undefined") {
+				console.log("Credentials in localStorage are null undefined'. Skipping JSON.parse.");
+				localStorage.removeItem("credentials"); // Clean up potentially invalid data
+			}
+
 			if (login) {
 				//If creds exist and are not blank or null
 				const credentials: Credentials = JSON.parse(login); //Parse creds
@@ -141,4 +146,3 @@ export function SignInArea() {
 	}
 
 }
-
