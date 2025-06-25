@@ -14,12 +14,9 @@ export async function authenticationAws(
 	// Determine the base URL based on the current domain
 	if (domain === "localhost") {
 		baseUrl = localBackendURL;
-	} else if (domain === "zohra101.github.io") {
-		// New condition for GitHub Pages
-		baseUrl = lambdaUrl;
 	} else {
 		// Default to App Engine URL for other deployed environments (e.g., your custom domain for App Engine)
-		baseUrl = baseUrl = lambdaUrl;
+		baseUrl = lambdaUrl;
 	}
 
 	const backendRoute = "authenticateAws";

@@ -24,7 +24,7 @@ export const stateSetters = {
 		state.globalAnswer = newValue;
 	},
 
-	//Local
+	//Local mount flags
 	aboutDidMount: function (state: StateVariables, action: ActionBoolean) {
 		const newValue = action.payload;
 		state.aboutDidMount = newValue;

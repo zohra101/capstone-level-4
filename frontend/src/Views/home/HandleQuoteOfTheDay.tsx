@@ -107,6 +107,6 @@ export function HandleQuoteOfTheDay() {
 	}
 
 	function componentDidUnmount() {
-		console.log("The  HandleQuoteOfTheDay component unmounted.");
+		console.log("The HandleQuoteOfTheDay component unmounted.");
 	}
 }

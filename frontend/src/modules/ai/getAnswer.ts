@@ -13,13 +13,10 @@ export async function getAnswer(
 	// Determine the base URL based on the current domain
 	if (domain === "localhost") {
 		baseUrl = localBackendURL;
-	} else if (domain === "zohra101.github.io") {
-		// New condition for GitHub Pages
-		baseUrl = appEngineUrl;
+		// baseUrl = appEngineUrl;
 	} else {
 		// Default to App Engine URL for other deployed environments (e.g., your custom domain for App Engine)
-		baseUrl = baseUrl = appEngineUrl;
-        ;
+		baseUrl = appEngineUrl;
 	}
 
 	const backendRoute = "ai";
@@ -33,10 +30,11 @@ export async function getAnswer(
 	let response: AxiosResponse<any>;
 	try {
 		// Construct the full URL using the determined baseUrl and backendRoute
-		response = await axios.post(`${baseUrl}${backendRoute}`, data);
+		const url = `${baseUrl}${backendRoute}`;
+		response = await axios.post(url, data);
+
 	} catch (error) {
-		console.error("Error making API request:", error);
-		// Provide a more informative answer in case of a network or API error
+		console.log("Error making API request.");
 		return "Sorry, I'm currently unable to retrieve an answer. Please try again later.";
 	}
 
